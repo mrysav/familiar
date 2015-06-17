@@ -34,11 +34,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 gem 'unicorn'
 
-# Use timeout for unicorn
-gem 'rack-timeout'
-
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+end
+
+gem 'omniauth-facebook'
+
+gem 'paperclip', '~>4.2'
+
+gem 'pg_search'
+
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -4,9 +4,11 @@ env = ENV["RAILS_ENV"] || "development"
 
 # Production specific settings
 if env == "production"
-  app_dir = "familiar"
-  worker_processes 3
+
 end
+
+app_dir = "familiar"
+worker_processes 3
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy

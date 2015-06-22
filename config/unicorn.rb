@@ -1,7 +1,8 @@
 # Set environment to development unless something else is specified
 env = ENV["RAILS_ENV"] || "development"
 
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+# one process to rule them all
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 1)
 
 # Preload our app for more speed
 preload_app true

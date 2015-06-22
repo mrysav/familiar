@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 gem 'unicorn'
+gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
 group :development do

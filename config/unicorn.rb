@@ -9,6 +9,11 @@ preload_app true
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
 
+# use correct Gemfile on restarts
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{app_path}/current/Gemfile"
+end
+
 # Production specific settings
 if env == "production"
     app_dir = "familiar"
@@ -30,7 +35,6 @@ if env == "production"
 
     pid "#{shared_path}/tmp/pids/unicorn.pid"
 
-
     before_fork do |server, worker|
         # the following is highly recomended for Rails + "preload_app true"
         # as there's no need for the master process to hold a connection
@@ -40,7 +44,7 @@ if env == "production"
 
         # Before forking, kill the master process that belongs to the .oldbin PID.
         # This enables 0 downtime deploys.
-        old_pid = "#{shared_path}/pids/unicorn.pid.oldbin"
+        old_pid = "#{server.config[:pid]}.oldbin"
         if File.exists?(old_pid) && server.pid != old_pid
             begin
                 Process.kill("QUIT", File.read(old_pid).to_i)

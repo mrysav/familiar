@@ -42,6 +42,8 @@ gem 'pg_search'
 
 gem 'will_paginate-bootstrap'
 
+gem 'edtf-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

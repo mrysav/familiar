@@ -61,6 +61,11 @@ GEM
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
     debug_inspector (0.0.2)
+    edtf (2.2.0)
+      activesupport (>= 3.0, < 5.0)
+    edtf-rails (0.3.2)
+      activerecord (< 5)
+      edtf
     erubis (2.7.0)
     execjs (2.5.2)
     faraday (0.9.1)
@@ -194,6 +199,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
+  edtf-rails
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-facebook

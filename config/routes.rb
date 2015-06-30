@@ -4,4 +4,6 @@ Rails.application.routes.draw do
     get '/login', to: redirect('/auth/facebook')
     get '/logout' => 'sessions#destroy', :as => :logout
     get "/auth/:provider/callback" => "sessions#create"
+    
+    resources :people
 end

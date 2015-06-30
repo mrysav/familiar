@@ -1,0 +1,15 @@
+<% if @people.count > 0 %>
+
+<%= render @people %>
+
+<div class="text-center">
+    <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+</div>
+
+<% else %>
+
+<div class="text-center">
+    <h2>Nothing to see here!</h2>
+</div>
+
+<% end %>

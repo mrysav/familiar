@@ -1,0 +1,42 @@
+<div class="col-md-8 col-md-offset-2">
+<br>
+    <form role="form" action="<%= search_path %>" method="get">
+        <div class="form-group">
+            <%= label_tag :s, "Search" %>
+            <%= text_field_tag :s, params[:s], :class => 'form-control', :placeholder => "people, cemeteries, photos..." %>
+        </div>
+        
+        <div class="text-center">
+            <%= submit_tag "Search!", :name => nil, :class => "btn btn-default" %>
+        </div>
+    </form>
+
+</div>
+
+<% if params[:s] != nil && params[:s] != '' %>
+
+<div class="col-md-8 col-md-offset-2">
+    
+    <% if @results.count > 0 %>
+    
+    <h2>Results</h2>
+    
+    <hr>
+
+    <% @results.each do |pg_search_document| %>
+        <%= render pg_search_document.searchable %>
+    <% end %>
+
+    <div class="text-center">
+        <%= will_paginate @results, renderer: BootstrapPagination::Rails %>
+    </div>
+    
+    <% else %>
+    
+    <div class="text-center"><h2>Nothing turned up!</h2></div>
+    
+    <% end %>
+    
+</div>
+
+<% end %>

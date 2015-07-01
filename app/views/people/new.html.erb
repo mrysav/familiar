@@ -1,0 +1,28 @@
+<%= form_for @person, :html => { :role => :form, :class => "container" } do |person_form| %>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <%= person_form.label 'Full name', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= person_form.text_field :name, :placeholder => "Onion Bubs", :class => "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= person_form.label 'Birth date', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= person_form.date_field :date_of_birth, :class => "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= person_form.label 'Death date', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= person_form.date_field :date_of_death, :class => "form-control" %>
+        </div>
+    </div>
+    
+    <div class="text-center">
+        <%= person_form.submit 'Create', :class => "btn btn-default" %>
+    </div>
+</div>
+
+<% end %>

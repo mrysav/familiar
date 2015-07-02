@@ -24,6 +24,7 @@
                     <li><%= link_to 'People', people_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <% if !current_page?(:controller => 'search', :action => 'index') && !params[:s] %>
                     <li>
                         <form class="navbar-form" action="<%= search_path %>" role="search">
                             <div class="input-group">
@@ -34,6 +35,7 @@
                             </div>
                         </form>
                     </li>
+                    <% end %>
                     
                     <% if current_user %>
                         

@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 20150701033633) do
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "relationships", force: :cascade do |t|
+    t.integer  "first"
+    t.integer  "second"
+    t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

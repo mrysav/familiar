@@ -1,9 +1,9 @@
 class CreateRelationships < ActiveRecord::Migration
   def change
     create_table :relationships do |t|
-
-      t.belongs_to :person, index: true
       
+      t.integer :first
+      t.integer :second
       t.string :type
 
       t.timestamps null: false

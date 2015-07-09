@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20150701033633) do
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
+    t.string   "gender"
     t.string   "date_of_birth"
     t.string   "date_of_death"
     t.datetime "created_at",    null: false
@@ -35,11 +36,11 @@ ActiveRecord::Schema.define(version: 20150701033633) do
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "relationships", force: :cascade do |t|
-    t.integer  "first"
-    t.integer  "second"
+    t.integer  "person_id"
+    t.integer  "other_person_id"
     t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|

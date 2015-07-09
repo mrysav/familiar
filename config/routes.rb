@@ -6,5 +6,8 @@ Rails.application.routes.draw do
     get "/auth/:provider/callback" => "sessions#create"
     
     get '/search' => 'search#index'
-    resources :people
+    
+    resources :people do
+        resources :relationships
+    end
 end

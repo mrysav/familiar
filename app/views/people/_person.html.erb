@@ -1,6 +1,20 @@
 <div class="text-left">
 <h3><%= (person.name || 'No name') %></h3>
+Gender: <%= (person.gender || '') %><br>
 Birth date: <%= (person.date_of_birth || '') %><br>
 Death date: <%= (person.date_of_death || '') %>
 <hr>
 </div>
+
+<% person.relationships.each do |r| %>
+<% other = Person.find(r.other_person_id) %>
+<b><%= r.type %>:</b> <%= link_to other.name, person_path(other) %><br>
+<% end %>
+
+New relationship:<br>
+<%= form_for [person, person.relationships.build], :html => { :role => :form, :class => "container" } do |f| %>
+<div class="form row col-md-2">
+<%= f.select :type, [:parent, :mother, :father, :child], {}, { :class => "form-control" } %>
+</div>
+
+<% end %>

@@ -2,8 +2,8 @@
 <br>
     <form role="form" action="<%= search_path %>" method="get">
         <div class="form-group">
-            <%= label_tag :s, "Search" %>
-            <%= text_field_tag :s, params[:s], :class => 'form-control', :placeholder => "people, cemeteries, photos..." %>
+            <h2><%= label_tag :s, "familiar." %></h2>
+            <%= text_field_tag :s, params[:s], :class => 'form-control', :placeholder => "search people, cemeteries, photos..." %>
         </div>
         
         <div class="text-center">

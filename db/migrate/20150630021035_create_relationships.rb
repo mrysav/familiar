@@ -5,7 +5,7 @@ class CreateRelationships < ActiveRecord::Migration
       t.belongs_to :person
       
       t.integer :other_person_id
-      t.string :type
+      t.string :kind
 
       t.timestamps null: false
     end

@@ -1,1 +1,49 @@
-<%= render @person %>
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title"><%= @person.name %></h2>
+            <% if @person.date_of_birth.present? || @person.date_of_death.present? %>
+            <div class="text-right"><em>
+                <% if @person.date_of_birth.present? && @person.date_of_death.present? %>
+                <%= @person.date_of_birth.year %> - <%= @person.date_of_death.year %>
+                <% elsif @person.date_of_birth.present? %>
+                <%= @person.date_of_birth.year %> - Present
+                <% elsif @person.date_of_death.present? %>
+                Unknown - <%= @person.date_of_death.year %>
+                <% end %>
+            </em></div>
+            <% end %>
+        </div>
+        <div class="panel-body">
+            <% if @person.date_of_birth.present? %>
+            Birth date: <%= @person.date_of_birth %><br>
+            <% end %>
+            <% if @person.date_of_death.present? %>
+            Death date: <%= @person.date_of_death %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
+<% @person.relationships.each do |r| %>
+<% otherPerson = Person.find(r.other_person_id) %>
+
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="<%= person_path(otherPerson) %>"><h2 class="panel-title"><%= otherPerson.name %></h2></a>
+            <div class="text-right"><em><%= r.kind.capitalize %></em></div>
+        </div>
+        <div class="panel-body">
+            <% if otherPerson.date_of_birth.present? %>
+            Birth date: <%= otherPerson.date_of_birth %><br>
+            <% end %>
+            <% if otherPerson.date_of_death.present? %>
+            Death date: <%= otherPerson.date_of_death %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<% end %>

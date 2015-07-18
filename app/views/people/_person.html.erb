@@ -1,5 +1,5 @@
 <div class="text-left">
-<h3><%= (person.name || 'No name') %></h3>
+<h3><%= (person.name || 'No name') %> (<%= link_to :link, person_path(person) %>)</h3>
 Gender: <%= (person.gender || '') %><br>
 Birth date: <%= (person.date_of_birth || '') %><br>
 Death date: <%= (person.date_of_death || '') %>

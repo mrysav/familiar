@@ -1,5 +1,5 @@
 <div class="col-md-4">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">
             <h2 class="panel-title"><%= @person.name %></h2>
             <% if @person.date_of_birth.present? || @person.date_of_death.present? %>
@@ -33,7 +33,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <a href="<%= person_path(otherPerson) %>"><h2 class="panel-title"><%= otherPerson.name %></h2></a>
-            <div class="text-right"><em><%= r.kind.capitalize %></em></div>
+            <div class="text-right"><em><%= r.formatted %></em></div>
         </div>
         <div class="panel-body">
             <% if otherPerson.date_of_birth.present? %>
@@ -47,3 +47,23 @@
 </div>
 
 <% end %>
+
+
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">New relationship</h2>
+        </div>
+        <div class="panel-body">
+            <%= form_for [@person, @person.relationships.build], :html => { :role => :form, :class => "text-center" } do |f| %>
+            <div class="form">
+                <%= f.select :kind, [:parent, :child], {}, { :class => "form-control col-sm-1" } %><br>
+
+                <%= f.select :other_person_id, Person.all.reject { |p| p.id == @person.id }.collect { |p| [ p.name, p.id ] }, {}, { :class => "form-control col-sm-6" } %><br>
+
+                <%= f.submit :class => "btn btn-default"%>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

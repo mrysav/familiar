@@ -1,24 +1,15 @@
-<div class="text-left">
-<h3><%= (person.name || 'No name') %> (<%= link_to :link, person_path(person) %>)</h3>
-Gender: <%= (person.gender || '') %><br>
-Birth date: <%= (person.date_of_birth || '') %><br>
-Death date: <%= (person.date_of_death || '') %>
-<br>
-<% person.relationships.each do |r| %>
-<% other = Person.find(r.other_person_id) %>
-<b><%= r.kind %>:</b> <%= link_to other.name, person_path(other) %><br>
-<% end %>
-<br>
-New relationship:<br>
-<%= form_for [person, person.relationships.build], :html => { :role => :form, :class => "text-center" } do |f| %>
-<div class="form">
-<%= f.select :kind, [:mother, :father, :child], {}, { :class => "form-control col-sm-1" } %>
-
-<%= f.select :other_person_id, Person.all.reject { |p| p.id == person.id }.collect { |p| [ p.name, p.id ] }, {}, { :class => "form-control col-sm-6" } %>
-
-<%= f.submit :class => "btn btn-default"%>
-</div>
-
-<% end %>
-<hr>
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="<%= person_path(person) %>"><h2 class="panel-title"><%= person.name %> (<%= person.gender == 'male' ? :m : :f %>)</h2></a>
+        </div>
+        <div class="panel-body">
+            <% if person.date_of_birth.present? %>
+            Birth date: <%= person.date_of_birth %><br>
+            <% end %>
+            <% if person.date_of_death.present? %>
+            Death date: <%= person.date_of_death %>
+            <% end %>
+        </div>
+    </div>
 </div>

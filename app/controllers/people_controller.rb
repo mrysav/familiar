@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+    before_filter :require_valid_user
     
     def index
         @people = Person.all.paginate(:page => params[:page])

@@ -1,9 +1,9 @@
 <div class="col-md-4">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h2 class="panel-title"><%= @person.name %></h2>
+            <h2 class="panel-title pull-left"><%= @person.name %></h2>
             <% if @person.date_of_birth.present? || @person.date_of_death.present? %>
-            <div class="text-right"><em>
+            <div class="pull-right"><em>
                 <% if @person.date_of_birth.present? && @person.date_of_death.present? %>
                 <%= @person.date_of_birth.year %> - <%= @person.date_of_death.year %>
                 <% elsif @person.date_of_birth.present? %>
@@ -13,6 +13,7 @@
                 <% end %>
             </em></div>
             <% end %>
+            <div class="clearfix"></div>
         </div>
         <div class="panel-body">
             <% if @person.date_of_birth.present? %>
@@ -32,8 +33,9 @@
 <div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <a href="<%= person_path(otherPerson) %>"><h2 class="panel-title"><%= otherPerson.name %></h2></a>
-            <div class="text-right"><em><%= r.formatted %></em></div>
+            <a class="pull-left" href="<%= person_path(otherPerson) %>"><h2 class="panel-title"><%= otherPerson.name %></h2></a>
+            <div class="pull-right"><em><%= r.formatted %></em></div>
+            <div class="clearfix"></div>
         </div>
         <div class="panel-body">
             <% if otherPerson.date_of_birth.present? %>
@@ -48,6 +50,7 @@
 
 <% end %>
 
+<% if current_user != nil %>
 
 <div class="col-md-4">
     <div class="panel panel-default">
@@ -67,3 +70,5 @@
         </div>
     </div>
 </div>
+
+<% end %>

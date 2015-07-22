@@ -26,6 +26,20 @@
         </div>
     </div>
     
+    <div class="form-group">
+        <%= person_form.label 'Father', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= person_form.select :father_id, Person.all.reject { |p| (p.id == @person.id) && p.is_female? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= person_form.label 'Mother', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= person_form.select :mother_id, Person.all.reject { |p| (p.id == @person.id) && p.is_male? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+        </div>
+    </div>
+
+    
     <div class="text-center">
         <%= person_form.submit :class => "btn btn-default" %>
     </div>

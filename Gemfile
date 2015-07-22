@@ -34,16 +34,23 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma as the app server
 gem 'puma'
 
+# Using Facebook authentication for now
 gem 'omniauth-facebook'
 
+# Use Paperclip with Dropbox extension for storage
 gem 'paperclip', '~>4.2'
+gem 'paperclip-dropbox'
 
+# Use pg_search for full-text searches
 gem 'pg_search'
 
+# Use will_paginate with bootstrap styles
 gem 'will_paginate-bootstrap'
 
+# Implementation of the Extended Date and Time Format for ruby/rails
 gem 'edtf-rails'
 
+# Add genealogies to ActiveRecord models easily
 gem 'genealogy'
 
 group :development, :test do

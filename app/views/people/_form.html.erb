@@ -1,3 +1,13 @@
+<% if @person.errors.any? %>
+<div class="alert alert-danger col-sm-6 col-sm-offset-3">
+    <ul>
+        <% @person.errors.full_messages.each do |msg| %>
+        <%= msg %><br>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
 <%= form_for @person, :html => { :role => :form } do |person_form| %>
 
 <div class="form-horizontal">
@@ -10,7 +20,7 @@
     <div class="form-group">
         <%= person_form.label 'Gender', :class => "col-sm-4 control-label" %>
         <div class="col-sm-4">
-            <%= person_form.select :gender, [:male, :female], {}, { :class => "form-control" } %>
+            <%= person_form.select :gender, [[:male, "M"], [:female, "F"]], {}, { :class => "form-control" } %>
         </div>
     </div>
     <div class="form-group">
@@ -29,13 +39,19 @@
     <div class="form-group">
         <%= person_form.label 'Father', :class => "col-sm-4 control-label" %>
         <div class="col-sm-4">
-            <%= person_form.select :father_id, Person.all.reject { |p| (p.id == @person.id) && p.is_female? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+            <%= person_form.select :father_id, Person.all.reject { |p| (p.id == @person.id) || p.is_female? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
         </div>
     </div>
     <div class="form-group">
         <%= person_form.label 'Mother', :class => "col-sm-4 control-label" %>
         <div class="col-sm-4">
-            <%= person_form.select :mother_id, Person.all.reject { |p| (p.id == @person.id) && p.is_male? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+            <%= person_form.select :mother_id, Person.all.reject { |p| (p.id == @person.id) || p.is_male? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= person_form.label 'Current Spouse', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= person_form.select :current_spouse_id, Person.all.reject { |p| p.id == @person.id }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
         </div>
     </div>
 

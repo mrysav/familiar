@@ -15,7 +15,7 @@ class PeopleController < ApplicationController
         if @person.save
             redirect_to people_path
         else
-            render 'errsav'
+            render 'new'
         end
     end
     
@@ -33,7 +33,7 @@ class PeopleController < ApplicationController
         if @person.update(person_params)
             redirect_to people_path
         else
-            render 'errsav'
+            render 'edit'
         end
     end
     
@@ -41,6 +41,6 @@ class PeopleController < ApplicationController
     end
     
     def person_params
-        params.require(:person).permit(:name, :gender, :date_of_birth, :date_of_death)
+        params.require(:person).permit(:name, :gender, :date_of_birth, :date_of_death, :father_id, :mother_id, :current_spouse_id)
     end
 end

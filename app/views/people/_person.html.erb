@@ -1,7 +1,7 @@
 <div class="col-md-4">
-    <div class="panel panel-default">
+    <div class="panel panel-<%= person.is_female? ? "pink" : "blue" %>">
         <div class="panel-heading">
-            <a href="<%= person_path(person) %>"><h2 class="panel-title"><%= person.name %> (<%= person.gender == 'male' ? :m : :f %>)</h2></a>
+            <a href="<%= person_path(person) %>"><h2 class="panel-title"><%= person.name %></h2></a>
         </div>
         <div class="panel-body">
             <% if person.date_of_birth.present? %>

@@ -1,5 +1,5 @@
 <div class="col-md-4">
-    <div class="panel panel-info">
+    <div class="panel panel-<%= @person.is_female? ? "pink" : "blue" %>">
         <div class="panel-heading">
             <h2 class="panel-title pull-left"><%= @person.name %></h2>
             <% if @person.date_of_birth.present? || @person.date_of_death.present? %>
@@ -27,14 +27,13 @@
 </div>
 
 
-<% @person.relationships.each do |r| %>
-<% otherPerson = Person.find(r.other_person_id) %>
+<% @person.family.each do |otherPerson| %>
 
 <div class="col-md-4">
-    <div class="panel panel-default">
+     <div class="panel panel-<%= otherPerson.is_female? ? "pink" : "blue" %>">
         <div class="panel-heading">
             <a class="pull-left" href="<%= person_path(otherPerson) %>"><h2 class="panel-title"><%= otherPerson.name %></h2></a>
-            <div class="pull-right"><em><%= r.formatted %></em></div>
+            <div class="pull-right"><em><%= otherPerson.relationship_to(@person).capitalize %></em></div>
             <div class="clearfix"></div>
         </div>
         <div class="panel-body">

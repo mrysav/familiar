@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701033633) do
+ActiveRecord::Schema.define(version: 20150722194859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,11 @@ ActiveRecord::Schema.define(version: 20150701033633) do
     t.string   "gender"
     t.string   "date_of_birth"
     t.string   "date_of_death"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "father_id"
+    t.integer  "mother_id"
+    t.integer  "current_spouse_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -34,14 +37,6 @@ ActiveRecord::Schema.define(version: 20150701033633) do
   end
 
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
-
-  create_table "relationships", force: :cascade do |t|
-    t.integer  "person_id"
-    t.integer  "other_person_id"
-    t.string   "kind"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"

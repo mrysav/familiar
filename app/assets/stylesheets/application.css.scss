@@ -16,3 +16,23 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.panel-blue {
+    @extend .panel-info;
+}
+
+.panel-pink {
+    @extend .panel-info;
+    border-color: #FFB6C1;
+}
+
+.panel-pink > .panel-heading {
+    @extend .panel-heading;
+    border-color: #FFB6C1;
+    color: #DB7093;
+    background-color: #FFB6C1;
+}
+
+.panel-pink .panel-title {
+    color: #DB7093;
+}

@@ -2,7 +2,7 @@
     
     <% if @people.count > 0 %>
     <%= render @people %>
-    <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+    <%= will_paginate @people, renderer: BootstrapPagination::Rails %>
     <% else %>
     <h2>Nothing to see here!</h2>
     <% end %>

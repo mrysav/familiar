@@ -42,5 +42,5 @@ Rails.application.configure do
   # Informational Unicorn logging
   config.logger = Logger.new(STDOUT)
   config.logger.level = Logger.const_get('INFO')
-  config.log_level    = :debug
+  config.log_level    = :info
 end

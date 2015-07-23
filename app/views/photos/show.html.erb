@@ -1,0 +1,16 @@
+<div class="text-center">
+    <%= image_tag @photo.image.url, :class => "img-responsive" %>
+    <% if @photo.title.present? %>
+    <h2><%= @photo.title %></h2>
+    <% end %>
+    <% if @photo.date.present? %>
+    <%= @photo.date %>
+    <% end %>
+</div>
+
+<% if current_user %>
+<div class="col-lg-12 text-center">
+    <%= link_to 'Edit photo', edit_photo_path(@photo), :class => "btn btn-default" %>
+    <br><br><br>
+</div>
+<% end %>

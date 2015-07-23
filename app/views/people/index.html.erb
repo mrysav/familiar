@@ -9,6 +9,8 @@
 
 </div>
 
+<% if current_user %>
 <div class="row text-center">
     <%= link_to 'New person', new_person_path, :class => "btn btn-default" %>
 </div>
+<% end %>

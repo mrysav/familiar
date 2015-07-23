@@ -1,0 +1,46 @@
+class PhotosController < ApplicationController
+    before_filter :require_valid_user, except: [:index, :show]
+    
+    def index
+        @photos = Photo.all.paginate(:page => params[:page])
+    end
+    
+    def new
+        @photo = Photo.new
+    end
+    
+    def create
+        @photo = Photo.create(photo_params)
+        
+        if @photo.save
+            redirect_to photo_path(@photo)
+        else
+            render 'new'
+        end
+    end
+    
+    def show
+        @photo = Photo.find(params[:id])
+    end
+    
+    def edit
+        @photo = Photo.find(params[:id])
+    end
+    
+    def update
+        @photo = Photo.find(params[:id])
+        
+        if @photo.update(photo_params)
+            redirect_to photo_path(@photo)
+        else
+            render 'edit'
+        end
+    end
+    
+    def destroy
+    end
+    
+    def photo_params
+        params.require(:photo).permit(:title, :date, :image)
+    end
+end

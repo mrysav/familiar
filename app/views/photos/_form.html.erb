@@ -1,0 +1,38 @@
+<% if @photo.errors.any? %>
+<div class="alert alert-danger col-sm-6 col-sm-offset-3">
+    <ul>
+        <% @photo.errors.full_messages.each do |msg| %>
+        <%= msg %><br>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<%= form_for @photo, :html => { :role => :form, :multipart => true } do |f| %>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <%= f.label 'Title', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= f.text_field :title, :class => "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label 'Date taken', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= f.date_field :date, :class => "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label 'Upload picture', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= f.file_field :image, :class => "form-control" %>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <%= f.submit :class => "btn btn-default" %>
+    </div>
+</div>
+
+<% end %>

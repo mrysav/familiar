@@ -22,6 +22,7 @@
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="nav navbar-nav" role="tablist">
                     <li><%= link_to 'People', people_path %></li>
+                    <li><%= link_to 'Photos', photos_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <% if !current_page?(:controller => 'search', :action => 'index') && !params[:s] %>
@@ -77,7 +78,6 @@
         </div>
 
         <div class="footer navbar-fixed-bottom row text-center small">
-            <br><br>
             questions? bugs? feature requests? email <a href="mailto:mitchell.rysavy@gmail.com">mitchell</a>.
         </div>
 

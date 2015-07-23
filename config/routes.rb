@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     
     get '/search' => 'search#index'
     
-    resources :people do
-        resources :relationships
-    end
+    resources :people
+    resources :photos
 end

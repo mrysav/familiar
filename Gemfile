@@ -53,6 +53,9 @@ gem 'edtf-rails'
 # Add genealogies to ActiveRecord models easily
 gem 'genealogy'
 
+# Fancy rich text editors
+gem 'bootstrap-wysihtml5-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

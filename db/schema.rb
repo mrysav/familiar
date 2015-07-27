@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727025852) do
+ActiveRecord::Schema.define(version: 20150727034428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.text     "body"
+    t.integer  "photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["photo_id"], name: "index_comments_on_photo_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
@@ -62,4 +72,5 @@ ActiveRecord::Schema.define(version: 20150727025852) do
     t.boolean  "editor"
   end
 
+  add_foreign_key "comments", "photos"
 end

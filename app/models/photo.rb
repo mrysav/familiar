@@ -1,6 +1,8 @@
 class Photo < ActiveRecord::Base
     include PgSearch
     
+    has_many :comments
+    
     has_attached_file :image,
         :styles => { :medium => "300x300>" },
         :storage => :dropbox,

@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     get '/help' => 'search#help'
     
     resources :people
-    resources :photos
+    resources :photos do
+        resources :comments, :except => [:show, :edit]
+    end
 end

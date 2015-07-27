@@ -14,3 +14,14 @@
     <br><br><br>
 </div>
 <% end %>
+
+<% if current_user %>
+<h4>Add a comment:</h4>
+<em>Posting as <%= current_user.name %></em>
+<%= render 'comments/form' %>
+<% end %>
+
+<% if !@photo.comments.empty? %>
+<h4>Comments</h4>
+<%= render @photo.comments %>
+<% end %>

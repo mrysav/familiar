@@ -51,7 +51,7 @@
 
 <% end %>
 
-<% if current_user %>
+<% if current_user && current_user.editor? %>
 <div class="col-lg-12 text-center">
     <%= link_to 'Edit person', edit_person_path(@person), :class => "btn btn-default" %>
 </div>

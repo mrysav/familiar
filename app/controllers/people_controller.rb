@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-    before_filter :require_valid_user, except: [:index, :show]
+    before_filter :require_editor, except: [:index, :show]
     
     def index
         @people = Person.all.paginate(:page => params[:page])

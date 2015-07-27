@@ -9,7 +9,7 @@
 
 </div>
 
-<% if current_user %>
+<% if current_user && current_user.editor? %>
 <div class="row text-center">
     <%= link_to 'New photo', new_photo_path, :class => "btn btn-default" %>
 </div>

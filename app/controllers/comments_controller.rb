@@ -4,18 +4,25 @@ class CommentsController < ApplicationController
     def create
         if(!current_user)
             flash[:warning] = "Must be logged in to comment."
-            render 'photo/show'
-        end
-        
-        @photo = Photo.find(params[:photo_id])
-        @comment = @photo.comments.create(comment_params)
-        @comment.owner_id = current_user.id
-        
-        if(@comment.save)
-            redirect_to photo_path(@photo)
         else
-            render 'photo/show'
+            @photo = Photo.find(params[:photo_id])
+            @comment = @photo.comments.create(comment_params)
+            @comment.owner_id = current_user.id
+            @comment.save
         end
+        redirect_to photo_path(@photo)
+    end
+    
+    def destroy
+        @photo = Photo.find(params[:photo_id])
+        @comment = @photo.comments.find(params[:id])
+        
+        if(@comment.owner_id != current_user.id && !current_user.editor)
+            flash[:warning] = "Nice try, but you can't delete someone else's comments."
+        else
+            @comment.destroy
+        end
+        redirect_to photo_path(@photo)
     end
  
     private

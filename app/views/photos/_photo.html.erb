@@ -6,7 +6,7 @@
         </div>
         <% end %>
         <div class="panel-body">
-            <%= image_tag photo.image.url(:medium), :class => "img-thumbnail" %>
+            <a href="<%= photo_path(photo) %>"><%= image_tag photo.image.url(:medium), :class => "img-thumbnail" %></a>
         </div>
         <% if photo.date.present? %>
         <div class="panel-footer">

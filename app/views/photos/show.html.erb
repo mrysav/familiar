@@ -15,11 +15,14 @@
 </div>
 <% end %>
 
-<% if current_user %>
-<h4>Add a comment:</h4>
-<em>Posting as <%= current_user.name %></em>
-<%= render 'comments/form' %>
-<% end %>
-
+<div class="container">
+<div class="row">
 <h4>Comments</h4>
 <%= render @photo.comments %>
+</div>
+<% if current_user %>
+<div class="row">
+<%= render 'comments/form' %>
+</div>
+<% end %>
+</div>

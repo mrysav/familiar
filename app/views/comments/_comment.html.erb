@@ -1,4 +1,4 @@
 <% user = User.find(comment.owner_id) %>
-<%= comment.body %><br>
-<em><%= user.name %></em>
+<%= comment.body.html_safe %><br>
+<em class="small"><%= user.name %> - <%= comment.updated_at %></em>
 <hr>

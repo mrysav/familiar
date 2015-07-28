@@ -1,9 +1,28 @@
-<%= form_for([@photo, Comment.new]) do |f| %>
-  <p>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<%= form_for([@photo, Comment.new], :html => { :role => :form }) do |f| %>
+<div class="col-md-6">
+<div class="form-group">
+    <%= f.label :body, 'Add a comment as ' + current_user.name %>
+    <%= f.text_area :body, class: "wysihtml5 form-control" %>
+</div>
+    <%= f.submit 'Leave comment', class: "btn btn-default" %>
+</div>
 <% end %>
+
+<script type="text/javascript">
+$(document).on('page:load', function(){
+    window['rangy'].initialized = false
+})
+$(document).ready(function(){
+  $('.wysihtml5').each(function(i, elem) {
+    $(elem).wysihtml5({ 
+        toolbar: {
+            "font-styles": false,
+            "lists": false, 
+            "image": false,
+            "color": false,
+            "size": "sm",
+        }
+    });
+  });
+})
+</script>

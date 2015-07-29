@@ -14,5 +14,10 @@ class Photo < ActiveRecord::Base
     
     edtf :attributes => [:date]
     
-    multisearchable :against => :title
+    multisearchable :against => [:title, :tag_list]
+    
+    def tags
+        # gee, I hope that splitting and stripping an entire array at every request isn't a costly operation
+        self.tag_list.split(",").collect(&:strip)
+    end
 end

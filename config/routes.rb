@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "/auth/:provider/callback" => "sessions#create"
     
     get '/search' => 'search#index'
+    get '/tagged/:tag' => 'search#tagged'
     
     get '/help' => 'search#help'
     

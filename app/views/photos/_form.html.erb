@@ -24,6 +24,12 @@
         </div>
     </div>
     <div class="form-group">
+        <%= f.label 'Tags (comma-separated)', :class => "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= f.text_field :tag_list, :class => "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
         <%= f.label 'Upload picture', :class => "col-sm-4 control-label" %>
         <div class="col-sm-4">
             <%= f.file_field :image, :class => "form-control" %>

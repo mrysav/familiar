@@ -1,0 +1,17 @@
+<div class="col-md-12">
+    <% if params[:tag] != nil && @results.count > 0 %>
+
+    <% @results.each do |p| %>
+    <%= render p %>
+    <% end %>
+
+    <div class="text-center">
+        <%= will_paginate @results, renderer: BootstrapPagination::Rails %>
+    </div>
+    
+    <% else %>
+    
+    <div class="text-center"><h2>Nothing turned up!</h2></div>
+    
+    <% end %>
+</div>

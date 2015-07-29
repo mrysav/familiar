@@ -6,6 +6,10 @@
     <% if @photo.date.present? %>
     <%= @photo.date %>
     <% end %>
+    <% if @photo.tag_list.present? %>
+        <em>Tagged: <%= @photo.tags.collect{|t| link_to t, '/tagged/' + t }.join(', ').html_safe %></em>
+        <br><br>
+    <% end %>
 </div>
 
 <% if current_user && current_user.editor? %>

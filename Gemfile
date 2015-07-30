@@ -56,6 +56,9 @@ gem 'genealogy'
 # Fancy rich text editors
 gem 'bootstrap-wysihtml5-rails'
 
+# Required for importing GrampsXML
+gem 'nokogiri'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

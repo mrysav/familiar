@@ -59,6 +59,9 @@ gem 'bootstrap-wysihtml5-rails'
 # Required for importing GrampsXML
 gem 'nokogiri'
 
+# Date parser, used when imported GrampsXML
+gem 'chronic'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

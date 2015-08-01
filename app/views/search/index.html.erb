@@ -23,7 +23,7 @@
     <%= render pg_search_document.searchable %>
     <% end %>
 
-    <div class="text-center">
+    <div class="text-center col-md-12">
         <%= will_paginate @results, renderer: BootstrapPagination::Rails %>
     </div>
     

@@ -24,6 +24,7 @@ class PeopleController < ApplicationController
         
         if !@person.can_see(current_user) then
             flash[:danger] = "You must be an editor to see the details of living people."
+            @person = nil
             redirect_to people_path
         end
     end

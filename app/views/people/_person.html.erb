@@ -1,9 +1,10 @@
-<% if (current_user != nil && current_user.editor?) || person.date_of_death.present? %>
-
 <div class="col-md-4">
     <div class="panel panel-<%= person.is_female? ? "pink" : "blue" %>">
         <div class="panel-heading">
-            <div class="pull-left"><a href="<%= person_path(person) %>"><h2 class="panel-title"><%= person.name %></h2></a></div>
+            <% if person.can_see(current_user) %>
+            <div class="pull-left">
+                <a href="<%= person_path(person) %>"><h2 class="panel-title"><%= person.name %></h2></a>
+            </div>
             <% if person.date_of_birth.present? || person.date_of_death.present? %>
             <div class="pull-right"><em>
                 <% if person.date_of_birth.present? && person.date_of_death.present? %>
@@ -16,7 +17,11 @@
             </em></div>
             <% end %>
             <div class="clearfix"></div>
+            <% else %>
+            <h2 class="panel-title">Hidden</h2>
+            <% end %>
         </div>
+        <% if person.can_see(current_user) %>
         <div class="panel-body">
             <% if person.date_of_birth.present? %>
             Birth date: <%= person.date_of_birth %><br>
@@ -25,7 +30,10 @@
             Death date: <%= person.date_of_death %>
             <% end %>
         </div>
+        <% else %>
+        <div class="panel-body">
+            <em>You must be signed in as an editor to see the details of living people.</em>
+        </div>
+        <% end %>
     </div>
 </div>
-
-<% end %>

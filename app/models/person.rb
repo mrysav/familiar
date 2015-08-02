@@ -25,4 +25,23 @@ class Person < ActiveRecord::Base
             other.is_female? ? :'former wife' : :'former husband'
         end
     end
+    
+    # TODO: maybe account for which generation eventually as well
+    # also, obviously a person can live to be older than 90,
+    # but the US census releases records after 70 years 
+    # so I figure I'm good here
+    def probably_dead?
+        self.date_of_death.present? ||
+        (self.date_of_birth.present? &&
+         Date.today.year - self.date_of_birth.year > 90)
+    end
+    
+    def probably_alive?
+        !self.probably_dead?
+    end
+    
+    # only show alive people to logged in editors
+    def can_see(current_user)
+        self.probably_dead? || (current_user != nil && current_user.editor?)
+    end
 end

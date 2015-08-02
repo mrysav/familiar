@@ -9,12 +9,14 @@
     <h4>Facts:</h4>
 </div>
 <div class="col-md-10">
+<ul>
 <% if @person.date_of_birth.present? %>
-Birth date: <%= @person.date_of_birth %><br>
+<li>Birth date: <%= @person.date_of_birth %></li>
 <% end %>
 <% if @person.date_of_death.present? %>
-Death date: <%= @person.date_of_death %>
+<li>Death date: <%= @person.date_of_death %></li>
 <% end %>
+</ul>
 </div>
 </div>
 

@@ -1,7 +1,21 @@
+<% if (current_user != nil && current_user.editor?) || person.date_of_death.present? %>
+
 <div class="col-md-4">
     <div class="panel panel-<%= person.is_female? ? "pink" : "blue" %>">
         <div class="panel-heading">
-            <a href="<%= person_path(person) %>"><h2 class="panel-title"><%= person.name %></h2></a>
+            <div class="pull-left"><a href="<%= person_path(person) %>"><h2 class="panel-title"><%= person.name %></h2></a></div>
+            <% if person.date_of_birth.present? || person.date_of_death.present? %>
+            <div class="pull-right"><em>
+                <% if person.date_of_birth.present? && person.date_of_death.present? %>
+                <%= person.date_of_birth.year %> - <%= person.date_of_death.year %>
+                <% elsif person.date_of_birth.present? %>
+                <%= person.date_of_birth.year %> - Present
+                <% elsif person.date_of_death.present? %>
+                Unknown - <%= person.date_of_death.year %>
+                <% end %>
+            </em></div>
+            <% end %>
+            <div class="clearfix"></div>
         </div>
         <div class="panel-body">
             <% if person.date_of_birth.present? %>
@@ -13,3 +27,5 @@
         </div>
     </div>
 </div>
+
+<% end %>

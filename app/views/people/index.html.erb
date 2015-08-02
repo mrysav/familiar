@@ -1,16 +1,19 @@
+<% if current_user && current_user.editor? %>
+<div class="row text-center">
+    <%= link_to 'New person', new_person_path, :class => "btn btn-default" %>
+</div>
+<br>
+<% end %>
+
 <div class="row text-center">
     
     <% if @people.count > 0 %>
     <%= render @people %>
-    <%= will_paginate @people, renderer: BootstrapPagination::Rails %>
+    <div class="col-md-12">
+        <%= will_paginate @people, renderer: BootstrapPagination::Rails %>
+    </div>
     <% else %>
     <h2>Nothing to see here!</h2>
     <% end %>
 
 </div>
-
-<% if current_user && current_user.editor? %>
-<div class="row text-center">
-    <%= link_to 'New person', new_person_path, :class => "btn btn-default" %>
-</div>
-<% end %>

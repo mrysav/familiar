@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
     before_filter :require_editor, except: [:index, :show]
     
     def index
-        @people = Person.all.paginate(:page => params[:page])
+        @people = Person.all.paginate(:page => params[:page], :per_page => 15)
     end
     
     def new
@@ -21,6 +21,12 @@ class PeopleController < ApplicationController
     
     def show
         @person = Person.find(params[:id])
+        
+        if (current_user == nil || !current_user.editor?) && !@person.date_of_death && (Date.today.year - @person.date_of_birth.year) < 72 then
+            flash[:danger] = "You must be an editor to see the details of living people."
+            @person = nil
+            redirect_to people_path
+        end
     end
     
     def edit

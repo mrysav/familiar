@@ -1,58 +1,55 @@
-<div class="col-md-4">
-    <div class="panel panel-<%= @person.is_female? ? "pink" : "blue" %>">
-        <div class="panel-heading">
-            <h2 class="panel-title pull-left"><%= @person.name %></h2>
-            <% if @person.date_of_birth.present? || @person.date_of_death.present? %>
-            <div class="pull-right"><em>
-                <% if @person.date_of_birth.present? && @person.date_of_death.present? %>
-                <%= @person.date_of_birth.year %> - <%= @person.date_of_death.year %>
-                <% elsif @person.date_of_birth.present? %>
-                <%= @person.date_of_birth.year %> - Present
-                <% elsif @person.date_of_death.present? %>
-                Unknown - <%= @person.date_of_death.year %>
-                <% end %>
-            </em></div>
-            <% end %>
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-body">
-            <% if @person.date_of_birth.present? %>
-            Birth date: <%= @person.date_of_birth %><br>
-            <% end %>
-            <% if @person.date_of_death.present? %>
-            Death date: <%= @person.date_of_death %>
-            <% end %>
-        </div>
-    </div>
+<div class="page-header row">
+    <h3><%= @person.name %> <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span><% if current_user && current_user.editor? %>
+<%= link_to 'Edit person', edit_person_path(@person), :class => "pull-right btn btn-default" %>
+<% end %></h3>
 </div>
 
-
-<% @person.family.each do |otherPerson| %>
-
-<div class="col-md-4">
-     <div class="panel panel-<%= otherPerson.is_female? ? "pink" : "blue" %>">
-        <div class="panel-heading">
-            <a class="pull-left" href="<%= person_path(otherPerson) %>"><h2 class="panel-title"><%= otherPerson.name %></h2></a>
-            <% if otherPerson.relationship_to(@person).present? %>
-            <div class="pull-right"><em><%= otherPerson.relationship_to(@person).capitalize %></em></div>
-            <% end %>
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-body">
-            <% if otherPerson.date_of_birth.present? %>
-            Birth date: <%= otherPerson.date_of_birth %><br>
-            <% end %>
-            <% if otherPerson.date_of_death.present? %>
-            Death date: <%= otherPerson.date_of_death %>
-            <% end %>
-        </div>
-    </div>
+<div class="row">
+<div class="col-md-2 text-right">
+    <h4>Facts:</h4>
+</div>
+<div class="col-md-10">
+<% if @person.date_of_birth.present? %>
+Birth date: <%= @person.date_of_birth %><br>
+<% end %>
+<% if @person.date_of_death.present? %>
+Death date: <%= @person.date_of_death %>
+<% end %>
+</div>
 </div>
 
+<% if @person.father_id.present? || @person.mother_id.present? %>
+<div class="row">
+<div class="col-md-2 text-right"><h4>Parents:</h4></div>
+<div class="col-md-10">
+<%= render @person.parents %>
+</div>
+</div>
 <% end %>
 
-<% if current_user && current_user.editor? %>
-<div class="col-lg-12 text-center">
-    <%= link_to 'Edit person', edit_person_path(@person), :class => "btn btn-default" %>
+<% if @person.siblings.count > 0 %>
+<div class="row">
+<div class="col-md-2 text-right"><h4>Siblings:</h4></div>
+<div class="col-md-10">
+<%= render @person.siblings %>
+</div>
+</div>
+<% end %>
+
+<% if @person.spouses.count > 0 %>
+<div class="row">
+<div class="col-md-2 text-right"><h4><%= 'Spouse'.pluralize(@person.spouses.count) + ':' %></h4></div>
+<div class="col-md-10">
+<%= render @person.spouses %>
+</div>
+</div>
+<% end %>
+
+<% if @person.children.count > 0 %>
+<div class="row">
+<div class="col-md-2 text-right"><h4>Children:</h4></div>
+<div class="col-md-10">
+<%= render @person.children %>
+</div>
 </div>
 <% end %>

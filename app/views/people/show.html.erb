@@ -20,7 +20,7 @@
 </div>
 </div>
 
-<% if @person.father_id.present? || @person.mother_id.present? %>
+<% @person.parents.count > 0 %>
 <div class="row">
 <div class="col-md-2 text-right"><h4>Parents:</h4></div>
 <div class="col-md-10">

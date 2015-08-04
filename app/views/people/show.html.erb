@@ -1,57 +1,61 @@
 <div class="page-header row">
-    <h3><%= @person.name %> <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span><% if current_user && current_user.editor? %>
-<%= link_to 'Edit person', edit_person_path(@person), :class => "pull-right btn btn-default" %>
-<% end %></h3>
+    <h3>
+        <%= @person.name %> <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span>
+        <% if current_user && current_user.editor? %>
+        <%= link_to 'Edit person', edit_person_path(@person), :class => "pull-right btn btn-default" %>
+        <% end %>
+    </h3>
 </div>
 
 <div class="row">
-<div class="col-md-2 text-right">
-    <h4>Facts:</h4>
-</div>
-<div class="col-md-10">
-<ul>
-<% if @person.date_of_birth.present? %>
-<li>Birth date: <%= @person.date_of_birth %></li>
-<% end %>
-<% if @person.date_of_death.present? %>
-<li>Death date: <%= @person.date_of_death %></li>
-<% end %>
-</ul>
-</div>
+    <div class="col-md-2 text-right">
+        <h4>Facts:</h4>
+    </div>
+    <div class="col-md-10">
+        <ul>
+            <% if @person.date_of_birth.present? %>
+            <li>Birth date: <%= @person.date_of_birth %></li>
+            <% end %>
+            <% if @person.date_of_death.present? %>
+            <li>Death date: <%= @person.date_of_death %></li>
+            <% end %>
+        </ul>
+    </div>
 </div>
 
 <% if @person.parents.count > 0 %>
 <div class="row">
-<div class="col-md-2 text-right"><h4>Parents:</h4></div>
-<div class="col-md-10">
-<%= render @person.parents %>
-</div>
+    <div class="col-md-2 text-right"><h4>Parents:</h4></div>
+    <div class="col-md-10">
+        <%= render @person.father if @person.father.present? %>
+        <%= render @person.mother if @person.mother.present? %>
+    </div>
 </div>
 <% end %>
 
 <% if @person.siblings.count > 0 %>
 <div class="row">
-<div class="col-md-2 text-right"><h4>Siblings:</h4></div>
-<div class="col-md-10">
-<%= render @person.siblings %>
-</div>
+    <div class="col-md-2 text-right"><h4>Siblings:</h4></div>
+    <div class="col-md-10">
+        <%= render @person.siblings %>
+    </div>
 </div>
 <% end %>
 
 <% if @person.spouses.count > 0 %>
 <div class="row">
-<div class="col-md-2 text-right"><h4><%= 'Spouse'.pluralize(@person.spouses.count) + ':' %></h4></div>
-<div class="col-md-10">
-<%= render @person.spouses %>
-</div>
+    <div class="col-md-2 text-right"><h4><%= 'Spouse'.pluralize(@person.spouses.count) + ':' %></h4></div>
+    <div class="col-md-10">
+        <%= render @person.spouses %>
+    </div>
 </div>
 <% end %>
 
 <% if @person.children.count > 0 %>
 <div class="row">
-<div class="col-md-2 text-right"><h4>Children:</h4></div>
-<div class="col-md-10">
-<%= render @person.children %>
-</div>
+    <div class="col-md-2 text-right"><h4>Children:</h4></div>
+    <div class="col-md-10">
+        <%= render @person.children %>
+    </div>
 </div>
 <% end %>

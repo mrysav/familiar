@@ -44,4 +44,8 @@ class Person < ActiveRecord::Base
     def can_see(current_user)
         self.probably_dead? || (current_user != nil && current_user.editor?)
     end
+    
+    def tag_name
+        self.name.downcase
+    end
 end

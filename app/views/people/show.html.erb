@@ -59,3 +59,13 @@
     </div>
 </div>
 <% end %>
+
+<% photos = Photo.tagged(@person.tag_name) %>
+<% if photos.count > 0 %>
+<div class="row">
+    <div class="col-md-2 text-right"><h4>Photos:</h4></div>
+    <div class="col-md-10">
+        <%= render photos %>
+    </div>
+</div>
+<% end %>

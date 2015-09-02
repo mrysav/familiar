@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_editor
-      if (current_user && !current_user.editor)
+      if (session[:user_id] == nil || current_user == nil) || (current_user && !current_user.editor)
           respond_to do |format|
               flash[:warning] = "Insufficient permissions."
               format.html { redirect_to root_path }

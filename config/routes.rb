@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     
     get '/help' => 'search#help'
     
+    get  '/import' => 'import#show'
+    post '/import' => 'import#upload'
+    
     resources :people
     resources :photos do
         resources :comments, :except => [:show, :edit]

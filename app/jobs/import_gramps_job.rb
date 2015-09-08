@@ -5,6 +5,13 @@ class ImportGrampsJob < ActiveJob::Base
       Rails.logger.info "Importing Gramps XML"
       gxml = args[0]
       
+      # decompress if necessary
+      begin
+          gxml = ActiveSupport::Gzip.decompress(gxml)
+      rescue Zlib::GzipFile::Error
+          Rails.logger.info "Uploaded file does not appear to be compressed. Continuing anyway."
+      end
+      
       doc = Nokogiri::XML(gxml, nil, "UTF-8") {|config| config.strict}
       Rails.logger.debug "Removing namespaces from document (may take a minute)\n"
       doc.remove_namespaces!

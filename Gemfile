@@ -76,7 +76,4 @@ end
 group :production do
   # heroku features gems
   gem 'rails_12factor'
-  
-  # use new relic for production
-  gem 'newrelic_rpm'
 end

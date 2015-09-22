@@ -17,4 +17,7 @@ Rails.application.routes.draw do
     resources :photos do
         resources :comments, :except => [:show, :edit]
     end
+    resources :notes do
+        resources :comments, :except => [:show, :edit]
+    end
 end

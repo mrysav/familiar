@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729031118) do
+ActiveRecord::Schema.define(version: 20150920232717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,25 @@ ActiveRecord::Schema.define(version: 20150729031118) do
     t.integer  "owner_id"
     t.text     "body"
     t.integer  "photo_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "note_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+  end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["note_id"], name: "index_comments_on_note_id", using: :btree
+  add_index "comments", ["photo_id"], name: "index_comments_on_photo_id", using: :btree
+
+  create_table "notes", force: :cascade do |t|
+    t.string   "title"
+    t.string   "date"
+    t.text     "content"
+    t.string   "tag_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "comments", ["photo_id"], name: "index_comments_on_photo_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
@@ -73,5 +87,6 @@ ActiveRecord::Schema.define(version: 20150729031118) do
     t.boolean  "editor"
   end
 
+  add_foreign_key "comments", "notes"
   add_foreign_key "comments", "photos"
 end

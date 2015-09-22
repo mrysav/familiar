@@ -3,7 +3,7 @@
 <em class="small">
     <%= user.name %> - <%= comment.cool_date %>
     <% if current_user == user %>
-    (<%= link_to :delete, [comment.photo, comment],
+    (<%= link_to :delete, [comment.commentable, comment],
                  method: :delete,
                  data: { confirm: 'Are you sure?' } %>)
     <% end %>

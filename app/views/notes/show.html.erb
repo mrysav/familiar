@@ -1,0 +1,36 @@
+<div class="col-lg-8 col-lg-offset-2">
+    <div class="page-header">
+        <h1><%= @note.title %> 
+            <% if @note.date.present? %>
+            <small><em><%= @note.cool_date %></em></small>
+            <% end %>
+        </h1>
+    </div>
+
+    <% if @note.content.present? %>
+    <%= @note.content.html_safe %>
+    <% end %>
+            <hr>
+    <% if @note.tag_list.present? %>
+    <em>Tagged: <%= @note.tags.collect{|t| link_to t, '/tagged/' + t }.join(', ').html_safe %></em>
+    <% end %>
+    
+    <% if current_user && current_user.editor? %>
+    <div class="text-center">
+        <%= link_to 'Edit note', edit_note_path(@note), :class => "btn btn-default" %>
+        <%= link_to 'Delete', @note,
+        method: :delete,
+        class: "btn btn-danger",
+            data: { confirm: 'Are you sure? This will delete all associated comments as well.' } %>
+        </div>
+        <% end %>
+    
+
+
+        <h4>Comments</h4>
+        <%= render @note.comments %>
+        <% if current_user %>
+        <%= render 'comments/form' %>
+        <% end %>
+    
+    </div>

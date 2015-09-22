@@ -21,6 +21,7 @@ class PhotosController < ApplicationController
     
     def show
         @photo = Photo.find(params[:id])
+        @commentable = @photo
     end
     
     def edit

@@ -1,0 +1,17 @@
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <% if note.title.present? %>
+        <div class="panel-heading">
+            <a href="<%= note_path(note) %>"><h2 class="panel-title"><%= note.title %></h2></a>
+        </div>
+        <% end %>
+        <div class="panel-body">
+            <%= sanitize(note.content[0..50] + "...", tags: %w(br)) %>
+        </div>
+        <% if note.date.present? %>
+        <div class="panel-footer">
+            <%= note.date %>
+        </div>
+        <% end %>
+    </div>
+</div>

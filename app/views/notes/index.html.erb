@@ -1,8 +1,8 @@
 <div class="row text-center">
     
-    <% if @photos.count > 0 %>
-    <%= render @photos %>
-    <%= will_paginate @photos, renderer: BootstrapPagination::Rails %>
+    <% if @notes.count > 0 %>
+    <%= render @notes %>
+    <%= will_paginate @notes, renderer: BootstrapPagination::Rails %>
     <% else %>
     <h2>Nothing to see here!</h2>
     <% end %>
@@ -11,6 +11,6 @@
 
 <% if current_user && current_user.editor? %>
 <div class="row text-center">
-    <%= link_to 'New photo', new_photo_path, :class => "btn btn-default" %>
+    <%= link_to 'New note', new_note_path, :class => "btn btn-default" %>
 </div>
 <% end %>

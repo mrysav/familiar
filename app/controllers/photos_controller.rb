@@ -45,6 +45,8 @@ class PhotosController < ApplicationController
         redirect_to photos_path
     end
     
+    private
+    
     def photo_params
         params.require(:photo).permit(:title, :date, :image, :tag_list)
     end

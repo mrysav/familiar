@@ -1,8 +1,13 @@
 class Note < ActiveRecord::Base
     include PgSearch
-    validates :title, presence: true    
+    
+    validates :title, presence: true
+    validates :content, presence: true  
+    
     edtf :attributes => [:date]    
+    
     multisearchable :against => [:title, :tag_list]            
+    
     has_many :comments, as: :commentable, dependent: :destroy    
         
     def tags        

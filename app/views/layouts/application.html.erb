@@ -48,6 +48,9 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            <% if current_user && current_user.editor? %>
+                            <li><%= link_to 'Import', import_path %></li>
+                            <% end %>
                             <li><%= link_to 'Sign Out', logout_path %></li>
                         </ul>
                     </li>

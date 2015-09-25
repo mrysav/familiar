@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
     root 'search#index'
     
     get '/login', to: redirect('/auth/facebook')

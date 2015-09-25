@@ -15,7 +15,7 @@
 
     <hr>
     
-    <%= f.text_area :content, class: "wysihtml5 form-control" %>
+    <%= f.bootsy_area :content, class: "form-control" %>
     
     <div class="form-group col-md-6">
         <%= f.label 'Date published', :class => "control-label" %>
@@ -31,18 +31,3 @@
     </div>
 </div>
 <% end %>
-
-<script type="text/javascript">
-$(document).on('page:load', function(){
-    window['rangy'].initialized = false
-})
-$(document).ready(function(){
-  $('.wysihtml5').each(function(i, elem) {
-    $(elem).wysihtml5({ 
-        toolbar: {
-            "image": false,
-        }
-    });
-  });
-})
-</script>

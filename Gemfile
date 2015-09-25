@@ -54,7 +54,7 @@ gem 'edtf-rails'
 gem 'genealogy'
 
 # Fancy rich text editors
-gem 'bootsy'
+gem 'bootsy', :git => 'https://github.com/volmer/bootsy.git', :branch => 'master'
 
 # Required for importing GrampsXML
 gem 'nokogiri'

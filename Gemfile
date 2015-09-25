@@ -54,7 +54,7 @@ gem 'edtf-rails'
 gem 'genealogy'
 
 # Fancy rich text editors
-gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
+gem 'bootsy'
 
 # Required for importing GrampsXML
 gem 'nokogiri'

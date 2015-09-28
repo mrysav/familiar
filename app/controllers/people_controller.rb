@@ -3,6 +3,9 @@ class PeopleController < ApplicationController
     
     def index
         @people = Person.all.select{|p| p.can_see(current_user)}.paginate(:page => params[:page], :per_page => 15)
+        @left  = @people[0..4]
+        @mid   = @people[5..9]
+        @right = @people[10..14]
     end
     
     def new

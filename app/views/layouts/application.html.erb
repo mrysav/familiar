@@ -21,9 +21,48 @@
             </div>
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="nav navbar-nav" role="tablist">
+                    <% if current_user && current_user.editor? %>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            People
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><%= link_to 'Create', new_person_path %></li>
+                            <li><%= link_to 'View all', people_path %></li>
+                        </ul>
+                    </li>
+                    <% else %>
                     <li><%= link_to 'People', people_path %></li>
+                    <% end %>
+                    <% if current_user && current_user.editor? %>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Photos
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><%= link_to 'Upload', new_photo_path %></li>
+                            <li><%= link_to 'View all', photos_path %></li>
+                        </ul>
+                    </li>
+                    <% else %>
                     <li><%= link_to 'Photos', photos_path %></li>
+                    <% end %>
+                    <% if current_user && current_user.editor? %>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Notes
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><%= link_to 'Create', new_note_path %></li>
+                            <li><%= link_to 'View all', notes_path %></li>
+                        </ul>
+                    </li>
+                    <% else %>
                     <li><%= link_to 'Notes', notes_path %></li>
+                    <% end %>
                     <li><%= link_to 'Help', help_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -66,30 +105,19 @@
     </nav>
         
     
-    <div class="container">
-       
-        <div class="row text-center">
-            <div class="col-md-8 col-md-offset-2">
-                <% flash.each do |name, msg| %>
-                <%= content_tag :div, msg, :class => "alert alert-#{name}" %>
-                <% end %>
-            </div>
+    <% if !flash.empty? %> 
+    <div class="text-center">
+        <% flash.each do |name, msg| %>
+        <div class="col-md-8 col-md-offset-2">
+            <%= content_tag :div, msg, :class => "alert alert-#{name}" %>
         </div>
-            
-        <div class="row">
-
-            <%= yield %>
-        
-        </div>
-
-        <!-- 
-            BEGIN DIRECTOR'S CUT SHHHH
-        <div class="footer navbar-fixed-bottom row text-center small">
-            questions? bugs? feature requests? email <a href="mailto:mitchell.rysavy@gmail.com">mitchell</a>.
-        </div>
-        -->
-
+        <% end %>
     </div>
+    <% end %>
 
+    <div class="container">
+        <%= yield %>
+    </div>
+    
 </body>
 </html>

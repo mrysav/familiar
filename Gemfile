@@ -36,10 +36,12 @@ gem 'puma'
 
 # Using Facebook authentication for now
 gem 'omniauth-facebook'
+# Google too
+gem 'omniauth-google-oauth2'
 
-# Use Paperclip with Dropbox extension for storage
-gem 'paperclip', '~>4.2'
-gem 'paperclip-dropbox'
+# Use Paperclip with S3 extension for storage
+gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
 
 # Use pg_search for full-text searches
 gem 'pg_search'

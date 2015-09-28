@@ -1,16 +1,14 @@
-<div class="row text-center">
-    
-    <% if @photos.count > 0 %>
-    <%= render @photos %>
-    <%= will_paginate @photos, renderer: BootstrapPagination::Rails %>
-    <% else %>
-    <h2>Nothing to see here!</h2>
-    <% end %>
+<% if @photos.count > 0 %>
 
+<%= render @photos %>
+<br/>
+
+<div class="text-center col-md-12">
+    <%= will_paginate @photos, renderer: BootstrapPagination::Rails %>
 </div>
 
-<% if current_user && current_user.editor? %>
-<div class="row text-center">
-    <%= link_to 'New photo', new_photo_path, :class => "btn btn-default" %>
+<% else %>
+<div class="text-muted text-center fake-center">
+    <h3>there are no photos here.<% if current_user && current_user.editor? %>.. would you like to <%= link_to 'upload one', new_photo_path %>?<% end %></h3>
 </div>
 <% end %>

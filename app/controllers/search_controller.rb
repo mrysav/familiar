@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
     def index
-        @results = PgSearch.multisearch(params[:s]).paginate(:page => params[:page], :per_page => 10)
+        @results = PgSearch.multisearch(params[:s]).paginate(:page => params[:page], :per_page => 12)
     end
     
     def help
@@ -8,6 +8,6 @@ class SearchController < ApplicationController
     
     def tagged
         @results = Photo.tagged(params[:tag])
-        @results = @results.paginate(:page => params[:p], :per_page => 10)
+        @results = @results.paginate(:page => params[:p], :per_page => 15)
     end
 end

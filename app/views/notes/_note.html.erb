@@ -1,17 +1,12 @@
-<div class="col-md-4">
-    <div class="panel panel-default">
-        <% if note.title.present? %>
-        <div class="panel-heading">
-            <a href="<%= note_path(note) %>"><h2 class="panel-title"><%= note.title %></h2></a>
-        </div>
-        <% end %>
-        <div class="panel-body">
-            <%= sanitize(note.content[0..50] + "...", tags: %w(br)) %>
-        </div>
+<div class="col-lg-4">
+    <div class="pull-left thumb text-info text-center"><h1>Aa</h1></div>
+    <div class="pull-left">
+        <h4><a href="<%= note_path(note) %>"><%= note.title %></a></h4>
         <% if note.date.present? %>
-        <div class="panel-footer">
-            <%= note.date %>
-        </div>
+        <h5 class="text-muted">Note: <%= note.date %></h5>
+        <% else %>
+        <h5 class="text-muted">Note</h5>
         <% end %>
     </div>
+    <div class="clearfix"></div>
 </div>

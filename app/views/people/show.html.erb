@@ -25,8 +25,8 @@
 
 <% if @person.mother.present? || @person.father.present? %>
 <div class="row">
-    <div class="col-md-2 text-right"><h4>Parents:</h4></div>
-    <div class="col-md-10">
+    <div class="col-sm-2 text-right"><h4>Parents:</h4></div>
+    <div class="col-lg-10">
         <%= render @person.father if @person.father.present? %>
         <%= render @person.mother if @person.mother.present? %>
     </div>

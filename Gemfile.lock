@@ -46,10 +46,16 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.3)
     autoprefixer-rails (6.0.3)
       execjs
       json
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.5.1)
@@ -75,8 +81,6 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     debug_inspector (0.0.2)
-    dropbox-sdk (1.6.5)
-      json
     edtf (2.2.0)
       activesupport (>= 3.0, < 5.0)
     edtf-rails (0.3.2)
@@ -127,6 +131,12 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (2.0.1)
       omniauth-oauth2 (~> 1.2)
+    omniauth-google-oauth2 (0.2.7)
+      addressable (~> 2.3)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.1.1)
     omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
@@ -136,9 +146,6 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    paperclip-dropbox (1.3.2)
-      dropbox-sdk (~> 1.3)
-      paperclip (>= 3.1, < 5)
     pg (0.18.3)
     pg_search (1.0.5)
       activerecord (>= 3.1)
@@ -221,6 +228,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  aws-sdk (< 2.0)
   bootstrap-sass
   bootsy!
   byebug
@@ -232,8 +240,8 @@ DEPENDENCIES
   jquery-rails
   nokogiri
   omniauth-facebook
-  paperclip (~> 4.2)
-  paperclip-dropbox
+  omniauth-google-oauth2
+  paperclip
   pg
   pg_search
   puma

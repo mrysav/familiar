@@ -1,27 +1,14 @@
 <% if @people.count > 0 %>
 
-<% if @left && @left.count > 0 %>
-<div class="col-md-4">
-    <%= render @left %>
-</div>
-<% end %>
-<% if @mid && @mid.count > 0 %>
-<div class="col-md-4">
-    <%= render @mid %>
-</div>
-<% end %>
-<% if @right && @right.count > 0 %>
-<div class="col-md-4">
-    <%= render @right %>
-</div>
-<% end %>
+<%= render @people %>
 <br/>
+
 <div class="text-center col-md-12">
     <%= will_paginate @people, renderer: BootstrapPagination::Rails %>
 </div>
 
 <% else %>
 <div class="text-muted text-center fake-center">
-    <h3>there are no people here... would you like to <%= link_to 'make one', new_person_path %>?</h3>
+    <h3>there are no people here.<% if current_user && current_user.editor? %>.. would you like to <%= link_to 'make one', new_person_path %>?<% end %></h3>
 </div>
 <% end %>

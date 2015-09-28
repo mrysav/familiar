@@ -1,11 +1,11 @@
-<div>
+<div class="col-lg-4">
     <% if person.can_see(current_user) %>
 
     <% photo = Photo.tagged(person.tag_name)[0] %>
     <% if photo %>
-    <img class="pull-left img-responsive thumb" src="<%= photo.image.url(:medium) %>"></img>
+    <img class="pull-left img-responsive thumb" src="<%= photo.image.url(:thumb) %>"></img>
     <% else %>
-    <div class="pull-left text-center text-muted thumb"><h1>?</h1></div>
+    <div class="pull-left text-center text-muted thumb"><h1><span class="small glyphicon glyphicon-user" style="color: <%= person.is_female? ? '#DB7093' : '#31708f' %>"></span></h1></div>
     <% end %>
 
     <div class="pull-left">

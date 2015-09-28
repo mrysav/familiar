@@ -1,7 +1,0 @@
-<%= form_for([@commentable, Comment.new], :html => { :role => :form }) do |f| %>
-<div class="form-group">
-    <%= f.label :body, 'Add a comment as ' + current_user.name %>
-    <%= f.bootsy_area :body, class: "form-control", editor_options: { font_styles: false, color: false, lists: false, image: false } %>
-</div>
-    <%= f.submit 'Leave comment', class: "btn btn-default" %>
-<% end %>

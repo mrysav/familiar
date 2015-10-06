@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
     root 'search#index'
     
-    get '/login', to: redirect('/auth/google_oauth2')
+    get '/login', to: redirect('/auth/facebook')
     get '/logout' => 'sessions#destroy', :as => :logout
     get "/auth/:provider/callback" => "sessions#create"
     

@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
     
     has_many :comments, as: :commentable, dependent: :destroy
     
-    has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+    has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100>x100<" }
     
     validates :image, presence: true
     validates :title, presence: true

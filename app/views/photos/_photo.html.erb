@@ -1,5 +1,5 @@
 <div class="col-lg-4">
-    <img class="pull-left img-responsive thumb" src="<%= photo.image.url(:thumb) %>"></img>
+    <div class="pull-left thumb"><img class="img-responsive" src="<%= photo.image.url(:thumb) %>"></img></div>
     <div class="pull-left">
         <h4><a href="<%= photo_path(photo) %>"><%= photo.title %></a></h4>
         <% if photo.date.present? %>

@@ -50,6 +50,19 @@
 .thumb {
     width: 70px;
     height: 70px;
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000000; 
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.fake-thumb {
+    width: 70px;
+    height: 70px;
     border: 1px solid #000000; 
     margin-right: 10px;
     margin-bottom: 5px;

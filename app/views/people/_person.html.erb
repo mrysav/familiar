@@ -3,9 +3,9 @@
 
     <% photo = Photo.tagged(person.tag_name)[0] %>
     <% if photo %>
-    <img class="pull-left img-responsive thumb" src="<%= photo.image.url(:thumb) %>"></img>
+    <div class="pull-left thumb"><img class="img-responsive" src="<%= photo.image.url(:thumb) %>"></img></div>
     <% else %>
-    <div class="pull-left text-center text-muted thumb"><h1><span class="small glyphicon glyphicon-user" style="color: <%= person.is_female? ? '#DB7093' : '#31708f' %>"></span></h1></div>
+    <div class="pull-left text-center text-muted fake-thumb"><h1><span class="small glyphicon glyphicon-user" style="color: <%= person.is_female? ? '#DB7093' : '#31708f' %>"></span></h1></div>
     <% end %>
 
     <div class="pull-left">
@@ -29,7 +29,7 @@
     <div class="clearfix"></div>
     
     <% else %>
-    <div class="pull-left text-center text-muted thumb"><h1>?</h1></div>
+    <div class="pull-left text-center text-muted fake-thumb"><h1>?</h1></div>
     <h4 class="pull-left">Hidden</h4>
     <% end %>
 </div>

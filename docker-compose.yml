@@ -1,0 +1,11 @@
+db:
+  image: postgres
+web:
+  build: .
+  command: foreman start 
+  volumes:
+    - .:/familiar
+  ports:
+    - "5000:5000"
+  links:
+    - db

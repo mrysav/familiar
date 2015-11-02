@@ -1,13 +1,12 @@
 <div class="col-md-8 col-md-offset-2">
     <br>
     <form role="form" action="<%= search_path %>" method="get">
-        <div class="form-group">
-            <h2><%= label_tag :s, "familiar." %></h2>
+        <h2><%= label_tag :s, "familiar." %></h2>
+        <div class="input-group">
             <%= text_field_tag :s, params[:s], :class => 'form-control', :placeholder => "search people, stories, photos..." %>
-        </div>
-        
-        <div class="text-center">
-            <%= submit_tag "Search!", :name => nil, :class => "btn btn-default" %>
+            <span class="input-group-btn">
+                <%= submit_tag "Search!", :name => nil, :class => "btn btn-default" %>
+            </span>
         </div>
     </form>
 
@@ -37,7 +36,7 @@
 <% else %>
 
 <% if !current_user %>
-<h4 class="text-center col-md-12">New in town? Check out the <%= link_to 'help page', help_path %>.</h4>
+<h4 class="text-center col-md-12"><br/>New in town? Check out the <%= link_to 'help page', help_path %>.</h4>
 <% end %>
 
 <% end %>

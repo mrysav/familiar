@@ -1,16 +1,11 @@
-class ImportGrampsJob < ActiveJob::Base
+class ImportGrampsJob < ImportJobs
   queue_as :default
 
   def perform(*args)
       Rails.logger.info "Importing Gramps XML"
-      gxml = args[0]
       
       # decompress if necessary
-      begin
-          gxml = ActiveSupport::Gzip.decompress(gxml)
-      rescue Zlib::GzipFile::Error
-          Rails.logger.info "Uploaded file does not appear to be compressed. Continuing anyway."
-      end
+      gxml = decompress(args[0])
       
       doc = Nokogiri::XML(gxml, nil, "UTF-8") {|config| config.strict}
       Rails.logger.debug "Removing namespaces from document (may take a minute)\n"
@@ -34,9 +29,9 @@ class ImportGrampsJob < ActiveJob::Base
               if type == "Birth" || type == "Death" then
                   date = event.xpath("dateval").first || event.xpath("datestr").first
                   if date != nil && type == "Birth" then
-                      p['date_of_birth'] = Chronic.parse(date['val']).strftime("%Y-%m-%d")
+                      p['date_of_birth'] = parse_date(date['val'])
                   elsif date!= nil && type == "Death" then
-                      p['date_of_death'] = Chronic.parse(date['val']).strftime("%Y-%m-%d")
+                      p['date_of_death'] = parse_date(date['val'])
                   end
               end
           end
@@ -44,10 +39,7 @@ class ImportGrampsJob < ActiveJob::Base
           masterlist.push(p)
       end
 
-      # Uncomment this if you like wanton destruction
-      # Person.all.each { |p| p.destroy }
-
-      Rails.logger.info masterlist.count.to_s + " people. Importing into database (may take a minute)"
+      Rails.logger.info masterlist.count.to_s + " people. Performing first pass database insert (may take a minute)..."
 
       masterlist.each do |data|
           p = Person.create(data.except('gid'))

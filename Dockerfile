@@ -15,6 +15,7 @@ RUN apt-get install -y nodejs
 RUN gem install foreman
 
 ENV APP_HOME /familiar
+ENV RAILS_ENV docker
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 

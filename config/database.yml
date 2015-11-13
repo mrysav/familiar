@@ -23,11 +23,7 @@ default: &default
 
 development:
   <<: *default
-  #database: familiar_development
-  database: postgres
-  username: postgres
-  password: 
-  host: db
+  database: familiar_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -63,6 +59,15 @@ test:
   <<: *default
   database: familiar_test
 
+# Warning: the docker environment probably is not suitable for production use yet.
+# The insecurity of the database is one reason why
+docker:
+    <<: *default
+    database: postgres
+    username: postgres
+    password: 
+    host: db
+
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -82,6 +87,7 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
   <<: *default
   database: familiar_production

@@ -9,24 +9,22 @@
 <% end %>
 
 <%= form_for @note, :html => { :role => :form, :multipart => true } do |f| %>
-    
-<div class="form-horizontal">
-    <%= f.text_field :title, :class => "form-control", :placeholder => "Title" %>
-
-    <hr>
-    
+<div class="form-horizontal col-lg-9">
+    <%= f.text_field :title, :class => "form-control", :placeholder => "Enter title" %><br>
     <%= f.bootsy_area :content, class: "form-control" %>
-    
-    <div class="form-group col-md-6">
+</div>
+<div class="col-lg-3">
+    <div class="form-group">
         <%= f.label 'Date published', :class => "control-label" %>
         <%= f.date_field :date, :class => "form-control" %>
     </div>
-    <div class="form-group col-md-6">
+    <br>
+    <div class="form-group">
         <%= f.label 'Tags (comma-separated)', :class => "control-label" %>
         <%= f.text_field :tag_list, :class => "form-control" %>
     </div>
-    
-    <div class="text-center">
+    <br>
+    <div class="text-right">
         <%= f.submit :class => "btn btn-default" %>
     </div>
 </div>

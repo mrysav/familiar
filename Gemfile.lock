@@ -1,11 +1,18 @@
 GIT
-  remote: https://github.com/volmer/bootsy.git
-  revision: 731295fe2a822f431f6018c5a27044446c2dfbce
+  remote: git://github.com/mrysav/gedcom.git
+  revision: c8e8cd01e0b0e5d975690a5b11288d7f13657d1c
   branch: master
   specs:
-    bootsy (2.1.0)
+    gedcom (0.9.4)
+
+GIT
+  remote: https://github.com/volmer/bootsy.git
+  revision: 2df92a1663ac836327cfb3d85c733b3cdf966927
+  branch: master
+  specs:
+    bootsy (2.2.0)
       carrierwave (~> 0.10)
-      mini_magick (~> 4.2)
+      mini_magick (~> 4.3)
       remotipart (~> 1.2)
 
 GEM
@@ -114,11 +121,11 @@ GEM
     mimemagic (0.3.0)
     mini_magick (4.3.6)
     mini_portile (0.6.2)
-    minitest (5.8.2)
+    minitest (5.8.3)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    nokogiri (1.6.6.2)
+    nokogiri (1.6.6.4)
       mini_portile (~> 0.6.0)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
@@ -140,13 +147,13 @@ GEM
     omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-    paperclip (4.3.1)
+    paperclip (4.3.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pg (0.18.3)
+    pg (0.18.4)
     pg_search (1.0.5)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
@@ -197,7 +204,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spring (1.4.1)
+    spring (1.4.4)
     sprockets (3.4.0)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
@@ -235,6 +242,7 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.1.0)
   edtf-rails
+  gedcom!
   genealogy
   jbuilder (~> 2.0)
   jquery-rails

@@ -58,6 +58,8 @@ gem 'genealogy'
 # Fancy rich text editors
 gem 'bootsy', :git => 'https://github.com/volmer/bootsy.git', :branch => 'master'
 
+gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
+
 # Required for importing GrampsXML
 gem 'nokogiri'
 

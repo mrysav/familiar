@@ -29,6 +29,23 @@ class PeopleController < ApplicationController
         end
     end
     
+    def tree
+        @person = Person.find(params[:person_id])
+        
+        if !@person.can_see(current_user) then
+            flash[:danger] = "You must be an editor to see the details of living people."
+            @person = nil
+            redirect_to people_path
+        elsif
+            # If the mother or father is present, use them as the tree root
+            if @person.mother.present? then
+                @person = @person.mother
+            elsif @person.father.present? then
+                @person = @person.father
+            end 
+        end
+    end
+    
     def edit
         @person = Person.find(params[:id])
     end

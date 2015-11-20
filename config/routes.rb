@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     get  '/import' => 'import#show'
     post '/import' => 'import#upload'
     
-    resources :people
+    resources :people do
+        get '/tree' => 'people#tree'
+    end
     resources :photos do
         resources :comments, :except => [:show, :edit]
     end

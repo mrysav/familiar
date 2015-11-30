@@ -29,7 +29,8 @@ class ImportJobs < ActiveJob::Base
         if date == nil
             # Rails.logger.info "EDTF date parsing unsuccessful for \"" + raw_date + "\", attempting Chronic parsing (possibly less accurate)"
             # TODO: Add more to this for more accuracy?
-            date = Chronic.parse(raw_date).strftime("%Y-%m-%d")
+            parsed = Chronic.parse(raw_date)
+            date = parsed.strftime("%Y-%m-%d") if parsed
         end
         
         return date

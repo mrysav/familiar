@@ -7,7 +7,12 @@ class ImportGrampsJob < ImportJobs
       # decompress if necessary
       gxml = decompress(args[0])
       
-      doc = Nokogiri::XML(gxml, nil, "UTF-8") {|config| config.strict}
+      begin
+          doc = Nokogiri::XML(gxml, nil, "UTF-8") {|config| config.strict}
+      rescue Exception => e
+          Rails.logger.error "There was a problem importing document: " + e.message
+          return
+      end
       Rails.logger.debug "Removing namespaces from document (may take a minute)\n"
       doc.remove_namespaces!
 

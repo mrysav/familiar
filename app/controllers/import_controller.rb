@@ -5,7 +5,12 @@ class ImportController < ApplicationController
     end
     
     def upload
-        ImportGrampsJob.perform_later(params[:file].read)
+        #TODO: make this behave the same way
+        if(params[:type] == "gramps") then
+            ImportGrampsJob.perform_later(params[:file].read)
+        elsif(params[:type] == "gedcom") then
+            ImportGedcomJob.perform_later(params[:file].path)
+        end
         redirect_to import_path
     end
     

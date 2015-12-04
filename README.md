@@ -11,7 +11,10 @@ If you want to run your own instance of Familiar, you must be familiar with Ruby
 * Ruby & Bundler (~>2.2.3) (installing with [rbenv](https://github.com/sstephenson/rbenv) is highly recommended)
 * [foreman](https://github.com/ddollar/foreman) or [forego](https://github.com/ddollar/forego) for Procfile-based launch (technically optional, but highly recommended)
 * PostgreSQL (required to leverage search capabilities)
-* OmniAuth environment variables ($FACEBOOK_ID and $FACEBOOK_SECRET)
+
+If this is your first time running familiar, you need to configure the environment variables:
+
+    ./configure_environment.sh
 
 Get all that (and the database) configured, and a simple
 
@@ -20,16 +23,16 @@ should be enough to start 'er up.
 
 ####Docker Requirements
 * [Docker](https://www.docker.com/) and [docker-compose](https://github.com/docker/compose) for Docker deployment (see below)
-* Enviroment variables:
- * $FACEBOOK_ID
- * $FACEBOOK_SECRET
- * $SECRET\_KEY\_BASE
  
-Running on docker is (ideally) as simple as
+Running on docker is (ideally) as simple on first launch as
 
+    ./configure_environment.sh
     docker-compose build
     docker-compose run web rake db:create db:migrate
     docker-compose up 
+If this isn't the first launch, then
+
+    docker-compose up
 
 Then you should be able to see your instance at http://192.168.99.100:5000/ (or whatever your docker image's IP is)
 

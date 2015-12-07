@@ -26,9 +26,9 @@ should be enough to start 'er up.
  
 Running on docker is (ideally) as simple on first launch as
 
-    ./configure_environment.sh
     docker-compose build
     docker-compose run web rake db:create db:migrate
+    docker-compose run web ./configure_environment.sh
     docker-compose up 
 If this isn't the first launch, then
 

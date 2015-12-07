@@ -12,7 +12,10 @@ RUN apt-get install -y libxml2-dev libxslt1-dev
 RUN apt-get install -y nodejs
 
 # for process management
-RUN gem install foreman
+RUN apt-get install -y golang
+ENV GOPATH /gopath
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+RUN go get -u github.com/ddollar/forego
 
 ENV APP_HOME /familiar
 ENV RAILS_ENV docker

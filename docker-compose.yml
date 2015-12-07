@@ -2,7 +2,7 @@ db:
   image: postgres
 web:
   build: .
-  command: foreman start 
+  command: forego start 
   volumes:
     - .:/familiar
   ports:

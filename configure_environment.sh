@@ -1,28 +1,39 @@
 #!/bin/bash -e
 
-if [ -e "./.env" ]
-then
-    echo "Please edit '.env' to modify configuration."
-else
-    echo "Facebook App ID: "
-    read facebook_key
-    echo "Facebook App Secret: "
-    read facebook_secret
-    echo "AWS Access Key ID: "
-    read aws_key
-    echo "AWS Secret Access Key: "
-    read aws_secret
-    echo "S3 Bucket Name: "
-    read s3_name
-    echo "running 'rake secret'..."
-    secret=`rake secret`
-    
-    echo "FACEBOOK_ID=$facebook_key" >> .env
-    echo "FACEBOOK_SECRET=$facebook_secret" >> .env
-    echo "AWS_ACCESS_KEY_ID=$aws_key" >> .env
-    echo "AWS_SECRET_ACCESS_KEY=$aws_secret" >> .env
-    echo "S3_BUCKET_NAME=$s3_name" >> .env
-    echo "SECRET_KEY_BASE=$secret" >> .env
-    
-    echo "Configuration complete. Please edit .env in the future."
+if [ -e "./.env" ]; then source '.env'; fi
+
+if [ -z ${FACEBOOK_ID+x} ]; then
+    read -p "Facebook Application ID: " FACEBOOK_ID
 fi
+
+if [ -z ${FACEBOOK_SECRET+x} ]; then
+    read -p "Facebook Application Secret: " FACEBOOK_SECRET
+fi
+
+if [ -z ${AWS_ACCESS_KEY_ID+x} ]; then
+    read -p "AWS Access Key ID (only used in 'production' environment): " AWS_ACCESS_KEY_ID
+fi
+
+if [ -z ${AWS_SECRET_ACCESS_KEY+x} ]; then
+    read -p "AWS Secret Access Key (only used in 'production' environment): " AWS_SECRET_ACCESS_KEY
+fi
+
+if [ -z ${S3_BUCKET_NAME+x} ]; then
+    read -p "AWS S3 Bucket Name (only used in 'production' environment): " S3_BUCKET_NAME
+fi
+
+if [ -z ${SECRET_KEY_BASE+x} ]; then
+    echo "Generating secret with 'rake secret'..."
+    SECRET_KEY_BASE=`rake secret`
+fi
+
+if [ -e "./.env" ]; then rm .env; fi
+
+echo "FACEBOOK_ID=$FACEBOOK_ID" >> .env
+echo "FACEBOOK_SECRET=$FACEBOOK_SECRET" >> .env
+echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> .env
+echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
+echo "S3_BUCKET_NAME=$S3_BUCKET_NAME" >> .env
+echo "SECRET_KEY_BASE=$SECRET_KEY_BASE" >> .env
+
+echo "Configuration complete. Please edit .env if you need to change these values."

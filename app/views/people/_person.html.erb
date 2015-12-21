@@ -1,17 +1,15 @@
-<div class="col-lg-4">
-    <% if person.can_see(current_user) %>
-
+<% if person.can_see(current_user) %>
+<div class="col-lg-10 col-lg-offset-1">
     <% photo = Photo.tagged(person.tag_name)[0] %>
     <% if photo %>
     <div class="pull-left thumb"><img class="img-responsive" src="<%= photo.image.url(:thumb) %>"></img></div>
     <% else %>
-    <div class="pull-left text-center text-muted fake-thumb"><h1><span class="small glyphicon glyphicon-user" style="color: <%= person.is_female? ? '#DB7093' : '#31708f' %>"></span></h1></div>
+    <div class="pull-left text-center text-muted fake-thumb"><span class="small glyphicon glyphicon-user" style="color: <%= person.is_female? ? '#DB7093' : '#31708f' %>"></span></div>
     <% end %>
 
     <div class="pull-left">
         <h4>
             <a href="<%= person_path(person) %>"><%= person.name %></a> 
-            <span class="small glyphicon glyphicon-user" style="color: <%= person.is_female? ? '#DB7093' : '#31708f' %>"></span>
         </h4>
 
         <% if person.date_of_birth.present? || person.date_of_death.present? %>
@@ -27,9 +25,6 @@
         <% end %>
     </div>
     <div class="clearfix"></div>
-    
-    <% else %>
-    <div class="pull-left text-center text-muted fake-thumb"><h1>?</h1></div>
-    <h4 class="pull-left">Hidden</h4>
-    <% end %>
+    <hr style="margin: 3px;">
 </div>
+<% end %>

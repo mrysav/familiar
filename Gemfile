@@ -55,8 +55,9 @@ gem 'edtf-rails'
 # Add genealogies to ActiveRecord models easily
 gem 'genealogy'
 
-# Fancy rich text editors
-gem 'bootsy', :git => 'https://github.com/volmer/bootsy.git', :branch => 'master'
+# summernote text editor
+gem 'summernote-rails'
+gem 'font-awesome-rails'
 
 gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
 

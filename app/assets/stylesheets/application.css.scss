@@ -16,7 +16,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "bootsy";
+@import "font-awesome";
+@import "summernote";
 
 .panel-blue {
     @extend .panel-info;

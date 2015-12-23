@@ -5,16 +5,6 @@ GIT
   specs:
     gedcom (0.9.4)
 
-GIT
-  remote: https://github.com/volmer/bootsy.git
-  revision: dedc0cd4268aa4b0bef1e655631cd46c6c03deb8
-  branch: master
-  specs:
-    bootsy (2.2.0)
-      carrierwave (~> 0.10)
-      mini_magick (~> 4.3)
-      remotipart (~> 1.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,11 +60,6 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (8.2.1)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -98,6 +83,8 @@ GEM
     execjs (2.6.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.5.0.0)
+      railties (>= 3.2, < 5.0)
     genealogy (2.1.1)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
@@ -120,7 +107,6 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
     mimemagic (0.3.0)
-    mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
@@ -194,7 +180,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-    remotipart (1.2.1)
     sass (3.4.20)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -213,6 +198,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    summernote-rails (0.7.0.0)
+      railties (>= 3.1)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -239,11 +226,11 @@ DEPENDENCIES
   autoprefixer-rails
   aws-sdk (< 2.0)
   bootstrap-sass
-  bootsy!
   byebug
   chronic
   coffee-rails (~> 4.1.0)
   edtf-rails
+  font-awesome-rails
   gedcom!
   genealogy
   jbuilder (~> 2.0)
@@ -260,6 +247,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
+  summernote-rails
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

@@ -6,6 +6,9 @@
     <% if @photo.date.present? %>
     <%= @photo.date %>
     <% end %>
+    <% if @photo.description.present? %>
+    <%= @photo.description %>
+    <% end %>
     <% if @photo.tag_list.present? %>
         <em>Tagged: <%= @photo.tags.collect{|t| link_to t, '/tagged/' + t }.join(', ').html_safe %></em>
         <br><br>

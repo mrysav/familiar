@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.turbolinks
 //= require summernote
 //= require bootstrap-sprockets
 //= require_tree .

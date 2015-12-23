@@ -35,6 +35,8 @@
             <%= f.file_field :image, :class => "form-control" %>
         </div>
     </div>
+    
+    <%= f.text_field :description, class: "form-control", :data => { :provider => :summernoteeditor } %>
 
     <div class="text-center">
         <%= f.submit :class => "btn btn-default" %>

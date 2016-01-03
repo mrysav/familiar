@@ -1,10 +1,12 @@
+require 'stringio'
+
 class ImportGedcomJob < ImportJobs
   queue_as :default
 
   def perform(*args)
       Rails.logger.info "Importing GEDCOM (assuming v5.5/Lineage-Linked)"
 
-      doc = Gedcom.file(args[0])
+      doc = Gedcom.read(StringIO.new(args[0]))
       people = doc.transmissions[0].individual_record
 
       masterlist = []

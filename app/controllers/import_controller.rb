@@ -9,7 +9,7 @@ class ImportController < ApplicationController
         if(params[:type] == "gramps") then
             ImportGrampsJob.perform_later(params[:file].read)
         elsif(params[:type] == "gedcom") then
-            ImportGedcomJob.perform_later(params[:file].path)
+            ImportGedcomJob.perform_later(params[:file].read)
         end
         redirect_to import_path
     end

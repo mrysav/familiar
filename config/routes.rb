@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     get  '/import' => 'import#show'
     post '/import' => 'import#upload'
     
+    get '/admin/users' => 'users#manage'
+    get '/profile' => 'users#profile'
+    
     resources :people
     resources :photos do
         resources :comments, :except => [:show, :edit]

@@ -66,8 +66,15 @@ gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
 # Required for importing GrampsXML
 gem 'nokogiri'
 
-# Date parser, used when imported GrampsXML
+# Date parser, used when importing data
 gem 'chronic'
+
+# For site-wide settings
+gem "rails-settings-cached", "~> 0.4.0"
+
+# For job processing - switch this out if necessary...
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

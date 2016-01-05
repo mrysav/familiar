@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     
     get '/login', to: redirect('/auth/facebook')
     get '/logout' => 'sessions#destroy', :as => :logout
-    get "/auth/:provider/callback" => "sessions#create"
+    get  "/auth/:provider/callback" => "sessions#create"
+    post "/auth/:provider/callback" => "sessions#create"
     
     get '/search' => 'search#index'
     get '/tagged/:tag' => 'search#tagged'

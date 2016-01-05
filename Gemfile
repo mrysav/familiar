@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Puma as the app server
 gem 'puma'
@@ -40,6 +40,8 @@ gem 'puma'
 gem 'omniauth-facebook'
 # Google too
 gem 'omniauth-google-oauth2'
+# When all else fails
+gem 'omniauth-identity'
 
 # Use Paperclip with S3 extension for storage
 gem 'paperclip'
@@ -61,6 +63,7 @@ gem 'genealogy'
 gem 'summernote-rails'
 gem 'font-awesome-rails'
 
+#gem 'gedcom', :path => '../gedcom'
 gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
 
 # Required for importing GrampsXML

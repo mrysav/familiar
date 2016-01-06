@@ -87,7 +87,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <% if current_user %>
+                            <% if false && current_user %>
                             <li><%= link_to 'Profile', profile_path %></li>
                             <% end %>
                             <% if current_user && current_user.editor? %>
@@ -103,7 +103,7 @@
                     <% else %>
                     
                     
-                    <li><%= link_to 'Sign In with Facebook', login_path %></li>
+                    <li><%= link_to 'Sign In or Register', login_path %></li>
                     <% end %>
                 </ul>
             </div>

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
     root 'search#index'
     
-    get '/login', to: redirect('/auth/facebook')
+    get '/login' => 'sessions#new'
     get '/logout' => 'sessions#destroy', :as => :logout
-    get  "/auth/:provider/callback" => "sessions#create"
-    post "/auth/:provider/callback" => "sessions#create"
+    get '/register' => 'sessions#register', :as => :register
+    match  "/auth/:provider/callback" => "sessions#create", via: [:get, :post]
     
     get '/search' => 'search#index'
     get '/tagged/:tag' => 'search#tagged'

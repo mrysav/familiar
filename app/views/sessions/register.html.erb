@@ -5,7 +5,7 @@
     
     <% if @identity && @identity.errors.any? %>
     <div>
-        <h4><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h4>
+        <strong><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</strong>
         <ul>
             <% @identity.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <%= label_tag :image, "Avatar URL (optional)" %>
-        <%= text_field_tag :image, @identity.try(:email), :class => "form-control" %>
+        <%= text_field_tag :image, @identity.try(:image), :class => "form-control" %>
     </div>
     <div class="form-group">
         <%= label_tag :password %>

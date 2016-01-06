@@ -1,9 +1,24 @@
 <h2>mitchell's 10-second guide to familiar</h2>
+<h3>I'm new. Where do I start?</h3>
 <ol>
-    <li>Click the "People" link above to see the people in the family tree</li>
-    <li>Click the "Photos" link above to see photos that have been uploaded to the website</li>
-    <li>If you sign in to Facebook using the button in the top right corner, you can leave comments</li>
+    <li>Click the "People" link above to see the people in the family tree.</li>
+    <li>Click the "Photos" link above to see photos that have been uploaded to the website.</li>
+    <li>Click the "Notes" link above to see notes that have been uploaded to the website.</li>
+    <li>Signed in users can leave comments on notes and photos.</li>
 </ol>
+
+<h3>I'm an administrator. What can I do?</h3>
+<ol>
+    <li>The People, Photos and Notes links above allow you to create new content.</li>
+    <li>Clicking your name in the top right will allow you to access the administrative tools.</li>
+</ol>
+
+<h3>How do I make another user an administrator?</h3>
+You will need the user's email that they registered with. Then, at a terminal, run the following command:
+<pre>rake permissions:give[USER_EMAIL_HERE]</pre>
+Or, with docker,
+<pre>docker-compose run web rake permissions:give[USER_EMAIL_HERE]</pre>
+<br/>
 <p>That's it! That's all the website can currently do.</p>
 
 <h2>more help</h2>

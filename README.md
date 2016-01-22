@@ -16,6 +16,10 @@ If this is your first time running familiar, you need to configure the environme
 
     ./configure_environment.sh
 
+And the database:
+
+    rake db:create db:migrate
+
 Get all that (and the database) configured, and a simple
 
     foreman start

@@ -38,6 +38,10 @@ If this isn't the first launch, then
 
     docker-compose up
 
+If docker-compose complains about an updated ruby version, then run
+
+    docker pull ruby
+
 Then you should be able to see your instance at http://192.168.99.100:5000/ (or whatever your docker image's IP is)
 
 ####Roadmap

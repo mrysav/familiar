@@ -46,6 +46,8 @@ if [ -e "./.env" ]; then rm .env; fi
 
 echo "FACEBOOK_ID=$FACEBOOK_ID" >> .env
 echo "FACEBOOK_SECRET=$FACEBOOK_SECRET" >> .env
+echo "GOOGLE_ID=$GOOGLE_ID" >> .env
+echo "GOOGLE_SECRET=$GOOGLE_SECRET" >> .env
 echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> .env
 echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
 echo "S3_BUCKET_NAME=$S3_BUCKET_NAME" >> .env

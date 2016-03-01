@@ -6,4 +6,8 @@
     <% end %>
     
     <h2><%= @user.name %></h2>
+    <% if @user.editor? %><p>You are an editor.</p><% end %>
+    
+    <h4>API Key</h4>
+    <pre class="col-md-4 col-md-offset-4"><%= @user.access_token %></pre>
 </div>

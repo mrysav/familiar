@@ -87,7 +87,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <% if false && current_user %>
+                            <% if current_user %>
                             <li><%= link_to 'Profile', profile_path %></li>
                             <% end %>
                             <% if current_user && current_user.editor? %>

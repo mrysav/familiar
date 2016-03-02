@@ -16,10 +16,18 @@ class User < ActiveRecord::Base
       
     def self.authenticate(auth)
         user = find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
+        
+        # always update the image url if necessary
+        if user.name != auth["info"]["image"]
+            user.image = auth["info"]["image"]
+            user.save!
+        end
+        
         if user.access_token.blank?
             user.generate_access_token
             user.save!
         end
+        
         return user
     end
       

@@ -41,11 +41,25 @@ class Person < ActiveRecord::Base
     end
     
     # only show alive people to logged in editors
-    def can_see(current_user)
+    def can_be_seen_by(current_user)
         self.probably_dead? || (current_user != nil && current_user.editor?)
     end
     
     def tag_name
         self.name.downcase
+    end
+    
+    def to_gedx_json
+        {
+            :private => !self.probably_dead?,
+            :gender => {
+                :type => self.is_female? ? "http://gedcomx.org/Female" : "http://gedcomx.org/Male"
+            },
+            :names => [{
+                :nameForms => [{
+                    :fullText => self.name
+                }]
+            }]
+        }
     end
 end

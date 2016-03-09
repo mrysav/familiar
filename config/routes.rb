@@ -24,4 +24,8 @@ Rails.application.routes.draw do
     resources :notes do
         resources :comments, :except => [:show, :edit]
     end
+    
+    namespace :api do
+        resources :people, :only => [:show, :index]
+    end
 end

@@ -53,6 +53,8 @@ ruby '2.3.1'
 gem 'bootstrap-sass'
 # Autoprefixer, for use with Bootstrap
 gem 'autoprefixer-rails'
+# Font Awesome, for bootstrap social
+gem 'font-awesome-rails'
 
 # Using Facebook authentication for now
 gem 'omniauth-facebook'

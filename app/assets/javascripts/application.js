@@ -13,40 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.turbolinks
-//= require summernote
 //= require bootstrap-sprockets
 //= require_tree .
-
-$(document).ready(function() {
-    $('[data-provider="summernoteeditor"]').each(function(){
-        $(this).summernote({
-            height: 400,
-            toolbar: [
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['fontname', ['fontname']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['table', ['table']],
-                ['insert', ['link', 'hr']],
-                ['view', ['codeview']],
-                ['help', ['help']]
-              ],
-        });
-    });
-});
-
-$(document).ready(function() {
-    $('[data-provider="summernotecomment"]').each(function(){
-        $(this).summernote({
-            height: 200,
-            toolbar: [
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['height', ['height']],
-                ['insert', ['link', 'hr']],
-                ['help', ['help']]
-              ],
-        });
-    });
-});

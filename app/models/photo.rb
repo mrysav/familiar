@@ -3,11 +3,12 @@ class Photo < ApplicationRecord
     
     has_many :comments, as: :commentable, dependent: :destroy
     
-    has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100>x100<" }
+    # has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100>x100<" }
+    mount_uploader :image, PhotoUploader
     
     validates :image, presence: true
     validates :title, presence: true
-    validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+    # validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
     
     edtf :attributes => [:date]
     

@@ -79,9 +79,10 @@ gem 'chronic'
 # For job processing - switch this out if necessary...
 gem 'delayed_job_active_record'
 
-# Use Paperclip with S3 extension for storage
-gem 'paperclip'
-gem 'aws-sdk', '< 2.0'
+# Use Carrierwave with S3 extension for storage
+gem 'carrierwave'
+# gem 'fog-aws'
+gem 'mini_magick'
 
 # Use pg_search for full-text searches
 gem 'pg_search'

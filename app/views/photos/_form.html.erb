@@ -1,8 +1,9 @@
 <% if @photo.errors.any? %>
 <div class="alert alert-danger col-sm-6 col-sm-offset-3">
+    Errors occurred while saving:
     <ul>
         <% @photo.errors.full_messages.each do |msg| %>
-        <%= msg %><br>
+        <li><%= msg %></li>
         <% end %>
     </ul>
 </div>
@@ -24,6 +25,12 @@
         </div>
     </div>
     <div class="form-group">
+        <%= f.label 'Caption', :class=> "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+            <%= f.text_area :description, class: "form-control md-editor", id: "photo-desc-editor" %>
+        </div>
+    </div>
+    <div class="form-group">
         <%= f.label 'Tags (comma-separated)', :class => "col-sm-4 control-label" %>
         <div class="col-sm-4">
             <%= f.text_field :tag_list, :class => "form-control" %>
@@ -35,8 +42,6 @@
             <%= f.file_field :image, :class => "form-control" %>
         </div>
     </div>
-    
-    <%= f.text_field :description, class: "form-control", :data => { :provider => :summernoteeditor } %>
 
     <div class="text-center">
         <%= f.submit :class => "btn btn-default" %>

@@ -8,7 +8,7 @@
         </h1>
     </div>
 
-    <%= @note.render_markdown %>
+    <%= render_markdown(@note.content, true) %>
     <hr>
     
     <% if @note.tag_list.present? %>

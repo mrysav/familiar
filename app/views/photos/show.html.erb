@@ -1,13 +1,11 @@
 <div class="text-center">
     <%= image_tag @photo.image.url, :class => "img-responsive center-block img-reasonable" %>
-    <% if @photo.title.present? %>
     <h2><%= @photo.title %></h2>
-    <% end %>
     <% if @photo.date.present? %>
     <%= @photo.date %>
     <% end %>
     <% if @photo.description.present? %>
-    <%= @photo.description %>
+    <%= render_markdown(@photo.description, true) %>
     <% end %>
     <% if @photo.tag_list.present? %>
         <em>Tagged: <%= @photo.tags.collect{|t| link_to t, '/tagged/' + t }.join(', ').html_safe %></em>
@@ -22,6 +20,7 @@
                method: :delete,
                class: "btn btn-danger",
                data: { confirm: 'Are you sure? This will delete all associated comments as well.' } %>
+    <br/>Embed code: <code>![<%= @photo.title %>][<%= @photo.id %>]</code>
     <br><br><br>
 </div>
 <% end %>

@@ -1,5 +1,5 @@
 <% user = User.find(comment.owner_id) %>
-<%= comment.render_markdown %><br>
+<%= render_markdown(comment.body) %><br>
 <em class="small">
     <%= user.name %> - <%= comment.cool_date %>
     <% if current_user == user %>

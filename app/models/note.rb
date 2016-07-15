@@ -23,9 +23,4 @@ class Note < ApplicationRecord
     def cool_date
         return self.date.strftime("%B %-d, %Y")
     end
-    
-    def render_markdown
-        #TODO
-        return @@markdown.render(self.content).html_safe
-    end
 end

@@ -53,8 +53,10 @@ ruby '2.3.1'
 gem 'bootstrap-sass'
 # Autoprefixer, for use with Bootstrap
 gem 'autoprefixer-rails'
-# Font Awesome, for bootstrap social
+# Font Awesome, for lots of icons
 gem 'font-awesome-rails'
+# Use will_paginate with bootstrap styles
+gem 'will_paginate-bootstrap'
 
 # Using Facebook authentication for now
 gem 'omniauth-facebook'
@@ -63,6 +65,20 @@ gem 'omniauth-google-oauth2'
 # When all else fails
 gem 'omniauth-identity'
 
+# Implementation of the Extended Date and Time Format for ruby/rails
+gem 'edtf-rails'
+# Add genealogies to ActiveRecord models easily
+gem 'genealogy'
+#gem 'gedcom', :path => '../gedcom'
+gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
+# Required for importing GrampsXML
+gem 'nokogiri'
+# Date parser, used when importing data
+gem 'chronic'
+
+# For job processing - switch this out if necessary...
+gem 'delayed_job_active_record'
+
 # Use Paperclip with S3 extension for storage
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
@@ -70,23 +86,5 @@ gem 'aws-sdk', '< 2.0'
 # Use pg_search for full-text searches
 gem 'pg_search'
 
-# Use will_paginate with bootstrap styles
-gem 'will_paginate-bootstrap'
-
-# Implementation of the Extended Date and Time Format for ruby/rails
-gem 'edtf-rails'
-
-# Add genealogies to ActiveRecord models easily
-gem 'genealogy'
-
-#gem 'gedcom', :path => '../gedcom'
-gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
-
-# Required for importing GrampsXML
-gem 'nokogiri'
-
-# Date parser, used when importing data
-gem 'chronic'
-
-# For job processing - switch this out if necessary...
-gem 'delayed_job_active_record'
+# Markdown renderer
+gem 'redcarpet'

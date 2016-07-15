@@ -1,4 +1,4 @@
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
     include PgSearch
     
     has_many :comments, as: :commentable, dependent: :destroy

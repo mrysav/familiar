@@ -1,4 +1,4 @@
-class Note < ActiveRecord::Base
+class Note < ApplicationRecord
     include PgSearch
     
     validates :title, presence: true
@@ -22,5 +22,10 @@ class Note < ActiveRecord::Base
     
     def cool_date
         return self.date.strftime("%B %-d, %Y")
+    end
+    
+    def render_markdown
+        #TODO
+        return @@markdown.render(self.content).html_safe
     end
 end

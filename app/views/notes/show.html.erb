@@ -3,12 +3,12 @@
         <h1>
             <%= @note.title %> 
             <% if @note.date.present? %>
-            <small><em><%= @note.cool_date %></em></small>
+            <br/><small><em><%= @note.cool_date %></em></small>
             <% end %>
         </h1>
     </div>
 
-    <%= @note.content.html_safe %>
+    <%= @note.render_markdown %>
     <hr>
     
     <% if @note.tag_list.present? %>

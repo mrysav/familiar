@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
     before_create :generate_access_token
     
     def self.create_with_omniauth(auth)

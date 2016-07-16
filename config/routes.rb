@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     match  "/auth/:provider/callback" => "sessions#create", via: [:get, :post]
     
     get '/search' => 'search#index'
-    get '/tagged/:tag' => 'search#tagged'
+    get '/tagged/:tag' => 'search#tagged', :as => :tagged
     
     get '/help' => 'search#help'
     

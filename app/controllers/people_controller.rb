@@ -23,7 +23,7 @@ class PeopleController < ApplicationController
         @person = Person.find(params[:id])
         
         if !@person.can_be_seen_by(current_user) then
-            flash[:danger] = "You must be an editor to see the details of living people."
+            flash[:danger] = "You must be an editor to see the details of this person."
             @person = nil
             redirect_to people_path
         end

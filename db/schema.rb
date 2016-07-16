@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715201415) do
+ActiveRecord::Schema.define(version: 20160716200528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,10 +58,12 @@ ActiveRecord::Schema.define(version: 20160715201415) do
     t.string   "title"
     t.string   "date"
     t.text     "content"
-    t.string   "tag_list"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "tags",       default: [],              array: true
   end
+
+  add_index "notes", ["tags"], name: "index_notes_on_tags", using: :gin
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
@@ -88,12 +90,14 @@ ActiveRecord::Schema.define(version: 20160715201415) do
   create_table "photos", force: :cascade do |t|
     t.string   "title"
     t.string   "date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "tag_list"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "description"
     t.string   "image"
+    t.string   "tags",        default: [],              array: true
   end
+
+  add_index "photos", ["tags"], name: "index_photos_on_tags", using: :gin
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"

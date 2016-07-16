@@ -11,6 +11,7 @@ class PhotosController < ApplicationController
     
     def create
         @photo = Photo.create(photo_params)
+        @photo.tags = params[:tag_list].split(",").collect(&:strip)
         
         if @photo.save
             redirect_to photo_path(@photo)
@@ -30,6 +31,7 @@ class PhotosController < ApplicationController
     
     def update
         @photo = Photo.find(params[:id])
+        @photo.tags = params[:tag_list].split(",").collect(&:strip)
         
         if @photo.update(photo_params)
             redirect_to photo_path(@photo)
@@ -48,6 +50,6 @@ class PhotosController < ApplicationController
     private
     
     def photo_params
-        params.require(:photo).permit(:title, :date, :image, :tag_list, :description)
+        params.require(:photo).permit(:title, :date, :image, :image_cache, :description)
     end
 end

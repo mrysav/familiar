@@ -7,8 +7,8 @@
     <% if @photo.description.present? %>
     <%= render_markdown(@photo.description, true) %>
     <% end %>
-    <% if @photo.tag_list.present? %>
-        <em>Tagged: <%= @photo.tags.collect{|t| link_to t, '/tagged/' + t }.join(', ').html_safe %></em>
+    <% if @photo.tags.present? %>
+        <em>Tagged: <%= render_tags(@photo.tags) %></em>
         <br><br>
     <% end %>
 </div>

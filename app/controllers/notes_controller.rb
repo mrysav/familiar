@@ -11,7 +11,8 @@ class NotesController < ApplicationController
     
     def create
         @note = Note.create(note_params)
-        
+        @note.tags = params[:tag_list].split(",").collect(&:strip)
+
         if @note.save
             redirect_to note_path(@note)
         else
@@ -30,6 +31,7 @@ class NotesController < ApplicationController
     
     def update
         @note = Note.find(params[:id])
+        @note.tags = params[:tag_list].split(",").collect(&:strip)
         
         if @note.update(note_params)
             redirect_to note_path(@note)
@@ -48,6 +50,6 @@ class NotesController < ApplicationController
     private
     
     def note_params
-        params.require(:note).permit(:title, :date, :content, :tag_list)
+        params.require(:note).permit(:title, :date, :content)
     end
 end

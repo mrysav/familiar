@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :require_valid_user
   helper_method :require_editor
-  helper_method :render_markdown
-  
-  # Initializes a Markdown parser
-  @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true), autolink: true, tables: true)
   
   def current_user
       begin
@@ -35,35 +31,5 @@ class ApplicationController < ActionController::Base
               format.html { redirect_to root_path }
           end
       end
-  end
-  
-  def render_markdown(markdown, local_resources = false)
-      
-      #TODO
-      
-      if local_resources
-          # Local photo embeds
-          markdown.gsub!(/!\[(.*)\] ?\[([1-9]+)(:[A-z]+)?\]/) {
-              if Photo.exists?($2.to_i)
-                  image = Photo.find($2.to_i).image
-                  url = image.thumb.url
-                  url = image.url if $3 == ":full"
-                  "![" + $1 + "](" + url + ")"
-              end
-          }
-      
-          # Link to person
-          markdown.gsub!(/\[(.*)\] ?\[@([1-9]+)\]/) {
-              if Person.exists?($2.to_i)
-                  person = Person.find($2.to_i)
-                  url = url_for(person)
-                  "[" + $1 + "](" + url + ")"
-              else
-                  $1
-              end
-          }
-      end
-      
-      return @@markdown.render(markdown).html_safe
   end
 end

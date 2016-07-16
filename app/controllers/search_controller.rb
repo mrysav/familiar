@@ -7,7 +7,7 @@ class SearchController < ApplicationController
     end
     
     def tagged
-        @results = Photo.tagged(params[:tag])
+        @results = Photo.tagged(params[:tag]) + Note.tagged(params[:tag])
         @results = @results.paginate(:page => params[:p], :per_page => 15)
     end
 end

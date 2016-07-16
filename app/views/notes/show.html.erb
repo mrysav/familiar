@@ -11,8 +11,8 @@
     <%= render_markdown(@note.content, true) %>
     <hr>
     
-    <% if @note.tag_list.present? %>
-    <em>Tagged: <%= @note.tags.collect{|t| link_to t, '/tagged/' + t }.join(', ').html_safe %></em>
+    <% if @note.tags.present? %>
+    <em>Tagged: <%= render_tags @note.tags %></em>
     <% end %>
     
     <% if current_user && current_user.editor? %>

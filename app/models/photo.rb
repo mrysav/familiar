@@ -12,15 +12,17 @@ class Photo < ApplicationRecord
     
     edtf :attributes => [:date]
     
-    multisearchable :against => [:title, :tag_list]
-    
-    def tags
-        # gee, I hope that splitting and stripping an entire array
-        # every time I need the tags isn't a costly operation
-        self.tag_list.split(",").collect(&:strip)
-    end 
+    multisearchable :against => [:title, :description, :tags]
     
     def self.tagged(tag)
-        Photo.all.select{|p| p.tags.include? tag }
+        Photo.all.select{|p| p.tagged tag }
+    end
+    
+    def tagged(tag)
+        self.tags.include? tag
+    end
+    
+    def tag_list
+        self.tags.join(', ')
     end
 end

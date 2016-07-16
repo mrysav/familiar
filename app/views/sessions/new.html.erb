@@ -1,34 +1,37 @@
-<div class="col-md-3">
+<div class="col-md-12 text-center">
+    <%= link_to "Create an account", '/register' %> or sign in below.
+</div>
+<br/><br/>
+
+<%= form_tag "/auth/identity/callback", :class => "form-horizontal col-md-6 col-md-offset-3" do %>
+<div class="form-group">
+    <%= label_tag :auth_key, "Email", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-6">
+        <%= text_field_tag :auth_key, nil, :class => "form-control" %>
+    </div>
+</div>
+<div class="form-group">
+    <%= label_tag :password, "Password", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-6">
+        <%= password_field_tag :password, nil, :class => "form-control" %>
+    </div>
+</div>
+<div class="col-sm-12 text-center">
+    <%= submit_tag "Sign in", :class => "btn btn-default" %>
+</div>
+<% end %>
+    
+<% if Rails.application.secrets.facebook_id || Rails.application.secrets.google_id %>
+<div class="col-md-12 text-center">
     <% if Rails.application.secrets.facebook_id %>
-    <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
-        <span class="fa fa-facebook"></span> Sign in with Facebook
+    <a class="btn btn-default btn-social" href="/auth/facebook">
+        <span class="fa fa-facebook"></span> | Sign in with Facebook
     </a>
     <% end %>
     <% if Rails.application.secrets.google_id %>
-    <a class="btn btn-block btn-social btn-google" href="/auth/google_oauth2">
-        <span class="fa fa-google"></span> Sign in with Google
+    <a class="btn btn-default btn-social" href="/auth/google_oauth2">
+        <span class="fa fa-google"></span> | Sign in with Google
     </a>
     <% end %>
 </div>
-<br/>
-<div class="col-md-9">
-    <strong>Don't use these services?</strong>
-    <%= link_to "Create an account", '/register' %> or login below.
-    <br/><br/>
-
-    <%= form_tag "/auth/identity/callback", :class => "form-horizontal" do %>
-    <div class="form-group">
-        <%= label_tag :auth_key, "Email", :class => "col-sm-2 control-label" %>
-        <div class="col-sm-4">
-            <%= text_field_tag :auth_key, nil, :class => "form-control" %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= label_tag :password, "Password", :class => "col-sm-2 control-label" %>
-        <div class="col-sm-4">
-            <%= password_field_tag :password, nil, :class => "form-control" %>
-        </div>
-    </div>
-    <%= submit_tag "Login", :class => "btn btn-default col-sm-offset-3" %>
-    <% end %>
-</div>
+<% end %>

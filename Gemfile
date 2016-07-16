@@ -79,10 +79,12 @@ gem 'chronic'
 # For job processing - switch this out if necessary...
 gem 'delayed_job_active_record'
 
-# Use Carrierwave with S3 extension for storage
-gem 'carrierwave'
-# gem 'fog-aws'
+# Use Carrierwave with S3 extension for production storage
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
+group :production do
+    gem 'fog-aws'
+end
 
 # Use pg_search for full-text searches
 gem 'pg_search'

@@ -36,3 +36,6 @@ bower.json
 
 # Ignore dotenv file
 /.env
+
+# Ignore Carrierwave uploads
+/public/uploads/

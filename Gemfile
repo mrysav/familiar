@@ -49,6 +49,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 ruby '2.3.1'
 
+group :production do
+    gem 'rails_12factor'
+end
+
 # Use bootstrap
 gem 'bootstrap-sass'
 # Autoprefixer, for use with Bootstrap

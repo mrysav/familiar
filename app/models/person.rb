@@ -46,7 +46,7 @@ class Person < ApplicationRecord
     end
     
     def tag_name
-        '@' + self.id
+        '@' + self.id.to_s
     end
     
     def to_gedx_json

@@ -7,7 +7,7 @@ module MarkdownHelper
         #TODO
         if local_resources
             # Local photo embeds
-            markdown.gsub!(/!\[([^\[\]]*)\] ?\[([1-9]+)(:[A-Za-z]+)?\]/) {
+            markdown.gsub!(/!\[([^\[\]]*)\] ?\[([0-9]+)(:[A-Za-z]+)?\]/) {
                 if Photo.exists?($2.to_i)
                     image = Photo.find($2.to_i).image
                     url = image.thumb.url
@@ -17,7 +17,7 @@ module MarkdownHelper
             }
       
             # Link to person
-            markdown.gsub!(/\[([^\[\]]+)\] ?\[@([1-9]+)\]/) {
+            markdown.gsub!(/\[([^\[\]]+)\] ?\[@([0-9]+)\]/) {
                 if Person.exists?($2.to_i)
                     person = Person.find($2.to_i)
                     url = url_for(person)

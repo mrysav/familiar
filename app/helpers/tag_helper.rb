@@ -3,7 +3,7 @@ module TagHelper
         #TODO?
         rendered = []
         tags.each do |t|
-            person_tag = /@([1-9]+)/.match(t)
+            person_tag = /@([0-9]+)/.match(t)
             if person_tag
                 pid = person_tag.captures[0].to_i;
                 if Person.exists?(pid)

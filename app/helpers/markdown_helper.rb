@@ -1,4 +1,6 @@
 module MarkdownHelper
+    # necessary so we don't duplicate tag resolution
+    include TagHelper
     
     # Initializes a Markdown parser
     @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true), autolink: true, tables: true)
@@ -7,7 +9,7 @@ module MarkdownHelper
         #TODO
         if local_resources
             # Local photo embeds
-            markdown.gsub!(/!\[([^\[\]]*)\] ?\[([0-9]+)(:[A-Za-z]+)?\]/) {
+            markdown.gsub!(/!\[([^\[\]]*)\] ?\[([0-9]+)\]/) {
                 if Photo.exists?($2.to_i)
                     image = Photo.find($2.to_i).image
                     url = image.thumb.url
@@ -16,14 +18,15 @@ module MarkdownHelper
                 end
             }
       
-            # Link to person
-            markdown.gsub!(/\[([^\[\]]+)\] ?\[@([0-9]+)\]/) {
-                if Person.exists?($2.to_i)
-                    person = Person.find($2.to_i)
-                    url = url_for(person)
-                    "[" + $1 + "](" + url + ")"
+            # Link to resource
+            markdown.gsub!(/\[([^\[\]]+)\] ?\[([A-z0-9@:]+)\]/) {
+                tag = $2.to_s
+                tag_text = $1.to_s
+                resolved_tag = resolve_tag(tag)
+                if resolved_tag[:url]
+                    "[" + tag_text + "](" + resolved_tag[:url] + ")"
                 else
-                    $1
+                    tag_text
                 end
             }
         end

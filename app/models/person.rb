@@ -7,7 +7,7 @@ class Person < ApplicationRecord
     has_parents column_names: { sex: 'gender', birth_date: 'date_of_birth', death_date: 'date_of_death' }, current_spouse: true
     
     edtf :attributes => [:date_of_birth, :date_of_death]
-    multisearchable :against => [:first_name, :last_name]
+    multisearchable :against => [:name]
     
     # this has the potential to get really complicated
     def relationship_to(other)

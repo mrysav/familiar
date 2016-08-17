@@ -1,13 +1,13 @@
 class Person < ApplicationRecord
     include PgSearch
     
-    validates :name, presence: true
+    validate :name_present
     
     # father_id and mother_id are the default names, they're already in the db
     has_parents column_names: { sex: 'gender', birth_date: 'date_of_birth', death_date: 'date_of_death' }, current_spouse: true
     
     edtf :attributes => [:date_of_birth, :date_of_death]
-    multisearchable :against => [:name]
+    multisearchable :against => [:first_name, :last_name]
     
     # this has the potential to get really complicated
     def relationship_to(other)
@@ -65,5 +65,12 @@ class Person < ApplicationRecord
                 }]
             }]
         }
+    end
+    
+    private
+    def name_present
+      if self.first_name.blank? && self.last_name.blank?
+        errors[:base] << "Must provide a first or last name."
+      end
     end
 end

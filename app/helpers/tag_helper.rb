@@ -24,7 +24,7 @@ module TagHelper
             if Person.exists?(pid)
                 person = Person.find(pid)
                 val[:url] = url_for(person)
-                val[:text] = person.name
+                val[:text] = person.full_name
                 return val
             end
         end
@@ -46,7 +46,7 @@ module TagHelper
             id = person_tag.captures[0].to_i
             if Person.exists?(id)
                 person = Person.find(id)
-                val[:text] = person.name
+                val[:text] = person.full_name
                 val[:url] = url_for(person)
                 return val
             end

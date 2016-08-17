@@ -1,6 +1,6 @@
 <div class="page-header row">
     <h3>
-        <%= @person.name %> <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span>
+        <%= @person.full_name %> <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span>
         <% if current_user && current_user.editor? %>
         <%= link_to 'Edit person', edit_person_path(@person), :class => "pull-right btn btn-default" %>
         <% end %>

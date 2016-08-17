@@ -25,7 +25,8 @@ class ImportGrampsJob < ImportJobs
           p = {}
           # this is not the id you're looking for
           p['gid'] = person['id']
-          p['name'] = person.xpath("name/first")[0].text + " " + person.xpath("name/surname")[0].text
+          p['first_name'] = person.xpath("name/first")[0].text
+          p['last_name'] = person.xpath("name/surname")[0].text
           p['gender'] = person.xpath("gender").text
 
           person.xpath("eventref").each do |r|
@@ -51,7 +52,7 @@ class ImportGrampsJob < ImportJobs
           if(p.save) then
               data['id'] = p['id']
           else
-              Rails.logger.warn 'Error saving ' + data['name'] + '!'
+              Rails.logger.warn 'Error saving ' + data['first_name'] + ' ' + data['last_name'] + '!'
           end
       end
 

@@ -47,6 +47,6 @@ class PeopleController < ApplicationController
     end
     
     def person_params
-        params.require(:person).permit(:name, :gender, :date_of_birth, :date_of_death, :father_id, :mother_id, :current_spouse_id)
+        params.require(:person).permit(:first_name, :last_name, :gender, :date_of_birth, :date_of_death, :father_id, :mother_id, :current_spouse_id)
     end
 end

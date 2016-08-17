@@ -9,7 +9,7 @@
 
     <div class="pull-left">
         <h4>
-            <a href="<%= person_path(person) %>"><%= person.name %></a> 
+            <a href="<%= person_path(person) %>"><%= person.full_name %></a> 
         </h4>
 
         <% if person.date_of_birth.present? || person.date_of_death.present? %>

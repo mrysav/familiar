@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716200528) do
+ActiveRecord::Schema.define(version: 20160817002246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160716200528) do
   add_index "notes", ["tags"], name: "index_notes_on_tags", using: :gin
 
   create_table "people", force: :cascade do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "gender"
     t.string   "date_of_birth"
     t.string   "date_of_death"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20160716200528) do
     t.integer  "father_id"
     t.integer  "mother_id"
     t.integer  "current_spouse_id"
+    t.string   "last_name"
+    t.string   "alternate_names"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

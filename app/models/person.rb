@@ -7,7 +7,7 @@ class Person < ApplicationRecord
     has_parents column_names: { sex: 'gender', birth_date: 'date_of_birth', death_date: 'date_of_death' }, current_spouse: true
     
     edtf :attributes => [:date_of_birth, :date_of_death]
-    multisearchable :against => :name
+    multisearchable :against => :first_name, :last_name
     
     # this has the potential to get really complicated
     def relationship_to(other)
@@ -24,6 +24,10 @@ class Person < ApplicationRecord
         elsif self.spouses.include? other
             other.is_female? ? :'former wife' : :'former husband'
         end
+    end
+    
+    def full_name
+        [self.first_name, self.last_name].join(' ')
     end
     
     # TODO: maybe account for which generation eventually as well

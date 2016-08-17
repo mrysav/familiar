@@ -15,7 +15,9 @@ class ImportGedcomJob < ImportJobs
           p = {}
           # this is the "INDI" id in the GEDCOM file -- it will not actually be saved
           p['gid'] = person.id[0].xref_value if person.id && !person.id.empty?
-          p['name'] = person.primary_name.tr('/','')
+          names = person.primary_name.scan(/(.+)\s\/(.+)\//)[0]
+          p['first_name'] = names[0]
+          p['last_name'] = names[1]
           p['gender'] = person.sex[0].value[0] if person.sex && !person.sex.empty?
 
           bday = person.birth[0].date if person.birth && !person.birth.empty?
@@ -33,7 +35,7 @@ class ImportGedcomJob < ImportJobs
           if(p.save) then
               data['id'] = p['id']
           else
-              Rails.logger.warn 'Error saving ' + data['name'] + '!'
+              Rails.logger.warn 'Error saving ' + data['first_name'] + ' ' + data['last_name'] + '!'
           end
       end
 

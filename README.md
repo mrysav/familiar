@@ -49,12 +49,12 @@ There are a number of features that I hope to add to Familiar:
 - [ ] [GEDCOMX](http://www.gedcomx.org/) import/export
 - [ ] ~~Ancestry.com sync~~ (not possible because Ancestry does not have a public API)
 - [x] Gramps importer
-- [ ] Javascript/CSS family tree displays (in progress)
+- [ ] ~~Javascript/CSS family tree displays~~ (benched)
 - [x] Facebook login and comments
 - [x] Image uploading
-- [ ] "Story"/wiki-style note editor (partially done, needs implementation)
-- [ ] Tagging system for images and notes (partially done)
-- [x] Full-text search (done but will probably need refining in the future)
+- [x] "Story"/wiki-style note editor (markdown is supported too!)
+- [x] Tagging system for images and notes
+- [x] Full-text search (good enough)
 
 More will be added when I think of them!
 

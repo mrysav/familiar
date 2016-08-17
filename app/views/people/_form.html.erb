@@ -10,56 +10,62 @@
 
 <%= form_for @person, :html => { :role => :form } do |person_form| %>
 
-<div class="form-horizontal">
-    <div class="form-group">
-        <%= person_form.label 'Full name', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= person_form.text_field :name, :class => "form-control" %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= person_form.label 'Gender', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= person_form.select :gender, [[:male, "M"], [:female, "F"]], {}, { :class => "form-control" } %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= person_form.label 'Birth date', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4 edtf-editor">
-            <%= person_form.date_field :date_of_birth, :class => "form-control edtf-input" %>
-            <%= hidden_field_tag :birth_value, @person.date_of_birth, { class: "edtf-value" } %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= person_form.label 'Death date', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= person_form.date_field :date_of_death, :class => "form-control" %>
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <%= person_form.label 'Father', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= person_form.select :father_id, Person.all.reject { |p| (p.id == @person.id) || p.is_female? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= person_form.label 'Mother', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= person_form.select :mother_id, Person.all.reject { |p| (p.id == @person.id) || p.is_male? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= person_form.label 'Current Spouse', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= person_form.select :current_spouse_id, Person.all.reject { |p| p.id == @person.id }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
-        </div>
-    </div>
+<div class="form-group col-md-5">
+    <%= person_form.label 'First name' %>
+    <%= person_form.text_field :name, :class => "form-control" %>
+</div>
 
-    
-    <div class="text-center">
-        <%= person_form.submit :class => "btn btn-default" %>
+<div class="form-group col-md-5">
+    <%= person_form.label 'Last name' %>
+    <%= person_form.text_field :name, :class => "form-control" %>
+</div>
+
+<div class="form-group col-md-2">
+    <%= person_form.label 'Gender' %>
+    <%= person_form.select :gender, [[:male, "M"], [:female, "F"]], {}, { :class => "form-control" } %>
+</div>
+
+<div class="form-group col-md-6">
+    <%= person_form.label 'Birth date' %>
+    <div class="edtf-editor">
+        <%= person_form.date_field :date_of_birth, :class => "edtf-input form-control" %>
+        <% if @person.date_of_birth %>
+        <%= hidden_field_tag :birth_value, @person.date_of_birth.edtf, { class: "edtf-value" } %>
+        <% else %>
+        <input type="hidden" class="edtf-value"></input>
+        <% end %>
     </div>
+</div>
+
+<div class="form-group col-md-6">
+    <%= person_form.label 'Death date' %>
+    <div class="edtf-editor">
+        <%= person_form.date_field :date_of_death, :class => "edtf-input form-control" %>
+        <% if @person.date_of_death %>
+        <%= hidden_field_tag :death_value, @person.date_of_death.edtf, { class: "edtf-value" } %>
+        <% else %>
+        <input type="hidden" class="edtf-value"></input>
+        <% end %>
+    </div>
+</div>
+    
+<div class="form-group col-md-6">
+    <%= person_form.label 'Father' %>
+    <%= person_form.select :father_id, Person.all.reject { |p| (p.id == @person.id) || p.is_female? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+</div>
+
+<div class="form-group col-md-6">
+    <%= person_form.label 'Mother' %>
+    <%= person_form.select :mother_id, Person.all.reject { |p| (p.id == @person.id) || p.is_male? }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+</div>
+
+<div class="form-group col-md-12">
+    <%= person_form.label 'Current Spouse' %>
+    <%= person_form.select :current_spouse_id, Person.all.reject { |p| p.id == @person.id }.collect { |p| [ p.name, p.id ] }, {include_blank: true}, { :class => "form-control" } %>
+</div>
+
+<div class="text-center">
+    <%= person_form.submit :class => "btn btn-default btn-bottom" %>
 </div>
 
 <% end %>

@@ -1,6 +1,6 @@
 <% if person.can_be_seen_by(current_user) %>
 <div class="col-lg-10 col-lg-offset-1">
-    <% photo = Photo.tagged(person.tag_name)[0] %>
+    <% photo = Photo.tagged(person)[0] %>
     <% if photo %>
     <div class="pull-left thumb"><img class="img-responsive" src="<%= photo.image.url(:thumb) %>"></img></div>
     <% else %>

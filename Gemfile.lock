@@ -52,6 +52,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (4.0.0)
+      activerecord (>= 4.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.7)
       execjs
@@ -249,6 +251,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 4.0)
   autoprefixer-rails
   bcrypt (~> 3.1.7)
   bootstrap-sass

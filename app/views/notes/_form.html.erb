@@ -29,7 +29,7 @@
 </div>
 <div class="form-group col-md-8">
     <%= f.label 'Tags (comma-separated)', :class => "control-label" %>
-    <%= text_field_tag :tag_list, @note.tag_list, class: "form-control" %>
+    <%= f.text_field :tag_list, value: @note.tag_list.to_s, class: "form-control" %>
 </div>
     
 <div class="col-md-3 col-md-offset-1">

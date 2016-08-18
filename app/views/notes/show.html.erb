@@ -11,8 +11,8 @@
     <%= render_markdown(@note.content, true) %>
     <hr>
     
-    <% if @note.tags.present? %>
-    <em>Tagged: <%= render_tags @note.tags %></em>
+    <% if @note.tag_list.count > 0 %>
+    <em>Tagged: <%= render_tags @note.tag_list %></em>
     <% end %>
     
     <% if current_user && current_user.editor? %>

@@ -95,3 +95,6 @@ gem 'pg_search'
 
 # Markdown renderer
 gem 'redcarpet'
+
+# For content tagging
+gem 'acts-as-taggable-on', '~> 4.0'

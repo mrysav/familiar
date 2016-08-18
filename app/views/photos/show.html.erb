@@ -7,8 +7,8 @@
     <% if @photo.description.present? %>
     <%= render_markdown(@photo.description, true) %>
     <% end %>
-    <% if @photo.tags.present? %>
-        <em>Tagged: <%= render_tags(@photo.tags) %></em>
+    <% if @photo.tag_list.count > 0 %>
+        <em>Tagged: <%= render_tags(@photo.tag_list) %></em>
         <br><br>
     <% end %>
 </div>

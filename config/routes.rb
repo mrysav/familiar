@@ -9,8 +9,6 @@ Rails.application.routes.draw do
     get '/search' => 'search#index'
     get '/tagged/:tag' => 'search#tagged', :as => :tagged
     
-    get '/help' => 'search#help'
-    
     get  '/import' => 'import#show'
     post '/import' => 'import#upload'
     

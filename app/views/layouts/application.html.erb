@@ -63,7 +63,6 @@
                     <% else %>
                     <li><%= link_to 'Notes', notes_path %></li>
                     <% end %>
-                    <li><%= link_to 'Help', help_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <% if !current_page?(:controller => 'search', :action => 'index') && !params[:s] %>

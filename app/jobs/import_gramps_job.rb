@@ -39,6 +39,15 @@ class ImportGrampsJob < ImportJobs
                   elsif date!= nil && type == "Death" then
                       p['date_of_death'] = parse_date(date['val'])
                   end
+                  
+                  pevent = event.xpath("place").first
+                  place_hlink = pevent["hlink"] if pevent
+                  if(place_hlink)
+                      place = doc.xpath("//placeobj[@handle='" + place_hlink + "']").first
+                      pname = place.xpath("ptitle").text
+                      p['birthplace'] = pname if type == "Birth"
+                      p['burialplace'] = pname if type == "Death"
+                  end
               end
           end
     

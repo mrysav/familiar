@@ -24,7 +24,7 @@ module MarkdownHelper
                 tag = $2.to_s
                 tag_text = $1.to_s
                 resolved_tag = resolve_tag(tag)
-                if resolved_tag[:url]
+                if resolved_tag && resolved_tag[:url]
                     "[" + tag_text + "](" + resolved_tag[:url] + ")"
                 else
                     tag_text

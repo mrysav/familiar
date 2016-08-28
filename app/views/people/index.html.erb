@@ -1,6 +1,11 @@
 <% if @people.count > 0 %>
 
-<%= render @people %>
+<% @people.in_groups(3, false).each do |s_a| %>
+    <div class="col-lg-4">
+        <%= render s_a %>
+    </div>
+<% end %>
+    
 <br/>
 
 <div class="text-center col-md-12">

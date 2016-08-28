@@ -1,81 +1,90 @@
-<div class="page-header row">
-    <h3>
+<div class="col-lg-12">
+
+<div class="col-md-12">
+    <h2>
         <%= @person.full_name %> <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span>
         <% if current_user && current_user.editor? %>
         <%= link_to 'Edit person', edit_person_path(@person), :class => "pull-right btn btn-default" %>
         <% end %>
-    </h3>
+    </h2>
+    <b>Birth date: </b>
+    <% if @person.date_of_birth.present? %>
+    <%= @person.date_of_birth.strftime("%B %-d, %Y") %>
+    <% else %>
+    <em>Unknown</em>
+    <% end %>
+    <%= '<em>('.html_safe + @person.birthplace + ')</em>'.html_safe if @person.birthplace.present? %>
+    <br/>
+    <b>Death date: </b>
+    <% if @person.date_of_death.present? %>
+    <%= @person.date_of_death.strftime("%B %-d, %Y") %>
+    <% else %>
+    <em>Unknown</em>
+    <% end %>
+    <%= '<em>(Buried: '.html_safe + @person.burialplace + ')</em>'.html_safe if @person.burialplace.present? %>
 </div>
 
-<div class="row">
-    <div class="col-md-2 text-right">
-        <h4>Facts:</h4>
-    </div>
-    <div class="col-md-10">
-        <ul>
-            <% if @person.date_of_birth.present? %>
-            <li>Birth date: <%= @person.date_of_birth %></li>
-            <% end %>
-            <% if @person.date_of_death.present? %>
-            <li>Death date: <%= @person.date_of_death %></li>
-            <% end %>
-        </ul>
-    </div>
+<div class="col-md-12">
+    <h4>Parents:</h4>
+    <div class="col-lg-4"><%= render @person.father if @person.father.present? %></div>
+    <div class="col-lg-4"><%= render @person.mother if @person.mother.present? %></div>
 </div>
-
-<% if @person.mother.present? || @person.father.present? %>
-<div class="row">
-    <div class="col-sm-2 text-right"><h4>Parents:</h4></div>
-    <div class="col-lg-10">
-        <%= render @person.father if @person.father.present? %>
-        <%= render @person.mother if @person.mother.present? %>
-    </div>
-</div>
-<% end %>
 
 <% if @person.siblings.count > 0 %>
-<div class="row">
-    <div class="col-md-2 text-right"><h4>Siblings:</h4></div>
-    <div class="col-md-10">
-        <%= render @person.siblings %>
+<div class="col-md-12">
+    <h4>Siblings:</h4>
+    <% @person.siblings.sort_by{|b| b.birth_date || b.updated_at }.in_groups(3, false).each do |s_a| %>
+    <div class="col-lg-4">
+        <%= render s_a %>
     </div>
+    <% end %>
 </div>
 <% end %>
 
 <% if @person.spouses.count > 0 %>
-<div class="row">
-    <div class="col-md-2 text-right"><h4><%= 'Spouse'.pluralize(@person.spouses.count) + ':' %></h4></div>
-    <div class="col-md-10">
-        <%= render @person.spouses %>
+<div class="col-md-12">
+    <h4><%= 'Spouse'.pluralize(@person.spouses.count) + ':' %></h4>
+    <% @person.spouses.in_groups(3, false).each do |c_a| %>
+    <div class="col-lg-4">
+        <%= render c_a %>
     </div>
+    <% end %>
 </div>
 <% end %>
 
 <% if @person.children.count > 0 %>
-<div class="row">
-    <div class="col-md-2 text-right"><h4>Children:</h4></div>
-    <div class="col-md-10">
-        <%= render @person.children %>
+<div class="col-md-12">
+    <h4>Children:</h4>
+    <% @person.children.sort_by{|b| b.birth_date || b.updated_at }.in_groups(3, false).each do |c_a| %>
+    <div class="col-lg-4">
+        <%= render c_a %>
     </div>
+    <% end %>
 </div>
 <% end %>
 
 <% photos = Photo.tagged(@person) %>
 <% if photos.count > 0 %>
-<div class="row">
-    <div class="col-md-2 text-right"><h4>Photos:</h4></div>
-    <div class="col-md-10">
-        <%= render photos %>
+<div class="col-md-12">
+    <h4>Photos:</h4>
+    <% photos.in_groups(3, false).each do |c_a| %>
+    <div class="col-lg-4">
+        <%= render c_a %>
     </div>
+    <% end %>
 </div>
 <% end %>
 
 <% notes = Note.tagged(@person) %>
 <% if notes.count > 0 %>
-<div class="row">
-    <div class="col-md-2 text-right"><h4>Notes:</h4></div>
-    <div class="col-md-10">
-        <%= render notes %>
+<div class="col-md-12">
+    <h4>Notes:</h4>
+    <% notes.in_groups(3, false).each do |c_a| %>
+    <div class="col-lg-4">
+        <%= render c_a %>
     </div>
+    <% end %>
 </div>
 <% end %>
+
+</div>

@@ -24,6 +24,9 @@ class ImportGedcomJob < ImportJobs
           dday = person.death[0].date if person.death && !person.death.empty?
           p['date_of_birth'] = parse_date(bday) if bday
           p['date_of_death'] = parse_date(dday) if dday
+          
+          p['birthplace'] = person.birth[0].place if person.birth
+          p['burialplace'] = person.burial[0].place if person.burial
     
           masterlist.push(p)
       end

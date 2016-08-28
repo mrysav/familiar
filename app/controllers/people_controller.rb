@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
     before_filter :require_editor, except: [:index, :show]
     
     def index
-        @people = Person.all.select{|p| p.can_be_seen_by(current_user)}.paginate(:page => params[:page], :per_page => 15)
+        @people = Person.all.select{|p| p.can_be_seen_by(current_user)}.paginate(:page => params[:page], :per_page => 24)
     end
     
     def new
@@ -47,6 +47,9 @@ class PeopleController < ApplicationController
     end
     
     def person_params
-        params.require(:person).permit(:first_name, :last_name, :gender, :date_of_birth, :date_of_death, :father_id, :mother_id, :current_spouse_id)
+        params.require(:person).permit(:first_name, :last_name, 
+                                       :gender, :date_of_birth, :date_of_death, 
+                                       :father_id, :mother_id, :current_spouse_id,
+                                       :birthplace, :burialplace)
     end
 end

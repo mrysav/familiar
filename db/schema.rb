@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818211719) do
+ActiveRecord::Schema.define(version: 20160828062447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20160818211719) do
     t.integer  "current_spouse_id"
     t.string   "last_name"
     t.string   "alternate_names"
+    t.string   "birthplace"
+    t.string   "burialplace"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

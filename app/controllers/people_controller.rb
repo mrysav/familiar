@@ -31,6 +31,8 @@ class PeopleController < ApplicationController
     
     def edit
         @person = Person.find(params[:id])
+        @all_names = Person.all.reject { |p| p.id == @person.id }.collect { |p| [ p.full_name, p.id ] }
+        @all_names.sort_by! {|p| p[0] }
     end
     
     def update

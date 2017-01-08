@@ -63,7 +63,7 @@ test:
 # The insecurity of the database is one reason why
 docker:
     <<: *default
-    database: postgres
+    database: familiar
     username: postgres
     password: 
     host: db

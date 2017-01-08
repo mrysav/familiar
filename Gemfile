@@ -47,7 +47,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-ruby '2.3.1'
+ruby '2.3.3'
 
 group :production do
     gem 'rails_12factor'
@@ -84,7 +84,7 @@ gem 'chronic'
 gem 'delayed_job_active_record'
 
 # Use Carrierwave with S3 extension for production storage
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave', '~> 0.11'
 gem 'mini_magick'
 group :production do
     gem 'fog-aws'

@@ -53,6 +53,9 @@ group :production do
     gem 'rails_12factor'
 end
 
+# Load environment variables from .env when possible
+gem 'dotenv-rails'
+
 # Use bootstrap
 gem 'bootstrap-sass'
 # Autoprefixer, for use with Bootstrap

@@ -4,7 +4,7 @@ aws_secret = ENV['AWS_SECRET_ACCESS_KEY']
 s3_bucket_name = ENV['S3_BUCKET_NAME']
 
 # Not required
-s3_region = ENV['S3_REGION'] || 'us-east-1'
+s3_region = ENV['S3_REGION']
 s3_host = ENV['S3_HOST']
 s3_endpoint = ENV['S3_ENDPOINT']
 
@@ -16,10 +16,12 @@ if s3_enabled
             provider:              'AWS',
             aws_access_key_id:     aws_access_key,
             aws_secret_access_key: aws_secret,
-            region:                s3_region,
-            host:                  s3_host,
-            endpoint:              s3_endpoint
         }
+
+        config.fog_credentials[:region]    = s3_region if !s3_region.blank?
+        config.fog_credentials[:host]      = s3_host if !s3_host.blank?
+        config.fog_credentials[:endpoint]  = s3_endpoint if !s3_endpoint.blank?
+
         config.fog_directory  = s3_bucket_name
     end
 end

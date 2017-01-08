@@ -43,7 +43,4 @@ Rails.application.configure do
   config.logger = Logger.new(STDOUT)
   config.logger.level = Logger.const_get('INFO')
   config.log_level    = :info
-  
-  # Use the defaults (filesystem storage) for development environment
-  config.paperclip_defaults = {  }
 end

@@ -33,7 +33,7 @@ Running on docker is (ideally) as simple on first launch as
     docker-compose build
     docker-compose run web rake db:create db:migrate
     docker-compose run web ./configure_environment.sh
-    docker-compose up 
+    docker-compose up
 If this isn't the first launch, then
 
     docker-compose up

@@ -77,11 +77,12 @@ GEM
     delayed_job_active_record (4.1.1)
       activerecord (>= 3.0, < 5.1)
       delayed_job (>= 3.0, < 5)
+    dotenv (2.1.1)
+    dotenv-rails (2.1.1)
+      dotenv (= 2.1.1)
+      railties (>= 4.0, < 5.1)
     edtf (3.0.0)
       activesupport (>= 3.0, < 6.0)
-    edtf-rails (0.3.2)
-      activerecord (< 5)
-      edtf
     erubis (2.7.0)
     excon (0.54.0)
     execjs (2.7.0)
@@ -254,7 +255,8 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.2)
   delayed_job_active_record
-  edtf-rails
+  dotenv-rails
+  edtf
   fog-aws
   font-awesome-rails
   gedcom!

@@ -5,8 +5,7 @@ class Person < ApplicationRecord
 
     # if you've changed the spouse, update associated models on save
     before_save :update_spouse
-    
-    edtf :attributes => [:date_of_birth, :date_of_death]
+
     multisearchable :against => [:first_name, :last_name]
     
     def father
@@ -62,11 +61,11 @@ class Person < ApplicationRecord
     end
 
     def birth_date
-        self.date_of_birth
+        EDTF.parse(self.date_of_birth)
     end
 
     def death_date
-        self.date_of_death
+        EDTF.parse(self.date_of_death)
     end
 
     # this has the potential to get really complicated
@@ -97,7 +96,7 @@ class Person < ApplicationRecord
     def probably_dead?
         self.date_of_death.present? ||
         (self.date_of_birth.present? &&
-         Date.today.year - self.date_of_birth.year > 90)
+         Date.today.year - self.birth_date.year > 90)
     end
     
     def probably_alive?

@@ -18,8 +18,8 @@ GOOGLE_ID="${N_GOOGLE_ID:=$GOOGLE_ID}"
 read -p "Google Application Secret [$GOOGLE_SECRET]: " N_GOOGLE_SECRET
 GOOGLE_SECRET="${N_GOOGLE_SECRET:=$GOOGLE_SECRET}"
 
-echo "Amazon S3 is used for photo storage, but only in the production Rails environment."
-echo "If you aren't going to be using familiar in production, or you're using Docker, leave the following blank."
+echo "Amazon S3 is used for photo storage."
+echo "If you don't want to use S3 for storage, leave the following blank.'"
 
 read -p "AWS Access Key ID [$AWS_ACCESS_KEY_ID]: " N_AWS_ACCESS_KEY_ID
 AWS_ACCESS_KEY_ID="${N_AWS_ACCESS_KEY_ID:=$AWS_ACCESS_KEY_ID}"

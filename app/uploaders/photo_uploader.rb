@@ -6,10 +6,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  # Choose what kind of storage to use for this uploader:
-  if Rails.env.production?
+  # Choose what kind of storage to use for this uploader
+  if self.fog_credentials[:provider] == 'AWS'
+      Rails.logger.info 'Using S3 for storage'
       storage :fog
   else
+      Rails.logger.info 'Using local file system for storage'
       storage :file
   end
 

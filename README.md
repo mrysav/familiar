@@ -51,18 +51,18 @@ Roadmap
 
 Upcoming features:
 
--[ ] JSON data import/export
--[ ] Export GEDCOM and GRAMPS XML
--[ ] Intelligent linking within notes and tags
+- [ ] JSON data import/export
+- [ ] Export GEDCOM and GRAMPS XML
+- [ ] Intelligent linking within notes and tags
 
 Completed features:
 
--[x] Gramps importer
--[x] Facebook login and comments
--[x] Image uploading
--[x] "Story"/wiki-style note editor (markdown is supported too!)
--[x] Tagging system for images and notes
--[x] Full-text search (good enough)
+- [x] Gramps importer
+- [x] Facebook login and comments
+- [x] Image uploading
+- [x] "Story"/wiki-style note editor (markdown is supported too!)
+- [x] Tagging system for images and notes
+- [x] Full-text search (good enough)
 
 More will be added when I think of them!
 

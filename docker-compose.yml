@@ -4,10 +4,17 @@ services:
     image: postgres
   web:
     build: .
-    command: foreman start 
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/familiar
     ports:
       - "5000:5000"
+    links:
+      - db
+  worker:
+    build: .
+    command: bundle exec rake jobs:work
+    volumes:
+      - .:/familiar
     links:
       - db

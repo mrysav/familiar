@@ -72,8 +72,8 @@ gem 'omniauth-google-oauth2'
 # When all else fails
 gem 'omniauth-identity'
 
-# Implementation of the Extended Date and Time Format for ruby/rails
-gem 'edtf-rails'
+# Implementation of the Extended Date and Time Format for ruby
+gem 'edtf'
 #gem 'gedcom', :path => '../gedcom'
 gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
 # Required for importing GrampsXML

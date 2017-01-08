@@ -15,13 +15,13 @@
         <% if person.date_of_birth.present? || person.date_of_death.present? %>
         <h5 class="text-muted">
             <% if person.date_of_birth.present? && person.date_of_death.present? %>
-            <%= person.date_of_birth.year %> - <%= person.date_of_death.year %>
+            <%= person.birth_date.year %> - <%= person.death_date.year %>
             <% elsif person.date_of_birth.present? && !person.probably_dead? %>
-            <%= person.date_of_birth.year %> - Present
+            <%= person.birth_date.year %> - Present
             <% elsif person.date_of_birth.present? && person.probably_dead? %>
-            <%= person.date_of_birth.year %> - Unknown
+            <%= person.birth_date.year %> - Unknown
             <% elsif person.date_of_death.present? %>
-            Unknown - <%= person.date_of_death.year %>
+            Unknown - <%= person.death_date.year %>
             <% end %>
         </h5>
         <% end %>

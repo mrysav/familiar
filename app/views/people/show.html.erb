@@ -2,9 +2,13 @@
 
 <div class="col-md-12">
     <h2>
-        <%= @person.full_name %> <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span>
+        <%= @person.full_name %>
+        <span class="small glyphicon glyphicon-user" style="color: <%= @person.is_female? ? '#DB7093' : '#31708f' %>"></span>
         <% if current_user && current_user.editor? %>
-        <%= link_to 'Edit person', edit_person_path(@person), :class => "pull-right btn btn-default" %>
+            <span class="small">ID: @<%= @person.id %></span>
+            <div class="pull-right">
+                <%= link_to 'Edit person', edit_person_path(@person), :class => "btn btn-default" %><br/>
+            </div>
         <% end %>
     </h2>
     <b>Birth date: </b>
@@ -24,16 +28,18 @@
     <%= '<em>(Buried: '.html_safe + @person.burialplace + ')</em>'.html_safe if @person.burialplace.present? %>
 </div>
 
+<% if @person.father.present? || @person.mother.present? %>
 <div class="col-md-12">
     <h4>Parents:</h4>
     <div class="col-lg-4"><%= render @person.father if @person.father.present? %></div>
     <div class="col-lg-4"><%= render @person.mother if @person.mother.present? %></div>
 </div>
+<% end %>
 
 <% if @person.siblings.count > 0 %>
 <div class="col-md-12">
     <h4>Siblings:</h4>
-    <% @person.siblings.sort_by{|b| b.birth_date || b.updated_at }.in_groups(3, false).each do |s_a| %>
+    <% @person.siblings.sort_by{|b| b.birth_date || b.updated_at.to_date }.in_groups(3, false).each do |s_a| %>
     <div class="col-lg-4">
         <%= render s_a %>
     </div>
@@ -55,7 +61,7 @@
 <% if @person.children.count > 0 %>
 <div class="col-md-12">
     <h4>Children:</h4>
-    <% @person.children.sort_by{|b| b.birth_date || b.updated_at }.in_groups(3, false).each do |c_a| %>
+    <% @person.children.sort_by{|b| b.birth_date || b.updated_at.to_date }.in_groups(3, false).each do |c_a| %>
     <div class="col-lg-4">
         <%= render c_a %>
     </div>
@@ -79,10 +85,8 @@
 <% if notes.count > 0 %>
 <div class="col-md-12">
     <h4>Notes:</h4>
-    <% notes.in_groups(3, false).each do |c_a| %>
-    <div class="col-lg-4">
-        <%= render c_a %>
-    </div>
+    <% notes.each do |c_a| %>
+    <%= render c_a %>
     <% end %>
 </div>
 <% end %>

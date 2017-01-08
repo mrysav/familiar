@@ -71,8 +71,6 @@ gem 'omniauth-identity'
 
 # Implementation of the Extended Date and Time Format for ruby/rails
 gem 'edtf-rails'
-# Add genealogies to ActiveRecord models easily
-gem 'genealogy'
 #gem 'gedcom', :path => '../gedcom'
 gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
 # Required for importing GrampsXML

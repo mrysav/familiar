@@ -2,13 +2,73 @@ class Person < ApplicationRecord
     include PgSearch
     
     validate :name_present
-    
-    # father_id and mother_id are the default names, they're already in the db
-    has_parents column_names: { sex: 'gender', birth_date: 'date_of_birth', death_date: 'date_of_death' }, current_spouse: true
+
+    # if you've changed the spouse, update associated models on save
+    before_save :update_spouse
     
     edtf :attributes => [:date_of_birth, :date_of_death]
     multisearchable :against => [:first_name, :last_name]
     
+    def father
+        Person.find(self.father_id) if self.father_id
+    end
+
+    def father=(value)
+        self.father_id = value.id if value.instance_of? Person
+    end
+
+    def mother
+        Person.find(self.mother_id) if self.mother_id
+    end
+
+    def mother=(value)
+        self.mother_id = value.id if value.instance_of? Person
+    end
+
+    def current_spouse
+        Person.find(self.current_spouse_id) if self.current_spouse_id
+    end
+
+    def current_spouse=(value)
+        self.current_spouse_id = value.id if value.instance_of? Person
+    end
+
+    def siblings
+        if(self.mother_id && self.father_id)
+            Person.where('(mother_id = ? or father_id = ?) and id != ?', self.mother_id, self.father_id, self.id)
+        elsif(self.mother_id && !self.father_id)
+            Person.where('mother_id = ? and id != ?', self.mother_id, self.id)
+        elsif(!self.mother_id && self.father_id)
+            Person.where('father_id = ? and id != ?', self.father_id, self.id)
+        else
+            []
+        end
+    end
+
+    def children
+        Person.where('mother_id = ? or father_id = ?', self.id, self.id)
+    end
+
+    def spouses
+        Person.where(current_spouse_id: self.id)
+    end
+    
+    def is_female?
+        self.gender == 'F'
+    end
+
+    def is_male?
+        self.gender == 'M'
+    end
+
+    def birth_date
+        self.date_of_birth
+    end
+
+    def death_date
+        self.date_of_death
+    end
+
     # this has the potential to get really complicated
     def relationship_to(other)
         if self.mother_id == other.id || self.father_id == other.id
@@ -53,6 +113,7 @@ class Person < ApplicationRecord
         'person:' + self.id.to_s
     end
     
+    # TODO: deprecate
     def to_gedx_json
         {
             :private => !self.probably_dead?,
@@ -72,5 +133,25 @@ class Person < ApplicationRecord
       if self.first_name.blank? && self.last_name.blank?
         errors[:base] << "Must provide a first or last name."
       end
+    end
+
+    def update_spouse
+        people = Person.where(current_spouse_id: self.id).select{|p| p.id != self.id}
+        people.each do |p|
+            p.current_spouse_id = nil
+            if(!p.save)
+                Rails.logger.warn 'Error setting current spouse for ' + self.id + "; unable to save old spouse: " + p.id
+            end
+        end
+
+        if(self.current_spouse_id != nil)
+            new_spouse = Person.where(id: self.current_spouse_id)
+            if(new_spouse)
+                new_spouse.current_spouse_id = self.id
+                if(!new_spouse.save)
+                    Rails.logger.warn 'Error setting current spouse for ' + self.id + "; unable to save new spouse: " + self.current_spouse_id
+                end
+            end
+        end
     end
 end

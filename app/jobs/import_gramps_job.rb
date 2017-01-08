@@ -7,6 +7,9 @@ class ImportGrampsJob < ImportJobs
       # decompress if necessary
       gxml = decompress(args[0])
       
+      # attempt to merge
+      do_merge = !!args[1]
+      
       begin
           doc = Nokogiri::XML(gxml, nil, "UTF-8") {|config| config.strict}
       rescue Exception => e
@@ -52,21 +55,17 @@ class ImportGrampsJob < ImportJobs
           end
     
           masterlist.push(p)
-      end
-
-      Rails.logger.info masterlist.count.to_s + " people. Performing first pass database insert (may take a minute)..."
-
-      masterlist.each do |data|
-          p = Person.create(data.except('gid'))
-          if(p.save) then
-              data['id'] = p['id']
-          else
-              Rails.logger.warn 'Error saving ' + data['first_name'] + ' ' + data['last_name'] + '!'
-          end
+      end      
+      
+      if(do_merge)
+          Rails.logger.info 'Attempting to update people in database.'
+          update_people(masterlist)
+      else
+          Rails.logger.info masterlist.count.to_s + " people. Performing first pass database insert (may take a minute)..."
+          insert_people(masterlist)
       end
 
       Rails.logger.debug Person.count.to_s + " people in database after import."
-
       Rails.logger.info "Importing family relationships."
 
       families = doc.xpath("//family")

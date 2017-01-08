@@ -6,6 +6,9 @@ class ImportGedcomJob < ImportJobs
   def perform(*args)
       Rails.logger.info "Importing GEDCOM (assuming v5.5/Lineage-Linked)"
 
+      # try to merge
+      do_merge = !!args[1]
+
       doc = Gedcom.read(StringIO.new(args[0]))
       people = doc.transmissions[0].individual_record
 
@@ -30,16 +33,13 @@ class ImportGedcomJob < ImportJobs
     
           masterlist.push(p)
       end
-
-      Rails.logger.info masterlist.count.to_s + " people. Performing first pass database insert (may take a minute)..."
-
-      masterlist.each do |data|
-          p = Person.create(data.except('gid'))
-          if(p.save) then
-              data['id'] = p['id']
-          else
-              Rails.logger.warn 'Error saving ' + data['first_name'] + ' ' + data['last_name'] + '!'
-          end
+      
+      if(do_merge)
+          Rails.logger.info 'Attempting to update people in database.'
+          update_people(masterlist)
+      else
+          Rails.logger.info masterlist.count.to_s + " people. Performing first pass database insert (may take a minute)..."
+          insert_people(masterlist)
       end
 
       Rails.logger.debug Person.count.to_s + " people in database after import."

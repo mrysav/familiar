@@ -7,6 +7,8 @@ class PeopleController < ApplicationController
     
     def new
         @person = Person.new
+        @all_names = Person.all.collect { |p| [ p.full_name, p.id ] }
+        @all_names.sort_by! {|p| p[0] }
     end
     
     def create
@@ -48,6 +50,8 @@ class PeopleController < ApplicationController
     def destroy
     end
     
+    private
+
     def person_params
         params.require(:person).permit(:first_name, :last_name, 
                                        :gender, :date_of_birth, :date_of_death, 

@@ -1,0 +1,59 @@
+<div class="col-md-6 col-md-offset-3">
+
+<h3>Export Data</h3>
+
+<br/>
+
+<%= form_for Export.new, :html => { :role => :form} do |f| %>
+
+<div class="radio">
+  <label>
+    <%= f.radio_button :format, :json, checked: true %>
+    Mixed JSON/Markdown archive
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <%= f.radio_button :format, :gedcom, disabled: true %>
+    GEDCOM 5
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <%= f.radio_button :format, :gedcomx, disabled: true %>
+    GEDCOMX
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <%= f.radio_button :format, :gramps, disabled: true %>
+    GRAMPS XML
+  </label>
+</div>
+
+<br/>
+
+<div class="form-group">
+  <%= f.label :"Tag (no spaces, letters, numbers, underscores and hyphens only)" %>
+  <%= f.text_field :tag, class: "form-control", placeholder: "really_cool_backup" %>
+</div>
+
+<br/>
+
+<div class="text-center">
+    <%= f.submit "Back it up!", class: "btn btn-default"%>
+</div>
+
+<% end %>
+
+<h4>Previous Exports <span class="btn btn-default pull-right">Refresh</span></h4>
+<table id="export-table"></table>
+
+</div>
+
+<script type="text/javascript">
+    $('')
+</script>

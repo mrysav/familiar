@@ -90,9 +90,8 @@
                             <li><%= link_to 'Profile', profile_path %></li>
                             <% end %>
                             <% if current_user && current_user.editor? %>
-                            <li><%= link_to 'Import/Export', import_path %></li>
-                            <% end %>
-                            <% if current_user && current_user.editor? %>
+                            <li><%= link_to 'Import Data', import_path %></li>
+                            <li><%= link_to 'Export Data', export_path %></li>
                             <li><%= link_to 'Manage Users', admin_users_path %></li>
                             <% end %>
                             <li><%= link_to 'Sign Out', logout_path %></li>

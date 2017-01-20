@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     
     get  '/import' => 'import#show'
     post '/import' => 'import#upload'
+    get  '/import/jobs' => 'import#get_jobs_ajax', :as => :get_jobs
+
+    get  '/export' => 'export#show'
+    post '/export' => 'export#export', :as => :exports
+    get  '/export/jobs' => 'export#jobs'
     
     get '/admin/users' => 'users#manage'
     get '/profile' => 'users#profile'

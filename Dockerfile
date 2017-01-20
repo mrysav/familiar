@@ -4,8 +4,6 @@ FROM ruby:2.3.3
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs
 
 ENV APP_HOME /familiar
-ENV RAILS_ENV docker
-ENV PORT 5000
 
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME

@@ -4,7 +4,11 @@ services:
     image: postgres
   web:
     build: .
-    command: bundle exec puma -C config/puma.rb
+    environment:
+      - PORT=5000
+      - RAILS_ENV=docker
+    env_file: .env
+    command: puma -C config/puma.rb
     volumes:
       - .:/familiar
     ports:
@@ -13,7 +17,10 @@ services:
       - db
   worker:
     build: .
-    command: bundle exec rake jobs:work
+    environment: 
+      - RAILS_ENV=docker
+    env_file: .env
+    command: rake jobs:work
     volumes:
       - .:/familiar
     links:

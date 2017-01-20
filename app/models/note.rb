@@ -10,12 +10,14 @@ class Note < ApplicationRecord
     before_save :update_people_tags
     
     validates :title, presence: true
-    validates :content, presence: true  
-    
-    edtf :attributes => [:date]               
+    validates :content, presence: true              
     
     has_many :comments, as: :commentable, dependent: :destroy
     
+    def date
+        EDTF.parse(self.date)
+    end
+
     def cool_date
         return self.date.strftime("%B %-d, %Y")
     end

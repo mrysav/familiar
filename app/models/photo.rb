@@ -8,8 +8,6 @@ class Photo < ApplicationRecord
     validates :image, presence: true
     validates :title, presence: true
     
-    edtf :attributes => [:date]
-    
     has_many :comments, as: :commentable, dependent: :destroy
     
     mount_uploader :image, PhotoUploader
@@ -19,5 +17,9 @@ class Photo < ApplicationRecord
             return Photo.tagged_with(person.tag_name, on: :people_tags)
         end
         []
+    end
+
+    def date
+        EDTF.parse(self.date)
     end
 end

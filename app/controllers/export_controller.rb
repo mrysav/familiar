@@ -2,6 +2,7 @@ class ExportController < ApplicationController
     before_filter :require_editor
 
     def show
+        @exports = Export.all.order(created_at: :desc)
     end
     
     def export
@@ -26,7 +27,8 @@ class ExportController < ApplicationController
         Export.find_each do |e|
             exports.push({:tag => e.tag, 
                           :date => e.created_at.to_i,
-                          :link => ""})
+                          :link => e.archive.url,
+                          :status => e.status })
         end
         render :json => exports
     end

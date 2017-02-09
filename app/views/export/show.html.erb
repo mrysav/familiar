@@ -49,11 +49,7 @@
 
 <% end %>
 
-<h4>Previous Exports <span class="btn btn-default pull-right">Refresh</span></h4>
-<table id="export-table"></table>
+<h4>Previous Exports</h4>
+<%= render partial: "exports", locals: {exports: @exports} %>
 
 </div>
-
-<script type="text/javascript">
-    $('')
-</script>

@@ -23,5 +23,7 @@ services:
     command: rake jobs:work
     volumes:
       - .:/familiar
+    tmpfs:
+      - /tmp
     links:
       - db

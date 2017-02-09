@@ -14,7 +14,7 @@ class Note < ApplicationRecord
     
     has_many :comments, as: :commentable, dependent: :destroy
     
-    def date
+    def edtf_date
         EDTF.parse(self.date)
     end
 

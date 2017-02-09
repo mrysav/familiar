@@ -19,7 +19,7 @@ class Photo < ApplicationRecord
         []
     end
 
-    def date
+    def edtf_date
         EDTF.parse(self.date)
     end
 end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.0.0'
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -32,7 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug', platform: :mri
 end
 
 group :development do
@@ -47,7 +47,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-ruby '2.3.3'
+ruby '2.4.0'
 
 group :production do
     gem 'rails_12factor'
@@ -82,7 +82,7 @@ gem 'chronic'
 gem 'delayed_job_active_record'
 
 # Use Carrierwave with S3 extension for production storage
-gem 'carrierwave', '~> 0.11'
+gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 group :production do
     gem 'fog-aws'

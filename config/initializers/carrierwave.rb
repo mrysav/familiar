@@ -8,7 +8,7 @@ s3_region = ENV['S3_REGION']
 s3_host = ENV['S3_HOST']
 s3_endpoint = ENV['S3_ENDPOINT']
 
-s3_enabled = !Rails.env.development? && !(aws_access_key.blank? || aws_secret.blank? || s3_bucket_name.blank?)
+s3_enabled = !(aws_access_key.blank? || aws_secret.blank? || s3_bucket_name.blank?)
 
 if s3_enabled
     CarrierWave.configure do |config|

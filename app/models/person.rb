@@ -3,9 +3,6 @@ class Person < ApplicationRecord
     
     validate :name_present
 
-    # if you've changed the spouse, update associated models on save
-    before_save :update_spouse
-
     multisearchable :against => [:first_name, :last_name]
     
     def father
@@ -132,25 +129,5 @@ class Person < ApplicationRecord
       if self.first_name.blank? && self.last_name.blank?
         errors[:base] << "Must provide a first or last name."
       end
-    end
-
-    def update_spouse
-        people = Person.where(current_spouse_id: self.id).select{|p| p.id != self.id}
-        people.each do |p|
-            p.current_spouse_id = nil
-            if(!p.save)
-                Rails.logger.warn 'Error setting current spouse for ' + self.id + "; unable to save old spouse: " + p.id
-            end
-        end
-
-        if(self.current_spouse_id != nil)
-            new_spouse = Person.where(id: self.current_spouse_id)
-            if(new_spouse)
-                new_spouse.current_spouse_id = self.id
-                if(!new_spouse.save)
-                    Rails.logger.warn 'Error setting current spouse for ' + self.id + "; unable to save new spouse: " + self.current_spouse_id
-                end
-            end
-        end
     end
 end

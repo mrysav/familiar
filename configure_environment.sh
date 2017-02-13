@@ -31,10 +31,9 @@ read -p "S3 Bucket Name [$S3_BUCKET_NAME]: " N_S3_BUCKET_NAME
 S3_BUCKET_NAME="${N_S3_BUCKET_NAME:=$S3_BUCKET_NAME}"
 
 if [ -z "$DATABASE_URL" ]; then
-    read -p "Would you like to use the default Dockerized PostgreSQL? [y/n] " 1 -r
-    echo
+    read -p "Would you like to use the default Dockerized PostgreSQL? [y/n] " -r
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        DATABASE_URL="postgres://familiar@db/familiar"
+        DATABASE_URL="postgres://postgres@db/familiar"
     else
         echo "You will have to edit DATABASE_URL manually in .env or modify config/database.yml to connect to your database.'"
     fi
@@ -45,6 +44,8 @@ fi
 
 echo "Regenerating secret with 'rake secret'..."
 SECRET_KEY_BASE=`rake secret`
+
+echo "The default Rails environment is development. You will need to change this in .env"
 
 if [ -e "./.env" ]; then rm .env; fi
 
@@ -57,5 +58,6 @@ echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
 echo "S3_BUCKET_NAME=$S3_BUCKET_NAME" >> .env
 echo "DATABASE_URL=$DATABASE_URL" >> .env
 echo "SECRET_KEY_BASE=$SECRET_KEY_BASE" >> .env
+echo "RAILS_ENV=development" >> .env
 
 echo "Configuration complete. Rerun this script to change values."

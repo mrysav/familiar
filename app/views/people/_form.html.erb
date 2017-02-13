@@ -26,7 +26,7 @@
 <div class="form-group col-md-6">
     <%= person_form.label 'Birth date' %>
     <div class="edtf-editor">
-        <%= person_form.date_field :date_of_birth, :class => "edtf-input form-control" %>
+        <%= person_form.date_field :date_of_birth, :value => @person.birth_date, :class => "edtf-input form-control" %>
         <% if @person.date_of_birth %>
         <%= hidden_field_tag :birth_value, @person.date_of_birth, { class: "edtf-value" } %>
         <% else %>
@@ -38,7 +38,7 @@
 <div class="form-group col-md-6">
     <%= person_form.label 'Death date' %>
     <div class="edtf-editor">
-        <%= person_form.date_field :date_of_death, :class => "edtf-input form-control" %>
+        <%= person_form.date_field :date_of_death, :value => @person.death_date, :class => "edtf-input form-control" %>
         <% if @person.date_of_death %>
         <%= hidden_field_tag :death_value, @person.date_of_death, { class: "edtf-value" } %>
         <% else %>

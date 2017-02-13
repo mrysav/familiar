@@ -11,43 +11,42 @@
 
 <%= form_for @photo, :html => { :role => :form, :multipart => true } do |f| %>
 
-<div class="form-horizontal">
-    <div class="form-group">
-        <%= f.label 'Title', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= f.text_field :title, :class => "form-control" %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= f.label 'Date taken', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= f.date_field :date, :class => "form-control" %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= f.label 'Caption', :class=> "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= f.text_area :description, class: "form-control md-editor", id: "photo-desc-editor" %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= f.label 'Tags (comma-separated)', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= f.text_field :tag_list, value: @photo.tag_list.to_s, class: "form-control" %>
-        </div>
-    </div>
-    <div class="form-group">
-        <%= f.label 'Upload picture', :class => "col-sm-4 control-label" %>
-        <div class="col-sm-4">
-            <%= image_tag(@photo.image.thumb.url, class: "img-responsive block-centered") if @photo.image? %><br/>
-            <%= f.file_field :image, :class => "form-control" %>
-            <%= f.hidden_field :image_cache %>
-        </div>
-    </div>
+<div class="form-group">
+    <%= f.label 'Title' %>
+    <%= f.text_field :title, :class => "form-control" %>
+</div>
 
-    <div class="text-center">
-        <%= f.submit :class => "btn btn-default" %>
+<div class="form-group">
+    <%= f.label 'Date taken' %>
+    <div class="edtf-editor">
+        <%= f.date_field :date, :value => @photo.edtf_date, :class => "edtf-input form-control" %>
+        <% if @photo.date %>
+        <%= hidden_field_tag :date_value, @photo.date, { class: "edtf-value" } %>
+        <% else %>
+        <input type="hidden" class="edtf-value"></input>
+        <% end %>
     </div>
+</div>
+
+<div class="form-group">
+    <%= f.label 'Caption', :class=> "control-label" %>
+    <%= f.text_area :description, class: "form-control md-editor", id: "photo-desc-editor" %>
+</div>
+
+<div class="form-group">
+    <%= f.label 'Tags (comma-separated)' %>
+    <%= f.text_field :tag_list, value: @photo.tag_list.to_s, class: "form-control" %>
+</div>
+
+<div class="form-group">
+    <%= f.label 'Upload picture' %>
+    <%= image_tag(@photo.image.thumb.url, class: "img-responsive block-centered") if @photo.image? %><br/>
+    <%= f.file_field :image, :class => "form-control" %>
+    <%= f.hidden_field :image_cache %>
+</div>
+
+<div class="text-center">
+    <%= f.submit :class => "btn btn-default" %>
 </div>
 
 <% end %>

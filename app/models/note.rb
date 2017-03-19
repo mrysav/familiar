@@ -17,10 +17,6 @@ class Note < ApplicationRecord
     def edtf_date
         EDTF.parse(self.date)
     end
-
-    def cool_date
-        return self.date.strftime("%B %-d, %Y")
-    end
     
     def self.tagged(person)
         if person.is_a? Person

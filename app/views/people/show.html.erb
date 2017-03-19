@@ -13,7 +13,7 @@
     </h2>
     <b>Birth date: </b>
     <% if @person.date_of_birth.present? %>
-    <%= @person.birth_date.strftime("%B %-d, %Y") %>
+    <%= render_short_date(@person.birth_date) %>
     <% else %>
     <em>Unknown</em>
     <% end %>
@@ -21,7 +21,7 @@
     <br/>
     <b>Death date: </b>
     <% if @person.date_of_death.present? %>
-    <%= @person.death_date.strftime("%B %-d, %Y") %>
+    <%= render_short_date(@person.death_date) %>
     <% else %>
     <em>Unknown</em>
     <% end %>

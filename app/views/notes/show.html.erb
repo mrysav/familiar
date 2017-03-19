@@ -3,7 +3,7 @@
         <h1>
             <%= @note.title %> 
             <% if @note.date.present? %>
-            <br/><small><em><%= @note.cool_date %></em></small>
+            <br/><small><em><%= render_short_date(@note.edtf_date) %></em></small>
             <% end %>
         </h1>
     </div>

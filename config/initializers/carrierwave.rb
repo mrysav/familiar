@@ -12,6 +12,7 @@ s3_enabled = Rails.env.production? && !(aws_access_key.blank? || aws_secret.blan
 
 if s3_enabled
     CarrierWave.configure do |config|
+        config.fog_provider = 'fog/aws'
         config.fog_credentials = {
             provider:              'AWS',
             aws_access_key_id:     aws_access_key,

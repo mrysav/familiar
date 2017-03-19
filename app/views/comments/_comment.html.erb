@@ -1,7 +1,7 @@
 <% user = User.find(comment.owner_id) %>
 <%= render_markdown(comment.body) %><br>
 <em class="small">
-    <%= user.name %> - <%= comment.cool_date %>
+    <%= user.name %> - <%= render_long_datetime(comment.updated_at) %>
     <% if current_user == user %>
     (<%= link_to :delete, [comment.commentable, comment],
                  method: :delete,

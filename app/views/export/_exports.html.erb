@@ -11,7 +11,7 @@
     <tbody>
     <% exports.each do |e| %>
         <tr>
-            <td><%= e.created_at %></td>
+            <td><%= render_long_datetime(e.created_at) %></td>
             <td><%= e.tag %></td>
             <td><%= e.format %></td>
             <td><%= e.status %></td>

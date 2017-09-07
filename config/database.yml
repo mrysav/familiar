@@ -83,5 +83,3 @@ test:
 production:
   <<: *default
   database: familiar_production
-  username: familiar
-  password: <%= ENV['FAMILIAR_DATABASE_PASSWORD'] %>

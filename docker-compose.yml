@@ -1,7 +1,7 @@
 version: '2.0'
 services:
   db:
-    image: postgres
+    image: postgres:9.6
   web:
     build: .
     environment:

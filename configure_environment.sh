@@ -33,7 +33,7 @@ S3_BUCKET_NAME="${N_S3_BUCKET_NAME:=$S3_BUCKET_NAME}"
 if [ -z "$DATABASE_URL" ]; then
     read -p "Would you like to use the default Dockerized PostgreSQL? [y/n] " -r
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        DATABASE_URL="postgres://postgres@db/familiar"
+        DATABASE_URL="postgres://postgres@db"
     else
         echo "You will have to edit DATABASE_URL manually in .env or modify config/database.yml to connect to your database.'"
     fi

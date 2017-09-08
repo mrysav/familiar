@@ -42,8 +42,19 @@ else
     DATABASE_URL="${N_DATABASE_URL:=$DATABASE_URL}"
 fi
 
-echo "Regenerating secret with 'rake secret'..."
-SECRET_KEY_BASE=`rake secret`
+function gen_secret {
+    echo "Regenerating secret with 'rake secret'..."
+    SECRET_KEY_BASE=`rake secret`
+} 
+
+if [ -n "$SECRET_KEY_BASE" ]; then
+    read -p "Would you like to regenerate SECRET_KEY_BASE? [y/n] " -r
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        gen_secret
+    fi
+else
+    gen_secret
+fi
 
 echo "The default Rails environment is development. You will need to change this in .env"
 

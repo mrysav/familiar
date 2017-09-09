@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-    before_filter :require_editor, except: [:index, :show]
+    before_action :require_editor, except: [:index, :show]
     
     def index
         @notes = Note.all.paginate(:page => params[:page])

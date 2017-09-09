@@ -1,5 +1,5 @@
 class ExportController < ApplicationController
-    before_filter :require_editor
+    before_action :require_editor
 
     def show
         @exports = Export.all.order(created_at: :desc)

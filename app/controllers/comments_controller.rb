@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_filter :require_valid_user
+    before_action :require_valid_user
     
     def create
         if(!current_user)

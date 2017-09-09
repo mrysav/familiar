@@ -36,21 +36,26 @@ group :development, :test do
 end
 
 group :development do
+  gem 'listen', '~> 3.0.5'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
-  gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-ruby '2.3.3'
+ruby '2.3.4'
+
+group :development, :test do
+  # Use dotenv so we don't need an external service to load environment variables
+  gem 'dotenv-rails'
+end
 
 group :production do
-    gem 'rails_12factor'
+  gem 'rails_12factor'
 end
 
 # Use bootstrap
@@ -71,8 +76,8 @@ gem 'omniauth-identity'
 
 # Implementation of the Extended Date and Time Format for ruby
 gem 'edtf'
-#gem 'gedcom', :path => '../gedcom'
-gem 'gedcom', :github => 'mrysav/gedcom', :branch => 'master'
+
+gem 'gedcom', github: 'mrysav/gedcom', branch: 'master'
 # Required for importing GrampsXML
 gem 'nokogiri'
 # Date parser, used when importing data
@@ -85,7 +90,7 @@ gem 'delayed_job_active_record'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 group :production do
-    gem 'fog-aws'
+  gem 'fog-aws'
 end
 
 # Use pg_search for full-text searches

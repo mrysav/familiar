@@ -67,9 +67,11 @@ class ImportJsonJob < ImportJobs
       photos.each do |photo|
         p = Photo.create(photo.except('id', 'file_name'))
         fname = photo['file_name'][photo['file_name'].index('_') + 1..-1]
-        p.image.store_path(fname)
-        if p.image.store!(File.open('photos/' + photo['file_name'])) && p.save
+        FileUtils.mv('photos/' + photo['file_name'], fname)
+        p.image = File.open(fname)
+        if p.save
           file_to_local_photo_id[photo['id']] = p.id
+          FileUtils.rm(fname)
         else
           Rails.logger.warn "Error saving photo #{photo['id']}: #{photo['title']}"
         end

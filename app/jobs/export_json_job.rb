@@ -47,7 +47,8 @@ class ExportJsonJob < ExportJobs
 
       is_first = true
       Note.find_each do |note|
-        n_fname = sanitize_filename(note.title) + '.md';
+        n_fname = note.title + '.md'
+        sanitize_filename(n_fname)
         n_json = { title: note.title, date: note.date, id: note.id,
                    created_at: note.created_at, updated_at: note.updated_at, 
                    tag_list: note.tag_list, 

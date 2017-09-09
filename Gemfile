@@ -54,10 +54,6 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
-group :production do
-  gem 'rails_12factor'
-end
-
 # Use bootstrap
 gem 'bootstrap-sass'
 # Autoprefixer, for use with Bootstrap

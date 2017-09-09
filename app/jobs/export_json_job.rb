@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
+require 'json'
+
+##
+# Exports all data to a json+photo+markdown archive
 class ExportJsonJob < ExportJobs
-  require 'json'
   
   queue_as :default
 
@@ -30,7 +35,7 @@ class ExportJsonJob < ExportJobs
         else
           file.write ",\n"
         end
-        file.write "#{p_json}"
+        file.write p_json.to_s
       end
 
       file.write "\n]"
@@ -42,17 +47,17 @@ class ExportJsonJob < ExportJobs
 
       is_first = true
       Note.find_each do |note|
-        n_fname = sanitize_filename(note.title) + ".md";
-        n_json = { :title => note.title, :date => note.date, 
-                   :created_at => note.created_at, :updated_at => note.updated_at, 
-                   :tag_list => note.tag_list, 
-                   :file_name => n_fname }.to_json
+        n_fname = sanitize_filename(note.title) + '.md';
+        n_json = { title: note.title, date: note.date, id: note.id,
+                   created_at: note.created_at, updated_at: note.updated_at, 
+                   tag_list: note.tag_list, 
+                   file_name: n_fname }.to_json
         if is_first
           is_first = false
         else
           file.write ",\n"
         end
-        file.write "#{n_json}"
+        file.write n_json.to_s
         File.open('notes/' + n_fname, 'w') do |md|
           md.write note.content
         end
@@ -68,16 +73,16 @@ class ExportJsonJob < ExportJobs
       is_first = true
       Photo.find_each do |photo|
         p_fname = photo.id.to_s + "_" + photo.image.file.filename
-        p_json = { :title => photo.title, :date => photo.date, :description => photo.description,
-                   :created_at => photo.created_at, :updated_at => photo.updated_at, 
-                   :tag_list => photo.tag_list, 
-                   :file_name => p_fname }.to_json
+        p_json = { title: photo.title, date: photo.date, description: photo.description,
+                   created_at: photo.created_at, updated_at: photo.updated_at, 
+                   tag_list: photo.tag_list, id: photo.id,
+                   file_name: p_fname }.to_json
         if is_first
           is_first = false
         else
           file.write ",\n"
         end
-        file.write "#{p_json}"
+        file.write p_json.to_s
         File.open('photos/' + p_fname, 'wb') do |p|
           p.write photo.image.read
         end

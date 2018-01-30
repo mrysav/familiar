@@ -1,16 +1,16 @@
-# Required environment variables for S3
-aws_access_key = ENV['AWS_ACCESS_KEY_ID']
-aws_secret = ENV['AWS_SECRET_ACCESS_KEY']
-s3_bucket_name = ENV['S3_BUCKET_NAME']
+storage_type = ENV['STORAGE_TYPE'].downcase
 
-# Not required
-s3_region = ENV['S3_REGION']
-s3_host = ENV['S3_HOST']
-s3_endpoint = ENV['S3_ENDPOINT']
+if(storage_type == 's3')
+    # Required environment variables for S3
+    aws_access_key = ENV['AWS_ACCESS_KEY_ID']
+    aws_secret = ENV['AWS_SECRET_ACCESS_KEY']
+    s3_bucket_name = ENV['S3_BUCKET_NAME']
 
-s3_enabled = Rails.env.production? && !(aws_access_key.blank? || aws_secret.blank? || s3_bucket_name.blank?)
+    # Not required
+    s3_region = ENV['S3_REGION']
+    s3_host = ENV['S3_HOST']
+    s3_endpoint = ENV['S3_ENDPOINT']
 
-if s3_enabled
     CarrierWave.configure do |config|
         config.fog_provider = 'fog/aws'
         config.fog_credentials = {
@@ -24,5 +24,19 @@ if s3_enabled
         config.fog_credentials[:endpoint]  = s3_endpoint if !s3_endpoint.blank?
 
         config.fog_directory  = s3_bucket_name
+    end
+end
+
+if(storage_type == 'webdav')
+    # Required environment variables for WebDAV
+    webdav_url = ENV['WEBDAV_URL']
+    webdav_username = ENV['WEBDAV_USERNAME']
+    webdav_password = ENV['WEBDAV_PASSWORD']
+
+    CarrierWave.configure do |config|
+        config.storage = :webdav
+        config.webdav_server = webdav_url
+        config.webdav_username = webdav_username
+        config.webdav_password = webdav_password
     end
 end

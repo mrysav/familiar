@@ -1,10 +1,12 @@
 class ImportUploader < CarrierWave::Uploader::Base
 
-  # Choose what kind of storage to use for this uploader:
-  if self.fog_credentials[:provider] == 'AWS'
-      storage :fog
+  # Choose what kind of storage to use for this uploader
+  if ENV['STORAGE_TYPE'] == 's3'
+    storage :fog
+  elsif ENV['STORAGE_TYPE'] == 'webdav'
+    storage :webdav
   else
-      storage :file
+    storage :file
   end
 
   # Override the directory where uploaded files will be stored.

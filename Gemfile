@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1'
 # Use PostgreSQL as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -83,11 +83,13 @@ gem 'chronic'
 gem 'delayed_job_active_record'
 
 # Use Carrierwave with S3 extension for production storage
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.2'
 gem 'mini_magick'
-group :production do
-  gem 'fog-aws'
-end
+
+# Optional carrierwave storage backends
+gem 'fog-aws'
+gem 'carrierwave-webdav'
+
 
 # Use pg_search for full-text searches
 gem 'pg_search'

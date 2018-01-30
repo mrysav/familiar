@@ -1,4 +1,4 @@
-storage_type = ENV['STORAGE_TYPE'].downcase
+storage_type = ENV['STORAGE_TYPE']
 
 if(storage_type == 's3')
     # Required environment variables for S3

@@ -39,3 +39,12 @@ bower.json
 
 # Ignore Carrierwave uploads
 /public/uploads/
+
+# Ignore compiled assets
+/public/assets/
+
+# VSCode configuration
+/.vscode
+
+# Byebug
+.byebug_history

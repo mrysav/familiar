@@ -71,10 +71,10 @@ gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
 
 # Font Awesome, for lots of icons
-gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.0'
 
-# Use will_paginate with bootstrap styles
-gem 'will_paginate-bootstrap'
+# Use will_paginate
+gem 'will_paginate'
 
 # Using Facebook authentication for now
 gem 'omniauth-facebook'
@@ -101,7 +101,6 @@ gem 'carrierwave', '~> 1.2'
 # Optional carrierwave storage backends
 gem 'fog-aws'
 gem 'carrierwave-webdav'
-
 
 # Use pg_search for full-text searches
 gem 'pg_search'

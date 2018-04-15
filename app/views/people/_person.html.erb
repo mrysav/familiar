@@ -2,7 +2,7 @@
 <div>
     <% photo = Photo.tagged(person)[0] %>
     <% if photo %>
-    <div class="pull-left thumb"><img class="img-responsive" src="<%= photo.image.url(:thumb) %>"></img></div>
+    <div class="pull-left thumb"><img class="img-fluid" src="<%= photo.image.url(:thumb) %>"></img></div>
     <% else %>
     <div class="pull-left text-center text-muted fake-thumb"><span class="small glyphicon glyphicon-user" style="color: <%= person.is_female? ? '#DB7093' : '#31708f' %>"></span></div>
     <% end %>

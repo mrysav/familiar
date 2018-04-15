@@ -8,111 +8,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-        
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">familiar</a>
-            </div>
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="nav navbar-nav" role="tablist">
-                    <% if current_user && current_user.editor? %>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            People
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to 'Create', new_person_path %></li>
-                            <li><%= link_to 'View all', people_path %></li>
-                        </ul>
-                    </li>
-                    <% else %>
-                    <li><%= link_to 'People', people_path %></li>
-                    <% end %>
-                    <% if current_user && current_user.editor? %>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Photos
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to 'Upload', new_photo_path %></li>
-                            <li><%= link_to 'View all', photos_path %></li>
-                        </ul>
-                    </li>
-                    <% else %>
-                    <li><%= link_to 'Photos', photos_path %></li>
-                    <% end %>
-                    <% if current_user && current_user.editor? %>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Notes
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to 'Create', new_note_path %></li>
-                            <li><%= link_to 'View all', notes_path %></li>
-                        </ul>
-                    </li>
-                    <% else %>
-                    <li><%= link_to 'Notes', notes_path %></li>
-                    <% end %>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <% if !current_page?(:controller => 'search', :action => 'index') && !params[:s] %>
-                    <li>
-                        <form class="navbar-form" action="<%= search_path %>" role="search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="search..." name="s" id="s" value="<%= params[:s] %>">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </li>
-                    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">familiar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <%= link_to 'People', people_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to 'Photos', photos_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to 'Notes', notes_path, class: 'nav-link' %>
+                </li>
+
+                <% if current_user && current_user.editor? %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        New
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%= link_to 'Person', new_person_path, class: 'dropdown-item' %>
+                        <%= link_to 'Photo', new_photo_path, class: 'dropdown-item' %>
+                        <%= link_to 'Note', new_note_path, class: 'dropdown-item' %>
+                    </div>
+                </li>
+                <% end %>
+            </ul>   
                     
-                    <% if current_user %>
-                        
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <%= current_user.name %>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <% if current_user %>
-                            <li><%= link_to 'Profile', profile_path %></li>
-                            <% end %>
-                            <% if current_user && current_user.editor? %>
-                            <li><%= link_to 'Import Data', import_path %></li>
-                            <li><%= link_to 'Export Data', export_path %></li>
-                            <li><%= link_to 'Manage Users', admin_users_path %></li>
-                            <% end %>
-                            <li><%= link_to 'Sign Out', logout_path %></li>
-                        </ul>
-                    </li>
-                        
-                    <% else %>
-                    
-                    
-                    <li><%= link_to 'Sign In or Register', login_path %></li>
-                    <% end %>
-                </ul>
-            </div>
+            <% if !current_page?(:controller => 'search', :action => 'index') && !params[:s] %>
+            <form class="form-inline my-2 my-lg-0" action="<%= search_path %>">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="s" id="s" value="<%= params[:s] %>"></input>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <% end %>
+            
+            <ul class="navbar-nav">
+                <% if current_user %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= current_user.name %>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%= link_to 'Profile', profile_path, class: 'dropdown-item' %>
+                        <% if current_user.editor? %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to 'Import Data', import_path, class: 'dropdown-item' %>
+                        <%= link_to 'Export Data', export_path, class: 'dropdown-item' %>
+                        <%= link_to 'Manage Users', admin_users_path, class: 'dropdown-item' %>
+                        <% end %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to 'Sign Out', logout_path, class: 'dropdown-item' %>
+                    </div>
+                </li>
+                <% else %>
+                <li class="nav-item">
+                    <%= link_to 'Sign In or Register', login_path, class: 'nav-link' %>
+                </li>
+                <% end %>
+            </ul>
         </div>
-    </nav>
-        
+    </nav> 
     
     <% if !flash.empty? %> 
     <div class="text-center">
         <% flash.each do |name, msg| %>
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 offset-3">
             <%= content_tag :div, msg, :class => "alert alert-#{name}" %>
         </div>
         <% end %>

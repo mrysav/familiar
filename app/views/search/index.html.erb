@@ -1,12 +1,12 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-8 offset-2">
     <br>
     <form role="form" action="<%= search_path %>" method="get">
         <h2><%= label_tag :s, "familiar." %></h2>
         <div class="input-group">
-            <%= text_field_tag :s, params[:s], :class => 'form-control', :placeholder => "search people, stories, photos..." %>
-            <span class="input-group-btn">
-                <%= submit_tag "Search!", :name => nil, :class => "btn btn-default" %>
-            </span>
+            <%= text_field_tag :s, params[:s], class: 'form-control', placeholder: "search people, stories, photos..." %>
+            <div class="input-group-append">
+                <%= submit_tag "Search!", :name => nil, :class => "btn btn-primary" %>
+            </div>
         </div>
     </form>
 

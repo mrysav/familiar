@@ -29,7 +29,7 @@
 </div>
 
 <div class="form-group">
-    <%= f.label 'Caption', :class=> "control-label" %>
+    <%= f.label 'Caption', :class=> "col-form-label" %>
     <%= f.text_area :description, class: "form-control md-editor", id: "photo-desc-editor" %>
 </div>
 
@@ -40,7 +40,7 @@
 
 <div class="form-group">
     <%= f.label 'Upload picture' %>
-    <%= image_tag(@photo.image.thumb.url, class: "img-responsive block-centered") if @photo.image? %><br/>
+    <%= image_tag(@photo.image.thumb.url, class: "img-fluid block-centered") if @photo.image? %><br/>
     <%= f.file_field :image, :class => "form-control" %>
     <%= f.hidden_field :image_cache %>
 </div>

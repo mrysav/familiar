@@ -48,3 +48,6 @@ bower.json
 
 # Byebug
 .byebug_history
+
+# node and yarn
+/node_modules

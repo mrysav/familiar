@@ -19,7 +19,7 @@
 
 <% if current_user.image.present? %>
 <div class="col-md-1 text-center">
-    <img src="<%= current_user.image %>" class="center-block img-responsive avatar-rounded-tiny" ><br/>
+    <img src="<%= current_user.image %>" class="center-block img-fluid avatar-rounded-tiny" ><br/>
 </div>
 <% end %>
 
@@ -36,7 +36,7 @@
 </div>
 
 <div class="form-group col-md-8">
-    <%= f.label 'Tags (comma-separated)', :class => "control-label" %>
+    <%= f.label 'Tags (comma-separated)', :class => "col-form-label" %>
     <%= f.text_field :tag_list, value: @note.tag_list.to_s, class: "form-control" %>
 </div>
     

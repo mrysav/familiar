@@ -18,8 +18,4 @@ class SessionsController < ApplicationController
     
     def new
     end
-    
-    def register
-        @identity = env['omniauth.identity']
-    end
 end

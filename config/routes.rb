@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   get '/login' => 'sessions#new'
   get '/logout' => 'sessions#destroy', :as => :logout
-  get '/register' => 'sessions#register', :as => :register
   match '/auth/:provider/callback' => 'sessions#create', via: %i[get post]
 
   get '/search' => 'search#index'

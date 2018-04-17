@@ -80,8 +80,6 @@ gem 'will_paginate'
 gem 'omniauth-facebook'
 # Google too
 gem 'omniauth-google-oauth2'
-# When all else fails
-gem 'omniauth-identity'
 
 # Implementation of the Extended Date and Time Format for ruby
 gem 'edtf'

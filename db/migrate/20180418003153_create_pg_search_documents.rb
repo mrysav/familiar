@@ -1,4 +1,4 @@
-class CreatePgSearchDocuments < ActiveRecord::Migration
+class CreatePgSearchDocuments < ActiveRecord::Migration[5.2]
   def self.up
     say_with_time("Creating table for pg_search multisearch") do
       create_table :pg_search_documents do |t|
@@ -7,6 +7,9 @@ class CreatePgSearchDocuments < ActiveRecord::Migration
         t.timestamps null: false
       end
     end
+
+    execute 'CREATE EXTENSION pg_trgm;'
+    execute 'CREATE EXTENSION fuzzystrmatch;'
   end
 
   def self.down

@@ -76,9 +76,9 @@ gem 'font-awesome-sass', '~> 5.0'
 # Use will_paginate
 gem 'will_paginate'
 
-# Using Facebook authentication for now
+# Use Devise for authentication
+gem 'devise'
 gem 'omniauth-facebook'
-# Google too
 gem 'omniauth-google-oauth2'
 
 # Implementation of the Extended Date and Time Format for ruby

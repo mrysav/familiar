@@ -7,6 +7,14 @@
 @import "photos";
 @import "sessions";
 
+.alert-notice {
+    @extend .alert-info;
+}
+
+.alert-alert {
+    @extend .alert-warning;
+}
+
 .panel-blue {
     // @extend .panel-info;
 }

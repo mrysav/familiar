@@ -1,5 +1,5 @@
 class Api::PeopleController < Api::ApiController
-    before_action :require_valid_user
+    before_action :authenticate_user!
 
     def index
     end

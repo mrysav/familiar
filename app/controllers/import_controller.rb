@@ -3,7 +3,7 @@
 ##
 # Manages importing data
 class ImportController < ApplicationController
-  before_action :require_editor
+  before_action :authenticate_admin!
 
   def show; end
 

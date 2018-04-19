@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-    before_action :require_editor, except: [:index, :show]
+    before_action :authenticate_admin!, except: [:index, :show]
     
     def index
         @photos = Photo.all.paginate(:page => params[:page])

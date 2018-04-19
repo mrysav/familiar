@@ -40,7 +40,7 @@
                 <% end %>
             </ul>   
                     
-            <% if !current_page?(:controller => 'search', :action => 'index') && !params[:s] %>
+            <% if !(current_page?(search_path) || current_page?(root_path)) %>
             <form class="form-inline my-2 my-lg-0" action="<%= search_path %>">
                 <div class="input-group">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="s" id="s" value="<%= params[:s] %>"></input>
@@ -55,23 +55,22 @@
                 <% if current_user %>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <%= current_user.name %>
+                        <%= current_user.email %>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <%= link_to 'Profile', profile_path, class: 'dropdown-item' %>
+                        <%= link_to 'Profile', edit_user_registration_path, class: 'dropdown-item' %>
                         <% if current_user.editor? %>
                         <div class="dropdown-divider"></div>
                         <%= link_to 'Import Data', import_path, class: 'dropdown-item' %>
                         <%= link_to 'Export Data', export_path, class: 'dropdown-item' %>
-                        <%= link_to 'Manage Users', admin_users_path, class: 'dropdown-item' %>
                         <% end %>
                         <div class="dropdown-divider"></div>
-                        <%= link_to 'Sign Out', logout_path, class: 'dropdown-item' %>
+                        <%= link_to 'Sign Out', destroy_user_session_path, class: 'dropdown-item' %>
                     </div>
                 </li>
                 <% else %>
                 <li class="nav-item">
-                    <%= link_to 'Sign In or Register', login_path, class: 'nav-link' %>
+                    <%= link_to 'Sign In or Register', new_user_session_path, class: 'nav-link' %>
                 </li>
                 <% end %>
             </ul>

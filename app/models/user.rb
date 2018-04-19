@@ -1,39 +1,29 @@
 class User < ApplicationRecord
-    before_create :generate_access_token
-    
-    def self.create_with_omniauth(auth)
-        create! do |user|
-            user.provider = auth["provider"]
-            user.uid = auth["uid"]
-            user.name = auth["info"]["name"]
-            user.email = auth["info"]["email"]
-            user.image = auth["info"]["image"]
-        
-            # Always make the first person to log in an editor
-            user.editor = !User.exists?(1)
-        end
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook google_oauth2]
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.name = auth.info.name
+      user.name = auth.info.image
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name   # assuming the user model has a name
+      user.image = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
     end
-      
-    def self.authenticate(auth)
-        user = find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
-        
-        # always update the image url if necessary
-        if user.name != auth["info"]["image"]
-            user.image = auth["info"]["image"]
-            user.save!
-        end
-        
-        if user.access_token.blank?
-            user.generate_access_token
-            user.save!
-        end
-        
-        return user
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
     end
-      
-    def generate_access_token
-        begin
-            self.access_token = SecureRandom.hex
-        end while self.class.exists?(access_token: access_token)
-    end
+  end
 end

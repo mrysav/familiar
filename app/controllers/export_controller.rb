@@ -1,5 +1,5 @@
 class ExportController < ApplicationController
-    before_action :require_editor
+    before_action :authenticate_admin!
 
     def show
         @exports = Export.all.order(created_at: :desc)

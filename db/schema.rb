@@ -132,7 +132,6 @@ ActiveRecord::Schema.define(version: 2018_04_18_003334) do
     t.string "provider"
     t.string "uid"
     t.string "name"
-    t.string "image"
     t.boolean "editor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

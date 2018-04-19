@@ -3,7 +3,7 @@ class Api::ApiController < ActionController::Base
   
   helper_method :current_user
   helper_method :require_valid_user
-  helper_method :require_editor
+  helper_method :authenticate_admin!
   
   def current_user
       token = request.headers["X-Auth-Token"]
@@ -20,7 +20,7 @@ class Api::ApiController < ActionController::Base
       end
   end
   
-  def require_editor
+  def authenticate_admin!
       if current_user == nil || (current_user && !current_user.editor)
           render :json => { :error => "Insufficient permissions" }, :status => 403
       end

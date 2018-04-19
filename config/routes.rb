@@ -3,9 +3,10 @@
 Rails.application.routes.draw do
   root 'search#index'
 
-  get '/login' => 'sessions#new'
-  get '/logout' => 'sessions#destroy', :as => :logout
-  match '/auth/:provider/callback' => 'sessions#create', via: %i[get post]
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   get '/search' => 'search#index'
   get '/tagged/:tag' => 'search#tagged', :as => :tagged
@@ -17,9 +18,6 @@ Rails.application.routes.draw do
   get  '/export' => 'export#show'
   post '/export' => 'export#export', :as => :exports
   get  '/export/jobs' => 'export#jobs'
-
-  get '/admin/users' => 'users#manage'
-  get '/profile' => 'users#profile'
 
   resources :people
   resources :photos do

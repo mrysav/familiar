@@ -8,7 +8,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
 
       # Custom properties
       t.string :name
-      t.string :image
       t.boolean :editor
 
       t.timestamps null: false

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  get '/users/:id' => 'users#show', as: :view_user
+
   get '/search' => 'search#index'
   get '/tagged/:tag' => 'search#tagged', :as => :tagged
 

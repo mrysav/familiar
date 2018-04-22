@@ -19,7 +19,10 @@
 <% end -%>
 
 <%- if devise_mapping.omniauthable? %>
+  <br />
+  <div class="text-center mr-auto ml-auto">
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(I18n.t(provider))}", omniauth_authorize_path(resource_name, provider), class: "btn btn-primary" %><br /><br />
   <% end -%>
+  </div>
 <% end -%>

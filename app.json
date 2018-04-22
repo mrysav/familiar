@@ -1,0 +1,63 @@
+{
+  "name": "Familiar",
+  "description": "Simple, social genealogy",
+  "keywords": [
+    "genealogy", "rails", "facebook", "family", "history"
+  ],
+  "repository": "https://github.com/mrysav/familiar",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:create db:migrate"
+  },
+  "env": {
+    "SECRET_KEY_BASE": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "5"
+    },
+    "FACEBOOK_ID": {
+        "description": "App ID from Facebook to allow users to log in with Facebook."
+    },
+    "FACEBOOK_SECRET": {
+        "description": "App secret from Facebook to allow users to log in with Facebook."
+    },
+    "MAILER_DEFAULT_HOST": {
+        "description": "Host to link to in password reset or confirmation emails."
+    },
+    "MAILER_SENDER": {
+        "description": "An email address that password resets and confirmation emails are sent from."
+    },
+    "DATABASE_URL": {
+        "description": "A connection URL to the Postgres database that will be used."
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+    "worker": {
+        "quantity": 1,
+        "size": "free"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
+}

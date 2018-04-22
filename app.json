@@ -29,9 +29,6 @@
     },
     "MAILER_SENDER": {
         "description": "An email address that password resets and confirmation emails are sent from."
-    },
-    "DATABASE_URL": {
-        "description": "A connection URL to the Postgres database that will be used."
     }
   },
   "formation": {

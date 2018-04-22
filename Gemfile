@@ -78,8 +78,9 @@ gem 'will_paginate'
 
 # Use Devise for authentication
 gem 'devise'
+
+# Add ability to log in with Facebook
 gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
 
 # Implementation of the Extended Date and Time Format for ruby
 gem 'edtf'

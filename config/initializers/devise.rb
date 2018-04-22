@@ -9,7 +9,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '1dcfce19e06c984d5fd4c42c1c4a919f2a0872b7afc1194df8af52b2d8f6ad92d0db566b4964492948cb05ed8b3115a3711847dca7c4857d16760f188da7d7fa'
-  
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -18,7 +18,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'familiar-do-not-reply@rysavys.me'
+  config.mailer_sender = ENV['MAILER_SENDER'] || 'do-not-reply@localhost'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -258,13 +258,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  if Rails.application.secrets.facebook_id.present?
-    config.omniauth :facebook, Rails.application.secrets.facebook_id, Rails.application.secrets.facebook_secret
-  end
-
-  if Rails.application.secrets.google_id.present?
-    config.omniauth :google_oauth2, Rails.application.secrets.google_id, Rails.application.secrets.google_secret
-  end
+  config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET'],
+                  image_size: :large, scope: :email
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

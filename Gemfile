@@ -82,6 +82,11 @@ gem 'devise'
 # Add ability to log in with Facebook
 gem 'omniauth-facebook'
 
+group :production do
+  # S3 required for production storage
+  gem "aws-sdk-s3"
+end
+
 # Implementation of the Extended Date and Time Format for ruby
 gem 'edtf'
 
@@ -93,13 +98,6 @@ gem 'chronic'
 
 # For job processing - switch this out if necessary...
 gem 'delayed_job_active_record'
-
-# Use Carrierwave with S3 extension for production storage
-gem 'carrierwave', '~> 1.2'
-
-# Optional carrierwave storage backends
-gem 'fog-aws'
-gem 'carrierwave-webdav'
 
 # Use pg_search for full-text searches
 gem 'pg_search'

@@ -1,5 +1,5 @@
 class Export < ActiveRecord::Base
-    validates_format_of :tag, with: /[A-Za-z0-9_\-]*/, on: [:create, :save]
+  validates_format_of :tag, with: /[A-Za-z0-9_\-]*/, on: %i[create save]
 
-    mount_uploader :archive, ArchiveUploader
+  has_one_attached :archive
 end

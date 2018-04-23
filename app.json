@@ -14,27 +14,26 @@
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
     },
-    "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "5"
-    },
-    "RAILS_ENV": {
-        "value": "production"
-    },
-    "RACK_ENV": {
-        "value": "production"
-    },
     "FACEBOOK_ID": {
-        "description": "App ID from Facebook to allow users to log in with Facebook."
+      "description": "App ID from Facebook to allow users to log in with Facebook."
     },
     "FACEBOOK_SECRET": {
-        "description": "App secret from Facebook to allow users to log in with Facebook."
+      "description": "App secret from Facebook to allow users to log in with Facebook."
+    },
+    "AWS_KEY_ID": {
+      "description": "AWS Key ID for S3 access."
+    },
+    "AWS_SECRET_KEY": {
+      "description": "AWS Secret Key for S3 access."
+    },
+    "AWS_BUCKET_NAME": {
+      "description": "AWS Bucket name for S3 access."
     },
     "MAILER_DEFAULT_HOST": {
-        "description": "Host to link to in password reset or confirmation emails."
+      "description": "Host to link to in password reset or confirmation emails."
     },
     "MAILER_SENDER": {
-        "description": "An email address that password resets and confirmation emails are sent from."
+      "description": "An email address that password resets and confirmation emails are sent from."
     }
   },
   "formation": {

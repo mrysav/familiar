@@ -1,5 +1,5 @@
 <div>
-    <div class="pull-left thumb"><img class="img-fluid" src="<%= photo.image.url(:thumb) %>"></img></div>
+    <div class="pull-left thumb"><img class="img-fluid" src="<%= url_for(photo.image) %>"></img></div>
     <div class="pull-left">
         <h4><a href="<%= photo_path(photo) %>"><%= photo.title %></a></h4>
         <% if photo.date.present? %>

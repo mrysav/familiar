@@ -42,7 +42,6 @@
     <%= f.label 'Upload picture' %>
     <%= image_tag(@photo.image.thumb.url, class: "img-fluid block-centered") if @photo.image? %><br/>
     <%= f.file_field :image, :class => "form-control" %>
-    <%= f.hidden_field :image_cache %>
 </div>
 
 <div class="text-center">

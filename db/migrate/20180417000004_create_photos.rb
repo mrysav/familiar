@@ -5,7 +5,6 @@ class CreatePhotos < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :description
       t.string :date
-      t.string :image
 
       t.timestamps null: false
     end

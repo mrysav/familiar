@@ -37,8 +37,8 @@ bower.json
 # Ignore dotenv file
 /.env
 
-# Ignore Carrierwave uploads
-/public/uploads/
+# Ignore local storage
+/storage
 
 # Ignore compiled assets
 /public/assets/

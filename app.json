@@ -18,6 +18,12 @@
       "description": "The number of processes to run.",
       "value": "5"
     },
+    "RAILS_ENV": {
+        "value": "production"
+    },
+    "RACK_ENV": {
+        "value": "production"
+    },
     "FACEBOOK_ID": {
         "description": "App ID from Facebook to allow users to log in with Facebook."
     },

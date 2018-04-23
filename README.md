@@ -5,6 +5,13 @@ Familiar is my attempt at a genealogy site builder web app that is simple and po
 
 There are systems out there that work extremely well (like Ancestry.com) but are not FOSS, and there are FOSS alternatives (like webtrees) that are very clunky and difficult to use and customize. For my personal use, I used to use a heavily-customized install of Mediawiki+Semantic Mediawiki, but hopefully this will replace that.
 
+Quickstart
+---
+
+If you already have a [Heroku](https://heroku.com) account you can click this to get up and running:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 Requirements (non-Docker)
 ---
 

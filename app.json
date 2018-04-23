@@ -7,7 +7,7 @@
   "repository": "https://github.com/mrysav/familiar",
   "success_url": "/",
   "scripts": {
-    "postdeploy": "bundle exec rake db:create db:migrate"
+    "postdeploy": "bundle exec rake db:migrate"
   },
   "env": {
     "SECRET_KEY_BASE": {

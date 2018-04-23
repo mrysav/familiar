@@ -82,4 +82,3 @@ test:
 
 production:
   <<: *default
-  database: familiar_production

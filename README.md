@@ -1,4 +1,4 @@
-# NOTE: This project is abandoned in favor of the rewrite [Geneac](/mrysav/geneac), which is much easier to maintain and will have more features. In the unlikely event that anyone ever has used this application, I recommend sending me a message and I'll help you migrate.
+# NOTE: This project is abandoned in favor of the rewrite [Geneac](https://github.com/mrysav/geneac), which is much easier to maintain and will have more features. In the unlikely event that anyone ever has used this application, I recommend sending me a message and I'll help you migrate.
 
 familiar
 ===
